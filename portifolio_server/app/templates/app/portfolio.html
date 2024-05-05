@@ -1,0 +1,191 @@
+
+{% extends "app/base.html" %}
+{% block content %}
+{% load static %}
+
+
+         <!-- Projects Start -->
+    <div class="container-fluid container-xxl py-3">
+      <div class="container-fluid">
+          <div class="row mt-n2 wow fadeInUp" data-wow-delay="0.3s">
+              <div class="col-12 text-center">
+                  <ul class="list-inline mb-5" id="portfolio-flters">
+                      <li class="mx-2 active" data-filter="*">All</li>
+                      <li class="mx-2" data-filter=".first">General Carpentry</li>
+                      <li class="mx-2" data-filter=".second">Custom Carpentry</li>
+                  </ul>
+              </div>
+          </div>
+          <div class="row g-4 portfolio-container">
+              <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.1s">
+                  <div class="rounded overflow-hidden">
+                      <div class="position-relative overflow-hidden">
+                          <img class="img-fluid w-100" src="{% static 'app/images/portoflio/image-1.jpg' %}"alt="">
+                          <div class="portfolio-overlay">
+                              <a class="btn btn-square btn-outline-light mx-1" href="{% static 'app/images/portoflio/image-1.jpg' %}"  data-toggle="lightbox"><i class="fa fa-eye"></i></a>
+                              <a class="btn btn-square btn-outline-light mx-1" href=""><i class="fa fa-link"></i></a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-lg-4 col-md-6 portfolio-item second wow fadeInUp" data-wow-delay="0.3s">
+                  <div class="rounded overflow-hidden">
+                      <div class="position-relative overflow-hidden">
+                          <img class="img-fluid w-100" src="{% static 'app/images/portoflio/image-2.jpg' %}"alt="">
+                          <div class="portfolio-overlay">
+                              <a class="btn btn-square btn-outline-light mx-1" href="{% static 'app/images/portoflio/image-2.jpg' %}" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                              <a class="btn btn-square btn-outline-light mx-1" href=""><i class="fa fa-link"></i></a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.5s">
+                  <div class="rounded overflow-hidden">
+                      <div class="position-relative overflow-hidden">
+                          <img class="img-fluid w-100" src="{% static 'app/images/portoflio/image-9.jpg' %}" alt="">
+                          <div class="portfolio-overlay">
+                              <a class="btn btn-square btn-outline-light mx-1" href="{% static 'app/images/portoflio/image-9.jpg' %}" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                              <a class="btn btn-square btn-outline-light mx-1" href=""><i class="fa fa-link"></i></a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-lg-4 col-md-6 portfolio-item second wow fadeInUp" data-wow-delay="0.1s">
+                  <div class="rounded overflow-hidden">
+                      <div class="position-relative overflow-hidden">
+                          <img class="img-fluid w-100" src="{% static 'app/images/portoflio/image-4.jpg' %}"  alt="">
+                          <div class="portfolio-overlay">
+                              <a class="btn btn-square btn-outline-light mx-1" href="images/portoflio/image-4.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                              <a class="btn btn-square btn-outline-light mx-1" href=""><i class="fa fa-link"></i></a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.3s">
+                  <div class="rounded overflow-hidden">
+                      <div class="position-relative overflow-hidden">
+                          <img class="img-fluid w-100" src="images/portoflio/image-5.jpg" alt="">
+                          <div class="portfolio-overlay">
+                              <a class="btn btn-square btn-outline-light mx-1" href="images/portoflio/image-6.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                              <a class="btn btn-square btn-outline-light mx-1" href=""><i class="fa fa-link"></i></a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-lg-4 col-md-6 portfolio-item second wow fadeInUp" data-wow-delay="0.5s">
+                  <div class="rounded overflow-hidden">
+                      <div class="position-relative overflow-hidden">
+                          <img class="img-fluid w-100" src="images/portoflio/image-19.jpg" alt="">
+                          <div class="portfolio-overlay">
+                              <a class="btn btn-square btn-outline-light mx-1" href="images/portoflio/image-19.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                              <a class="btn btn-square btn-outline-light mx-1" href=""><i class="fa fa-link"></i></a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-lg-4 col-md-6 portfolio-item second wow fadeInUp" data-wow-delay="0.5s">
+                  <div class="rounded overflow-hidden">
+                      <div class="position-relative overflow-hidden">
+                          <img class="img-fluid w-100" src="images/portoflio/image-7.jpg" alt="">
+                          <div class="portfolio-overlay">
+                              <a class="btn btn-square btn-outline-light mx-1" href="images/portoflio/image-7.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                              <a class="btn btn-square btn-outline-light mx-1" href=""><i class="fa fa-link"></i></a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-lg-4 col-md-6 portfolio-item second wow fadeInUp" data-wow-delay="0.5s">
+                  <div class="rounded overflow-hidden">
+                      <div class="position-relative overflow-hidden">
+                          <img class="img-fluid w-100" src="images/portoflio/image-19.jpg" alt="">
+                          <div class="portfolio-overlay">
+                              <a class="btn btn-square btn-outline-light mx-1" href="images/portoflio/image-19.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                              <a class="btn btn-square btn-outline-light mx-1" href=""><i class="fa fa-link"></i></a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-lg-4 col-md-6 portfolio-item second wow fadeInUp" data-wow-delay="0.5s">
+                  <div class="rounded overflow-hidden">
+                      <div class="position-relative overflow-hidden">
+                          <img class="img-fluid w-100" src="images/portoflio/image-7.jpg" alt="">
+                          <div class="portfolio-overlay">
+                              <a class="btn btn-square btn-outline-light mx-1" href="images/portoflio/image-7.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                              <a class="btn btn-square btn-outline-light mx-1" href=""><i class="fa fa-link"></i></a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-lg-4 col-md-6 portfolio-item second wow fadeInUp" data-wow-delay="0.5s">
+                  <div class="rounded overflow-hidden">
+                      <div class="position-relative overflow-hidden">
+                          <img class="img-fluid w-100" src="images/portoflio/image-7.jpg" alt="">
+                          <div class="portfolio-overlay">
+                              <a class="btn btn-square btn-outline-light mx-1" href="images/portoflio/image-7.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                              <a class="btn btn-square btn-outline-light mx-1" href=""><i class="fa fa-link"></i></a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-lg-4 col-md-6 portfolio-item second wow fadeInUp" data-wow-delay="0.5s">
+                  <div class="rounded overflow-hidden">
+                      <div class="position-relative overflow-hidden">
+                          <img class="img-fluid w-100" src="images/portoflio/image-7.jpg" alt="">
+                          <div class="portfolio-overlay">
+                              <a class="btn btn-square btn-outline-light mx-1" href="images/portoflio/image-7.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                              <a class="btn btn-square btn-outline-light mx-1" href=""><i class="fa fa-link"></i></a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-lg-4 col-md-6 portfolio-item second wow fadeInUp" data-wow-delay="0.5s">
+                  <div class="rounded overflow-hidden">
+                      <div class="position-relative overflow-hidden">
+                          <img class="img-fluid w-100" src="images/portoflio/image-7.jpg" alt="">
+                          <div class="portfolio-overlay">
+                              <a class="btn btn-square btn-outline-light mx-1" href="images/portoflio/image-7.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                              <a class="btn btn-square btn-outline-light mx-1" href=""><i class="fa fa-link"></i></a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-lg-4 col-md-6 portfolio-item second wow fadeInUp" data-wow-delay="0.5s">
+                  <div class="rounded overflow-hidden">
+                      <div class="position-relative overflow-hidden">
+                          <img class="img-fluid w-100" src="images/portoflio/image-7.jpg" alt="">
+                          <div class="portfolio-overlay">
+                              <a class="btn btn-square btn-outline-light mx-1" href="images/portoflio/image-7.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                              <a class="btn btn-square btn-outline-light mx-1" href=""><i class="fa fa-link"></i></a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-lg-4 col-md-6 portfolio-item second wow fadeInUp" data-wow-delay="0.5s">
+                  <div class="rounded overflow-hidden">
+                      <div class="position-relative overflow-hidden">
+                          <img class="img-fluid w-100" src="images/portoflio/image-7.jpg" alt="">
+                          <div class="portfolio-overlay">
+                              <a class="btn btn-square btn-outline-light mx-1" href="images/portoflio/image-7.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                              <a class="btn btn-square btn-outline-light mx-1" href=""><i class="fa fa-link"></i></a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-lg-4 col-md-6 portfolio-item second wow fadeInUp" data-wow-delay="0.5s">
+                  <div class="rounded overflow-hidden">
+                      <div class="position-relative overflow-hidden">
+                          <img class="img-fluid w-100" src="images/portoflio/image-7.jpg" alt="">
+                          <div class="portfolio-overlay">
+                              <a class="btn btn-square btn-outline-light mx-1" href="images/portoflio/image-7.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                              <a class="btn btn-square btn-outline-light mx-1" href=""><i class="fa fa-link"></i></a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <!-- end work section -->
+
+  {% endblock content %}
