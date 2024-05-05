@@ -604,10 +604,12 @@ color: var(--main-color);
   width: 56.5%;
 }
 
-/* start porfolio section */
+/* start project section section */
+.project-container {
+  height: 100vh;
+}
 
-
-/* end porfolio section */
+/* end project  section */
 
 .client_section {
   padding-bottom: 150px;
@@ -924,8 +926,8 @@ color: var(--main-color);
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
 
 .footer_section p {
@@ -933,7 +935,6 @@ color: var(--main-color);
   color: #fbfcfd;
   margin: 0 auto;
   text-align: center;
-  border-top: 1px solid #ffffff;
 }
 
 .footer_section a {
@@ -1294,6 +1295,11 @@ color: var(--main-color);
 
 
 /*** Project Portfolio ***/
+.portfolio-container {
+  min-height: 80vh;
+}
+
+
 #portfolio-flters li {
   display: inline-block;
   font-weight: 500;
