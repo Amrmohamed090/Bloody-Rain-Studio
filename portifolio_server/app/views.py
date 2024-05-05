@@ -24,3 +24,6 @@ def home(request):
 
 def portfolio(request):
     return render(request, 'app/portfolio.html')
+
+def project(request):
+    return render(request, 'app/project.html')

@@ -1293,7 +1293,7 @@ color: var(--main-color);
 #portfolio-flters li {
   display: inline-block;
   font-weight: 500;
-  color: var(--dark);
+  color: #b5b5b5;
   cursor: pointer;
   transition: .5s;
   border-bottom: 2px solid transparent;
@@ -1301,8 +1301,8 @@ color: var(--main-color);
 
 #portfolio-flters li:hover,
 #portfolio-flters li.active {
-  color: var(--primary);
-  border-color: var(--primary);
+  color: var(--main-color);
+  border-color: var(--main-color);
 }
 
 .portfolio-item img {
