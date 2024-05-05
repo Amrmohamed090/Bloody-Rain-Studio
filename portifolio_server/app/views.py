@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import BackgroundVideo
+from .models import BackgroundVideo, Service, Image
 
 def get_main_video():
     try:
@@ -12,11 +12,12 @@ def get_main_video():
 
 def home(request):
     main_video = BackgroundVideo.objects.filter(is_main=True).first()
+    services = Service.objects.all()
 
 
     context = {
         'main_video': main_video,
-
+        'services': services
     }
     return render(request, 'app/index.html', context)
 # Create your views here.
@@ -29,4 +30,6 @@ def portfolio(request, active):
     return render(request, 'app/portfolio.html', context)
 
 def project(request):
+    
+    
     return render(request, 'app/project.html')

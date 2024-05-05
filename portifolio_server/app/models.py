@@ -31,3 +31,19 @@ class BackgroundVideo(models.Model):
         if self.is_main:
             BackgroundVideo.objects.exclude(pk=self.pk).update(is_main=False)
         super().save(*args, **kwargs)
+
+class Image(models.Model):
+    name = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='images/')
+
+    def __str__(self):
+        return self.name
+
+class Service(models.Model):
+    title = models.CharField(max_length=100)
+    
+    description = models.TextField()
+    images = models.ManyToManyField(Image)
+
+    def __str__(self):
+        return self.title
