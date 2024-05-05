@@ -24,8 +24,10 @@ def home(request):
 
 
 def portfolio(request, active):
+    services = Service.objects.all()
     context = {
         'active': active,
+        'services' : services
     }
     return render(request, 'app/portfolio.html', context)
 
