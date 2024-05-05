@@ -22,8 +22,11 @@ def home(request):
 # Create your views here.
 
 
-def portfolio(request):
-    return render(request, 'app/portfolio.html')
+def portfolio(request, active):
+    context = {
+        'active': active,
+    }
+    return render(request, 'app/portfolio.html', context)
 
 def project(request):
     return render(request, 'app/project.html')

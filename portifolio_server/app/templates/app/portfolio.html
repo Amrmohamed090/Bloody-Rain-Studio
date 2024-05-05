@@ -10,10 +10,13 @@
           <div class="row mt-n2 wow fadeInUp" data-wow-delay="0.3s">
               <div class="col-12 text-center">
                   <ul class="list-inline mb-5" id="portfolio-flters">
-                      <li class="mx-2 active" data-filter="*">All</li>
-                      <li class="mx-2" data-filter=".first">Concept Art</li>
-                      <li class="mx-2" data-filter=".second">environment art</li>
-                      <li class="mx-2" data-filter=".third">props</li>
+                    <li class="mx-2 {% if active == 0 %}active{% endif %}" data-filter="*">All</li>
+                    <li class="mx-2 {% if active == 1 %}active{% endif %}" data-filter=".first">Concept Art</li>
+                    <li class="mx-2 {% if active == 2 %}active{% endif %}" data-filter=".second">Environment Art</li>
+                    <li class="mx-2 {% if active == 3 %}active{% endif %}" data-filter=".third">Props</li>
+
+
+                  
                   </ul>
               </div>
           </div>
