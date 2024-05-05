@@ -5,7 +5,7 @@
 
 
          <!-- Projects Start -->
-    <div class="container-fluid container-xxl py-3">
+    <div class="container-fluid container-xxl py-3 project-container">
       <div class="container-fluid">
           <div class="row mt-n2 wow fadeInUp" data-wow-delay="0.3s">
               <div class="col-12 text-center">
@@ -14,9 +14,6 @@
                     <li class="mx-2 {% if active == 1 %}active{% endif %}" data-filter=".first">Concept Art</li>
                     <li class="mx-2 {% if active == 2 %}active{% endif %}" data-filter=".second">Environment Art</li>
                     <li class="mx-2 {% if active == 3 %}active{% endif %}" data-filter=".third">Props</li>
-
-
-                  
                   </ul>
               </div>
           </div>
@@ -26,8 +23,8 @@
                       <div class="position-relative overflow-hidden">
                           <img class="img-fluid w-100" src="{% static 'app/images/portoflio/image-1.jpg' %}"alt="">
                           <div class="portfolio-overlay">
-                              <a class="btn btn-square btn-outline-light mx-1" href="{% static 'app/images/portoflio/image-1.jpg' %}"  data-toggle="lightbox"><i class="fa fa-eye"></i></a>
-                              <a class="btn btn-square btn-outline-light mx-1" href=""><i class="fa fa-link"></i></a>
+                              <a class="btn btn-square btn-outline-light mx-1" href="{% static 'app/images/portoflio/image-1.jpg' %}"  data-fslightbox="gallery"><i class="fa fa-eye"></i></a>
+                              <a class="btn btn-square btn-outline-light mx-1" href="{% url 'app-project' %}"><i class="fa fa-link"></i></a>
                           </div>
                       </div>
                   </div>
@@ -37,7 +34,7 @@
                       <div class="position-relative overflow-hidden">
                           <img class="img-fluid w-100" src="{% static 'app/images/portoflio/image-2.jpg' %}"alt="">
                           <div class="portfolio-overlay">
-                              <a class="btn btn-square btn-outline-light mx-1" href="{% static 'app/images/portoflio/image-2.jpg' %}" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                              <a class="btn btn-square btn-outline-light mx-1" href="{% static 'app/images/portoflio/image-2.jpg' %}" data-fslightbox="gallery"><i class="fa fa-eye"></i></a>
                               <a class="btn btn-square btn-outline-light mx-1" href=""><i class="fa fa-link"></i></a>
                           </div>
                       </div>
@@ -48,7 +45,7 @@
                       <div class="position-relative overflow-hidden">
                           <img class="img-fluid w-100" src="{% static 'app/images/portoflio/image-9.jpg' %}" alt="">
                           <div class="portfolio-overlay">
-                              <a class="btn btn-square btn-outline-light mx-1" href="{% static 'app/images/portoflio/image-9.jpg' %}" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                              <a class="btn btn-square btn-outline-light mx-1" href="{% static 'app/images/portoflio/image-9.jpg' %}" data-fslightbox="gallery"><i class="fa fa-eye"></i></a>
                               <a class="btn btn-square btn-outline-light mx-1" href=""><i class="fa fa-link"></i></a>
                           </div>
                       </div>
@@ -59,7 +56,7 @@
                       <div class="position-relative overflow-hidden">
                           <img class="img-fluid w-100" src="{% static 'app/images/portoflio/image-4.jpg' %}"  alt="">
                           <div class="portfolio-overlay">
-                              <a class="btn btn-square btn-outline-light mx-1" href="images/portoflio/image-4.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                              <a class="btn btn-square btn-outline-light mx-1" href="{% static 'app/images/portoflio/image-4.jpg' %}" data-fslightbox="gallery"><i class="fa fa-eye"></i></a>
                               <a class="btn btn-square btn-outline-light mx-1" href=""><i class="fa fa-link"></i></a>
                           </div>
                       </div>
