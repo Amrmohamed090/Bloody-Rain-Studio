@@ -5,42 +5,21 @@
 <div class="project-page">
     <div class="project-section">
         <div class="container-sm">
-            <div class="section-head">PG-7VL</div>
-            <h1>PG-7VL</h1>
+            <div class="section-head">{{ active_project.project_name }}</div>
+            <h1>{{ active_project.project_name }}</h1>
             <div class="project-description">
-                <p>Quick small piece been a while since i did anything dunno if it was an art block or just being lazy. :"x</p>
+                <p>{{ active_project.project_description }}</p>
             </div>
         </div>
     </div>
-    <!-- <div class="project-section">
-        <div class="container-lg  text-center">
-            <div><iframe
-                    src="https://www.artstation.com/api/v2/animation/video_clips/7daecb92-ac0b-4d79-93e9-edefd05728c0/embed.html?s=d9777b3840aedd609c4194453cbf2e879888f1153b038091c0288534462f67d5&amp;t=1714957462"
-                    width="665" height="374" frameborder="0" allowfullscreen="" allows="autoplay; fullscreen"
-                    style="max-width: 1920px; max-height: 1080px;"></iframe>
-                </div>
+    <!-- Project Images -->
+    {% for image in active_project.project_images.all %}
+    <div class="project-section">
+        <div class="text-center container-sm">
+            <img class="img-responsive" alt="{{ image.name }}" src="{{ image.image.url }}">
         </div>
-    </div> -->
-    <div class="project-section">
-        <div class="text-center container-sm">
-                    <img class="img-responsive" alt="" src="{% static 'app/images/project-1/830-1pretty.jpg' %}">
-           </div>
     </div>
-    <div class="project-section">
-        <div class="text-center container-sm">
-                    <img class="img-responsive" alt="" src="{% static 'app/images/project-1/830-2-with-dis.jpg' %}">
-           </div>
-    </div>
-    <div class="project-section">
-        <div class="text-center container-sm">
-                    <img class="img-responsive" alt="" src="{% static 'app/images/project-1/830-4pretty.jpg' %}">
-           </div>
-    </div>
-    <div class="project-section">
-        <div class="text-center container-sm">
-                    <img class="img-responsive" alt="" src="{% static 'app/images/project-1/830-4pretty.jpg' %}">
-           </div>
-    </div>
+    {% endfor %}
 </div>
 
 {% endblock content %}

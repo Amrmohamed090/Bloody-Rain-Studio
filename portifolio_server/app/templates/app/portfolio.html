@@ -6,69 +6,34 @@
 
          <!-- Projects Start -->
     <div class="container-fluid container-xxl py-3 project-container">
-      <div class="container-fluid">
-          <div class="row mt-n2 wow fadeInUp" data-wow-delay="0.3s">
-              <div class="col-12 text-center">
-                  <ul class="list-inline mb-5" id="portfolio-flters">
+    <div class="container-fluid">
+        <div class="row mt-n2 wow fadeInUp" data-wow-delay="0.3s">
+            <div class="col-12 text-center">
+                <ul class="list-inline mb-5" id="portfolio-flters">
                     <li class="mx-2 {% if active == 20 %}active{% endif %}" data-filter="*">All</li>
                     {% for service in services %}
-                    
-                    <li class="mx-2 {% if active == service.id %}active{% endif %}" data-filter=".first">{{ service.title }}</li>
-                    
-                    {% endfor %}
-
-                  
-                  </ul>
-              </div>
-          </div>
-          <div class="row g-4 portfolio-container">
-              <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.1s">
-                  <div class="rounded overflow-hidden">
-                      <div class="position-relative overflow-hidden">
-                          <img class="img-fluid w-100" src="{% static 'app/images/portoflio/image-1.jpg' %}"alt="">
-                          <div class="portfolio-overlay">
-                              <a class="btn btn-square btn-outline-light mx-1" href="{% static 'app/images/portoflio/image-1.jpg' %}"  data-fslightbox="gallery"><i class="fa fa-eye"></i></a>
-                              <a class="btn btn-square btn-outline-light mx-1" href="{% url 'app-project' %}"><i class="fa fa-link"></i></a>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-lg-4 col-md-6 portfolio-item second wow fadeInUp" data-wow-delay="0.3s">
-                  <div class="rounded overflow-hidden">
-                      <div class="position-relative overflow-hidden">
-                          <img class="img-fluid w-100" src="{% static 'app/images/portoflio/image-2.jpg' %}"alt="">
-                          <div class="portfolio-overlay">
-                              <a class="btn btn-square btn-outline-light mx-1" href="{% static 'app/images/portoflio/image-2.jpg' %}" data-fslightbox="gallery"><i class="fa fa-eye"></i></a>
-                              <a class="btn btn-square btn-outline-light mx-1" href=""><i class="fa fa-link"></i></a>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.5s">
-                  <div class="rounded overflow-hidden">
-                      <div class="position-relative overflow-hidden">
-                          <img class="img-fluid w-100" src="{% static 'app/images/portoflio/image-9.jpg' %}" alt="">
-                          <div class="portfolio-overlay">
-                              <a class="btn btn-square btn-outline-light mx-1" href="{% static 'app/images/portoflio/image-9.jpg' %}" data-fslightbox="gallery"><i class="fa fa-eye"></i></a>
-                              <a class="btn btn-square btn-outline-light mx-1" href=""><i class="fa fa-link"></i></a>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-lg-4 col-md-6 portfolio-item second wow fadeInUp" data-wow-delay="0.1s">
-                  <div class="rounded overflow-hidden">
-                      <div class="position-relative overflow-hidden">
-                          <img class="img-fluid w-100" src="{% static 'app/images/portoflio/image-4.jpg' %}"  alt="">
-                          <div class="portfolio-overlay">
-                              <a class="btn btn-square btn-outline-light mx-1" href="{% static 'app/images/portoflio/image-4.jpg' %}" data-fslightbox="gallery"><i class="fa fa-eye"></i></a>
-                              <a class="btn btn-square btn-outline-light mx-1" href=""><i class="fa fa-link"></i></a>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
+                    <li class="mx-2 {% if active == service.id %}active{% endif %}" data-filter=".service{{ service.id }}">{{ service.title }}</li>
+                    {% endfor %} 
+                </ul>
+            </div>
+        </div>
+        <div class="row g-4 portfolio-container">
+            {% for project in projects %}
+            <div class="col-lg-4 col-md-6 portfolio-item service{{ project.project_category.id }} wow fadeInUp" data-wow-delay="0.1s">
+                <div class="rounded overflow-hidden">
+                    <div class="position-relative overflow-hidden">
+                        <img class="img-fluid w-100" src="{{ project.project_thumbnail.image.url }}" alt="{{ project.project_thumbnail.image.name }}">
+                        <div class="portfolio-overlay">
+                            <a class="btn btn-square btn-outline-light mx-1" href="{{ project.project_thumbnail.image.url }}" data-fslightbox="gallery"><i class="fa fa-eye"></i></a>
+                            <a class="btn btn-square btn-outline-light mx-1" href="{% url 'app-project' project.id %}"><i class="fa fa-link"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
 
   <!-- end work section -->
 

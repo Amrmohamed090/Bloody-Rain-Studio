@@ -6,6 +6,7 @@
 
 <head>
   <!-- Basic -->
+
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <!-- Mobile Metas -->
@@ -17,7 +18,7 @@
 
   <title>Company</title>
   
-
+  
   <!-- slider stylesheet -->
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
 
@@ -85,16 +86,16 @@
           <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="about.html"> About </a>
+                <a class="nav-link" href="#who_section"> About </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="do.html"> What we do </a>
+                <a class="nav-link" href="#services"> What we do </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'app-portfolio' 20 %}"> Portfolio </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contact.html">Contact us</a>
+                <a class="nav-link" href="#contact_us">Contact us</a>
               </li>
             </ul>
           </div>
@@ -141,6 +142,7 @@
   <!-- end owl carousel script -->
 
 </body>
+
 <script>
 
 var preloader = document.getElementById("preloader");
@@ -156,6 +158,7 @@ setTimeout(function() {
 
 </script>
   <!-- JavaScript Libraries -->
+  
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="{% static 'app/lib/wow/wow.min.js' %}"></script>
@@ -166,6 +169,7 @@ setTimeout(function() {
   <script src="{% static 'app/lib/isotope/isotope.pkgd.min.js' %}"></script>
   
   <script src="{% static 'app/lib/fslightbox-basic-3.4.1/fslightbox.js' %}"></script>
+  <script src="{% static 'app\js\portoflio.js' %}"></script>
 
-<script src="{% static 'app/js/portoflio.js' %}"></script>
+
 </html>
