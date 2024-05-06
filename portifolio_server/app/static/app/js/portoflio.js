@@ -1,5 +1,4 @@
     // Initiate the wowjs
-
     
     new WOW().init();
 
@@ -23,3 +22,5 @@
             portfolioIsotope.isotope({filter: $(this).data('filter')});
         });
     });
+
+    
