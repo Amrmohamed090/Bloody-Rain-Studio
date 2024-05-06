@@ -236,41 +236,45 @@
       {% for service in services %}
       <div class="tab-pane fade {% if forloop.first %}show active{% endif %}" id="service-{{ service.id }}" role="tabpanel" aria-labelledby="service-tab-{{ service.id }}">
         <div class="row">
-          <div class="services-box col-12 col-md-5 d-flex">
-            <div class="services-text">
-              <h1>{{ service.title }}</h1>
-              <p>{{ service.description }}</p>
-              <div class="show-button">
-                <a href="{% url 'app-portfolio' service.id %}">show more</a>
-              </div>
-            </div>
-          </div>
-          <div class="img-box col-12 col-md-7">
-            <div id="carousel-service-{{ service.id }}" class="carousel slide" data-ride="carousel" data-interval="1500">
-              <ol class="carousel-indicators">
-                {% for image in service.images.all %}
-                <li data-target="#carousel-service-{{ service.id }}" data-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active"{% endif %}></li>
-                {% endfor %}
-              </ol>
-              <div class="carousel-inner">
-                {% for image in service.images.all %}
-                <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                  <img class="d-block w-100" src="{{ image.image.url }}" alt="{{ image.name }}">
+            <div class="services-box col-12 col-md-5 d-flex">
+                <div class="services-text">
+                    <h1>{{ service.title }}</h1>
+                    <p>{{ service.description }}</p>
+                    <div class="show-button">
+                        <a href="{% url 'app-portfolio' service.id %}">show more</a>
+                    </div>
                 </div>
-                {% endfor %}
-              </div>
-              <a class="carousel-control-prev" href="#carousel-service-{{ service.id }}" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-              </a>
-              <a class="carousel-control-next" href="#carousel-service-{{ service.id }}" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-              </a>
             </div>
-          </div>
+            <div class="img-box col-12 col-md-7">
+                <div id="carousel-service-{{ service.id }}" class="carousel slide" data-ride="carousel" data-interval="1500">
+                    <ol class="carousel-indicators">
+                        {% for image in service.images.all %}
+                        {% if image.show_on_home_page %}
+                        <li data-target="#carousel-service-{{ service.id }}" data-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active"{% endif %}></li>
+                        {% endif %}
+                        {% endfor %}
+                    </ol>
+                    <div class="carousel-inner">
+                        {% for image in service.images.all %}
+                        {% if image.show_on_home_page %}
+                        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                            <img class="d-block w-100" src="{{ image.image.url }}" alt="{{ image.name }}">
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                    <a class="carousel-control-prev" href="#carousel-service-{{ service.id }}" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carousel-service-{{ service.id }}" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
         </div>
-      </div>
+    </div>
       {% endfor %}
     </div>   
     </div>
