@@ -35,8 +35,7 @@ class BackgroundVideo(models.Model):
 class Image(models.Model):
     name = models.CharField(max_length=100)
     image = models.ImageField(upload_to='images/')
-    show_on_home_page = models.BooleanField(default=False)
-
+    
     def __str__(self):
         return self.name
 
@@ -44,7 +43,16 @@ class Service(models.Model):
     title = models.CharField(max_length=100)
     
     description = models.TextField()
-    images = models.ManyToManyField(Image)
+    home_page_services_section_images = models.ManyToManyField(Image, related_name='home_page_services')
+    portfolio_page_service_images = models.ManyToManyField(Image, related_name='portfolio_page_services')
 
     def __str__(self):
         return self.title
+
+class Project(models.Model):
+    project_name = models.CharField(max_length=100)
+    project_description = models.TextField()
+    project_images = models.ManyToManyField(Image)
+
+    def __str__(self):
+        return self.project_name
