@@ -1377,6 +1377,9 @@ color: var(--main-color);
   border-color: var(--main-color);
 }
 
+.portfolio-item {
+  animation-delay: 0 !important;
+}
 .portfolio-item img {
   transition: .5s;
 }
