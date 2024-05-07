@@ -54,16 +54,18 @@ def home(request):
 # Create your views here.
 
 
-def portfolio(request, active):
+def portfolio(request):
+    pagename = request.GET.get('pagename')  # Get the value of pagename from query parameters
     projects = Project.objects.all()
     services = Service.objects.all()
+    
     context = {
-        'active': active,
-        'projects' : projects,
-        'services' : services
+        'pagename': pagename,
+        'projects': projects,
+        'services': services
     }
+    
     return render(request, 'app/portfolio.html', context)
-
 def project(request, active):
      # Get the project object corresponding to the active parameter
     active_project = get_object_or_404(Project, pk=active)

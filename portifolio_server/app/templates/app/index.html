@@ -184,7 +184,7 @@
                     <h1>{{ service.title }}</h1>
                     <p>{{ service.description }}</p>
                     <div class="show-button">
-                        <a href="{% url 'app-portfolio' service.id %}">show more</a>
+                        <a href="{% url 'app-portfolio' %}?pageid={{ service.id }}">show more</a>
                     </div>
                 </div>
             </div>

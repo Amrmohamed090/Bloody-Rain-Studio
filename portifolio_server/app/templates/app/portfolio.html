@@ -1,25 +1,23 @@
-
 {% extends "app/base.html" %}
 {% block content %}
 {% load static %}
 
-
-         <!-- Projects Start -->
-    <div class="container-fluid container-xxl py-3 project-container">
+<!-- Projects Start -->
+<div class="container-fluid container-xxl py-3 project-container">
     <div class="container-fluid">
         <div class="row mt-n2 wow fadeInUp" data-wow-delay="0.3s">
             <div class="col-12 text-center">
                 <ul class="list-inline mb-5" id="portfolio-flters">
-                    <li class="mx-2 {% if active == 20 %}active{% endif %}" data-filter="*">All</li>
+                    <li class="mx-2 {% if active == 20 %}active{% endif %}" data-filter="*" >All</li>
                     {% for service in services %}
-                    <li class="mx-2 {% if active == service.id %}active{% endif %}" data-filter=".service{{ service.id }}">{{ service.title }}</li>
-                    {% endfor %} 
+                    <li class="mx-2 {% if active == service.id %}active{% endif %}" data-filter=".service{{ service.id }}" data-service-id="{{ service.id }}">{{ service.title }}</li>
+                    {% endfor %}
                 </ul>
             </div>
         </div>
         <div class="row g-4 portfolio-container">
             {% for project in projects %}
-            <div class="col-lg-4 col-md-6 portfolio-item service{{ project.project_category.id }} wow fadeInUp" data-category="service{{ project.project_category.id }}" data-wow-delay="0.1s" >
+            <div class="col-lg-4 col-md-6 portfolio-item service{{ project.project_category.id }} wow fadeInUp" data-category="{{ project.project_category.id }}" data-wow-delay="0.1s">
                 <div class="rounded overflow-hidden">
                     <div class="position-relative overflow-hidden">
                         <img class="img-fluid w-100" src="{{ project.project_thumbnail.image.url }}" alt="{{ project.project_thumbnail.image.name }}">
@@ -34,70 +32,34 @@
         </div>
     </div>
 </div>
-
-  <!-- end work section -->
-
-  <script id="rendered-js">
-    // external js: isotope.pkgd.js
-    
-    // filter functions
-    var filterFns = {
-      // show if number is greater than 50
-      numberGreaterThan50: function() {
-        var number = $(this).find('.number').text();
-        return parseInt( number, 10 ) > 50;
-      },
-      // show if name ends with -ium
-      ium: function() {
-        var name = $(this).find('.name').text();
-        return name.match( /ium$/ );
-      }
-    };
-    
-    function getHashFilter() {
-      // get filter=filterName
-      var matches = location.hash.match( /filter=([^&]+)/i );
-      var hashFilter = matches && matches[1];
-      return hashFilter && decodeURIComponent( hashFilter );
-    }
-    
-    // init Isotope
-    var $grid = $('.grid');
-    
-    // bind filter button click
-    var $filterButtonGroup = $('.filter-button-group');
-    $filterButtonGroup.on( 'click', 'button', function() {
-      var filterAttr = $( this ).attr('data-filter');
-      // set filter in hash
-      location.hash = 'filter=' + encodeURIComponent( filterAttr );
+<!-- end work section -->
+<script>
+   document.addEventListener("DOMContentLoaded", function () {
+        var serviceTabs = document.querySelectorAll("#portfolio-flters li");
+        serviceTabs.forEach(function (tab) {
+            tab.addEventListener("click", function () {
+                
+                var serviceId = this.getAttribute("data-service-id")
+                console.log(serviceId);
+                var currentUrl = window.location.href;
+                var newUrl;
+                if (serviceId !== null) {
+                    console.log("you tapped on not null")
+                    if (currentUrl.includes("?pageid=")) {
+                        newUrl = currentUrl.replace(/(pageid=)[^&]+/, '$1' + serviceId);
+                    } else {
+                        newUrl = currentUrl + "?pageid=" + serviceId;
+                    }
+                } else {
+                    newUrl = currentUrl.split('?')[0];
+                    
+                }
+                console.log(serviceId)
+                console.log(newUrl)
+                window.history.replaceState({}, "", newUrl);
+            });
+        });
     });
-    
-    var isIsotopeInit = false;
-    
-    function onHashchange() {
-      var hashFilter = getHashFilter();
-      if ( !hashFilter && isIsotopeInit ) {
-        return;
-      }
-      isIsotopeInit = true;
-      // filter isotope
-      $grid.isotope({
-        itemSelector: '.element-item',
-        layoutMode: 'fitRows',
-        // use filterFns
-        filter: filterFns[ hashFilter ] || hashFilter
-      });
-      // set selected class on button
-      if ( hashFilter ) {
-        $filterButtonGroup.find('.is-checked').removeClass('is-checked');
-        $filterButtonGroup.find('[data-filter="' + hashFilter + '"]').addClass('is-checked');
-      }
-    }
-    
-    $(window).on( 'hashchange', onHashchange );
-    
-    // trigger event handler to init Isotope
-    onHashchange();
-        </script>
+</script>
+{% endblock content %}
 
-  {% endblock content %}
