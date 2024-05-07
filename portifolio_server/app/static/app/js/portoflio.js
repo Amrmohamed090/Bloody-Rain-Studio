@@ -1,3 +1,32 @@
+document.addEventListener("DOMContentLoaded", function () {
+    var serviceTabs = document.querySelectorAll("#portfolio-flters li");
+    serviceTabs.forEach(function (tab) {
+        tab.addEventListener("click", function () {
+            
+            var serviceId = this.getAttribute("data-service-id")
+            console.log(serviceId);
+            var currentUrl = window.location.href;
+            var newUrl;
+            if (serviceId !== null && serviceId !== "") {
+                console.log("you tapped on not null")
+                if (currentUrl.includes("?pageid=")) {
+                    newUrl = currentUrl.replace(/(pageid=)[^&]+/, '$1' + serviceId);
+                } else {
+                    newUrl = currentUrl + "?pageid=" + serviceId;
+                }
+            } else {
+                newUrl = currentUrl.split('?')[0];
+                
+            }
+            console.log(serviceId)
+            console.log(newUrl)
+            window.history.replaceState({}, "", newUrl);
+        });
+    });
+});
+
+
+
 // Initiate the wowjs
 $(document).ready(function() {
     // Portfolio isotope and filter
