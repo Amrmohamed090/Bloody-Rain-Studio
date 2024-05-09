@@ -1,8 +1,8 @@
 databases:
   - name: mysitedb
     plan: free
-    databaseName: project_database_iqxi
-    user: project_database_iqxi_user
+    databaseName: mysite
+    user: mysite
 
 services:
   - type: web

@@ -82,7 +82,7 @@ WSGI_APPLICATION = "portifolio_server.wsgi.application"
 DATABASES = {
        'default': dj_database_url.config(
         # Replace this value with your local database's connection string.
-        default="postgres://project_database_iqxi_user:2bnH4LrV6QNbV6c0lS0EVSd7SRgAJnsT@dpg-cou2ucgl6cac73cbb0ng-a/project_database_iqxi",
+        default="postgresql://postgres:123@localhost:5432/portifolio_db",
         conn_max_age=600
        )
 }
