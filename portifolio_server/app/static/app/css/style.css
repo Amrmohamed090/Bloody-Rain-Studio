@@ -1,22 +1,17 @@
-body {
-  font-family: "Poppins", sans-serif;
-  color: white;
-  background-color: black;
-}
-* {
-  margin:0;
-  padding: 0;
-  
 
-}
+
+
 :root {
-  --main-bg-color:	#5B8FB9;
-  --main-color:	#5B8FB9;
+  --main-color:#880808;
+  --main-bg-color:	#880808;
+  --secondry-color:white;
+  
 }
 
-html {
+
+/* html {
   scroll-behavior: smooth;
-}
+} */
 
 /* 
 @font-face {
@@ -57,30 +52,10 @@ html {
   
 }
 
-.back-to-top span {
-  color: white;
-  font-size: 2rem;
-  transition: 0.2s ease-out;
-}
-
-.back-to-top:hover {
-  background-color: transparent;
-}
-
-.back-to-top span:hover {
-  color: var(--main-color);
-  transform: translateY(-4px);
-}
 
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
-}
-
-.head-logo {
-  color: white;
-  font-weight: 900;
-  /* font-family: myfont; */
 }
 
 .m-color {
@@ -363,6 +338,10 @@ a:focus {
 
 
 
+.do_section  { 
+background-color: black;
+}
+
 .do_section .heading_container {
   -webkit-box-align: center;
       -ms-flex-align: center;
@@ -446,7 +425,7 @@ color: var(--main-color);
   outline: none;
 }
 .do_section .nav-link.active {
-  background-color: var(--main-bg-color);
+  background-color: var(--main-color);
   border: 1px solid var(--main-bg-color);
   color: white;
 
@@ -821,6 +800,23 @@ color: var(--main-color);
 }
 
 /* contact section */
+.contact_section .section-head__back {
+  position: relative;
+  z-index: 1;
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-size: 130px;
+  line-height: 1.16875;
+  text-transform: uppercase;
+  color: rgba(92, 93, 93, 0.25);
+  margin-bottom: -60px;
+  white-space: nowrap;
+  text-align: center;
+
+}
+.contact_section {
+  background-color: black;
+}
 .contact_section .heading_container {
   -webkit-box-align: center;
       -ms-flex-align: center;
@@ -842,6 +838,13 @@ color: var(--main-color);
   border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 30px;
   color: white; /* Change the text color to white */
+}
+
+
+
+
+.contact_section input:focus {
+  border-color: var(--main-color);
 }
 
 .contact_section .contact-form input.input_message {
@@ -883,6 +886,7 @@ color: var(--main-color);
 .contact_section .map_img-box img {
   width: 100%;
 }
+
 /* end contact section */
 .info_section {
   background-color: #232323;
