@@ -16,7 +16,9 @@
     {% for image in active_project.project_images.all %}
     <div class="project-section">
         <div class="text-center container-sm">
-            <img class="img-responsive" alt="{{ image.name }}" src="{{ image.image.url }}">
+            <a href="{{ image.image.url }}" data-fslightbox="gallery" >
+                <img class="img-responsive" alt="{{ image.name }}" src="{{ image.image.url }}" >
+            </a>
         </div>
     </div>
     {% endfor %}
