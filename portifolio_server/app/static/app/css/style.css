@@ -37,21 +37,12 @@
     transition: none;
   }
 }
-.back-to-top {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  padding: 0.3rem;
-  text-decoration: none;
-  transition: 0.2 ease-out;
-  background-color:var(--main-bg-color);
-  
+.unselectable {
+  -webkit-user-select: none; /* Safari 3.1+ */
+  -moz-user-select: none; /* Firefox 2+ */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none; /* Standard syntax */
 }
-
 
 @keyframes spin {
   0% { transform: rotate(0deg); }
