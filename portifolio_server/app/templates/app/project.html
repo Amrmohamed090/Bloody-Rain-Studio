@@ -2,26 +2,30 @@
 {% block content %}
 {% load static %}
 <div style="height: 100px;"></div>
-<div class="project-page unselectable">
-    <div class="project-section">
-        <div class="container-sm">
-            <div class="section-head">{{ active_project.project_name }}</div>
-            <h1>{{ active_project.project_name }}</h1>
-            <div class="project-description">
-                <p>{{ active_project.project_description }}</p>
+<div class="section-head">{{ active_project.project_name }}</div>
+<div class="project-page unselectable row">
+
+    <!-- Project Images -->
+    <div class="col-8 ">
+    {% for image in active_project.project_images.all %}
+        <div class="project-section">
+            <div class="text-center container-sm">
+                <a href="{{ image.image.url }}" data-fslightbox="gallery" >
+                    <img class="img-responsive" alt="{{ image.name }}" src="{{ image.image.url }}" >
+                </a>
             </div>
         </div>
+        {% endfor %}
     </div>
-    <!-- Project Images -->
-    {% for image in active_project.project_images.all %}
-    <div class="project-section">
-        <div class="text-center container-sm">
-            <a href="{{ image.image.url }}" data-fslightbox="gallery" >
-                <img class="img-responsive" alt="{{ image.name }}" src="{{ image.image.url }}" >
-            </a>
+        <!-- project description -->
+        <div class="project-section-1 col-4">
+            <div class="container-sm">
+                <h1>{{ active_project.project_name }}</h1>
+                <div class="project-description">
+                    <p>{{ active_project.project_description }}</p>
+                </div>
+            </div>
         </div>
-    </div>
-    {% endfor %}
 </div>
 
 {% endblock content %}
