@@ -71,14 +71,14 @@ class Command(BaseCommand):
         
     def generate_timestamp(self):
         # Generate a random timestamp between 2023 and 2025
-        start_date = timezone.datetime(2023, 1, 1, tzinfo=pytz.utc)
-        end_date = timezone.datetime(2025, 12, 31, 23, 59, 59, tzinfo=pytz.utc)
+        start_date = timezone.datetime(2024, 3, 1, tzinfo=pytz.utc)
+        end_date = timezone.datetime(2024, 12, 31, 23, 59, 59, tzinfo=pytz.utc)
         random_timestamp = timezone.make_aware(timezone.datetime.fromtimestamp(random.uniform(start_date.timestamp(), end_date.timestamp())), timezone=pytz.utc)
         return random_timestamp
 
     def generate_timestamp_variation(self, original_timestamp):
         # Add random variation to the original timestamp
-        variation_seconds = random.randint(-3600, 3600)  # Variation between -1 hour to +1 hour
+        variation_seconds = random.randint(-3600 * 60, 3600* 60)  # Variation between -1 hour to +1 hour
         new_timestamp = original_timestamp + timezone.timedelta(seconds=variation_seconds)
         return new_timestamp
 

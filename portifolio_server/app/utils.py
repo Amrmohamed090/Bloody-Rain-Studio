@@ -15,29 +15,33 @@ from django.db.models import Count, functions
 
 
 
-def get_visits_dataset(start_date, end_date):
-    
+def get_visits_dataset(start_date=None, end_date=None):
+    # Calculate start and end dates if not provided
+    if start_date is None:
+        end_date = datetime.now().date() #today
+        start_date = end_date - timedelta(days=60)  # 60 days ago
 
-    # Generate labels representing each month in the range
-    months_labels = []
+    # Generate labels representing each day in the range
+    days_labels = []
     current_date = start_date
     while current_date <= end_date:
-        months_labels.append(current_date.strftime("%b %Y"))
-        current_date += timedelta(days=30)  # Move to the next month
-    # Aggregate and count visitors in the specified time range, grouped by month
+        days_labels.append(current_date.strftime("%Y-%m-%d"))
+        current_date += timedelta(days=1)  # Move to the next day
+    
+    # Aggregate and count visitors in the specified time range, grouped by day
     visitor_counts = (
         Visitor.objects
-        .filter(timestamp__gte=start_date, timestamp__lt=end_date)
-        .annotate(month=functions.TruncMonth('timestamp'))
-        .values('month')
-        .annotate(month_count=Count('pk'))
-        .order_by('month')
+        .filter(timestamp__gte=start_date, timestamp__lte=end_date)
+        .annotate(day=functions.TruncDay('timestamp'))
+        .values('day')
+        .annotate(day_count=Count('pk'))
+        .order_by('day')
     )
-    # Extract visitor counts for each month
-    visitor_data = [visit['month_count'] for visit in visitor_counts]
+    
+    # Extract visitor counts for each day
+    visitor_data = [visit['day_count'] for visit in visitor_counts]
 
-    return months_labels, visitor_data
-
+    return days_labels, visitor_data
 def get_location_dataset():
     
 
@@ -60,7 +64,7 @@ def get_location_dataset():
 
 
     
-def get_projects_visits_dataset(start_date, end_date):
+def get_projects_visits_dataset():
 
     # Generate labels representing each project and count views for each project
     project_labels = []
@@ -77,8 +81,7 @@ def get_projects_visits_dataset(start_date, end_date):
 
         views_count = ProjectVisit.objects.filter(
             project=project,
-            timestamp__gte=start_date,
-            timestamp__lt=end_date
+    
         ).count()
         project_data.append(views_count)
 
@@ -87,31 +90,23 @@ def get_projects_visits_dataset(start_date, end_date):
 
 
 
-def get_project_visits_dataset_overtime(start_date, end_date):
-    """
-    Retrieve the number of visits for each project per month within the specified date range.
-
-    Args:
-        start_date (datetime): The starting date for the date range.
-        end_date (datetime): The ending date for the date range.
-
-    Returns:
-        list: A list of dictionaries, where each dictionary represents a project and contains
-              the views of that project per month.
-    """
-
-    # Generate labels representing each month in the range
-    months_labels = []
+def get_project_visits_dataset_overtime(start_date=None, end_date=None):
+    if start_date is None:
+        end_date = datetime.now().date() #today
+        start_date = end_date - timedelta(days=60)  # 60 days ago
+    
+    # Generate labels representing each day in the range
+    days_labels = []
     current_date = start_date
     while current_date <= end_date:
-        months_labels.append(current_date.strftime("%b %Y"))
-        current_date += timedelta(days=30)  # Move to the next month
+        days_labels.append(current_date.strftime("%Y-%m-%d"))
+        current_date += timedelta(days=1)  # Move to the next day
 
     datasets_services = {}
     for service in Service.objects.all():
         datasets_services[service.pk] = {
             "label": service.title,
-            "data": [0 for _ in months_labels],
+            "data": [0 for _ in days_labels],
         }
     
     # Get unique projects
@@ -120,33 +115,31 @@ def get_project_visits_dataset_overtime(start_date, end_date):
     # Initialize the list to store project data
     datasets = []
     
-    # Retrieve project views per month
+    # Retrieve project views per day
     for project in projects:
         project_name = project.project_name
         visit_counts = []
 
-        # Retrieve visit counts for each month
-        for i, month_label in enumerate(months_labels):
-            month_start = start_date + timedelta(days=30 * i)
-            month_end = month_start + timedelta(days=30)
+        # Retrieve visit counts for each day
+        for i, day_label in enumerate(days_labels):
+            day_start = current_date - timedelta(days=i)
+            day_end = day_start + timedelta(days=1)
 
             visit_count = ProjectVisit.objects.filter(
                 project=project,
-                timestamp__gte=month_start,
-                timestamp__lt=month_end
+                timestamp__gte=day_start,
+                timestamp__lt=day_end
             ).count()
 
             visit_counts.append(visit_count)
             if project.project_category:
                 datasets_services[project.project_category.pk]["data"][i] += visit_count
 
-
         # Create a dictionary for the project data and add it to the datasets list
         datasets.append({
             "label": project_name,
             "data": visit_counts,
         })
-
 
     final_services_dataset = []
     mx = 0
@@ -164,21 +157,15 @@ def get_project_visits_dataset_overtime(start_date, end_date):
         max_service += f' : {datasets_services[i]["label"]}'
    
     return datasets , final_services_dataset , max_service
-
-
 @login_required
 def dashboard_callback(request, context):
     location_labels, location_data = get_location_dataset()
 
-    start_date = Visitor.objects.earliest('timestamp').timestamp
 
-    # Get the latest visitor timestamp
-    end_date = Visitor.objects.latest('timestamp').timestamp
+    months_labels , visitor_data = get_visits_dataset()
+    project_labels , project_data = get_projects_visits_dataset()
 
-    months_labels , visitor_data = get_visits_dataset(start_date, end_date)
-    project_labels , project_data = get_projects_visits_dataset(start_date, end_date)
-
-    projects_over_time_datasets , services_over_time_datesets , max_service= get_project_visits_dataset_overtime(start_date, end_date)
+    projects_over_time_datasets , services_over_time_datesets , max_service= get_project_visits_dataset_overtime()
     print(2, services_over_time_datesets)
     context.update({
         "homePageViews": [
