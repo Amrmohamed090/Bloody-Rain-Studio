@@ -58,6 +58,8 @@
       position: fixed; 
       z-index: 9999;
     }
+
+
   </style>
   <script defer src="{% static 'app/js\app.js' %}"></script>
   <script defer src="{% static 'app/js\navbar.js' %}"></script>
@@ -65,6 +67,12 @@
 
 <body>
   <div id="preloader"></div>
+
+  <a href="{% url 'app-home' %}#contact_us">
+  <div class="chatbot-icon wow fadeIn">
+      <i class="fa fa-comments" aria-hidden="true"></i>
+    </div>
+  </a>
 
    <!-- header section strats -->
    <div id="header" class="nav-collapse nav-solid sticky">
@@ -115,16 +123,19 @@
                         <a href="{% url 'app-home' %}">Home</a>
                     </li>
                     <li>
-                        <a href="#about">About</a>
+                        <a href="{% url 'app-home' %}#about">About</a>
                     </li>
                     <li>
-                        <a href="#service">Services</a>
+                        <a href="{% url 'app-home' %}#service">Services</a>
                     </li>
                     <li>
-                        <a href="#contact_us">Contact us</a>
+                        <a href="{% url 'app-home' %}#contact_us">Contact us</a>
                     </li>
                     <li>
-                        <a href="#portfolio" class="active">Portfolio</a>
+                        <a href="{% url 'app-portfolio' %}" class="active">Portfolio</a>
+                    </li>
+                    <li>
+                        <a href="#Careers">Careers</a>
                     </li>
                 </ul>
             </nav>
@@ -242,6 +253,16 @@ setTimeout(function() {
   <script src="{% static 'app/js/jquery.stickyNavbar.min.js' %}"></script>
   <script src="{% static 'app\js\portoflio.js' %}"></script>
   <script src="{% static 'app/js/site.js' %}"></script>
+  <script>
+    $(document).ready(function() {
+      // Smooth scrolling when clicking on the chatbot icon
+      $('#chatbot-icon').click(function() {
+        $('html, body').animate({
+          scrollTop: $('#contact_us').offset().top
+        }, 1000);
+      });
+    });
+  </script>
 
 
 </html>

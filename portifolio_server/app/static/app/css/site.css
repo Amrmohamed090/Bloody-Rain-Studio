@@ -574,7 +574,6 @@ a img {
     -moz-transition: all 0.3s ease-out;
     -o-transition: all 0.3s ease-out;
     transition: all 0.3s ease-out;
-    -webkit-backface-visibility: hidden;
 }
 
 a img:hover {
