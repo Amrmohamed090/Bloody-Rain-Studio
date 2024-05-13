@@ -13,7 +13,9 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
-
+from django.templatetags.static import static
+from django.urls import reverse_lazy
+from django.utils.translation import gettext_lazy as _
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -33,16 +35,35 @@ ALLOWED_HOSTS = ["mysite-k3q7.onrender.com","127.0.0.1", "portifolio-server-21uj
 # Application definition
 
 INSTALLED_APPS = [
-    "app.apps.AppConfig",
-     'admin_tools_stats',  # this must be BEFORE 'admin_tools' and 'django.contrib.admin'
-    'django_nvd3',
+    "unfold",
+    "unfold.contrib.filters",  # optional, if special filters are needed
+    "unfold.contrib.forms",  # optional, if special form elements are needed
+    "unfold.contrib.simple_history",  # optional, if django-simple-history package is used
+    "app",
+    
+    
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+  
 ]
+UNFOLD = {
+    "DASHBOARD_CALLBACK": "app.utils.dashboard_callback",
+  
+
+
+    "SITE_TITLE": "BloodyRain",
+    "SITE_HEADER": "BloodyRain Home",
+    "SITE_URL": "/",
+   
+   
+  
+    
+}
+
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -53,6 +74,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+
 ]
 
 ROOT_URLCONF = "portifolio_server.urls"
@@ -60,7 +82,7 @@ ROOT_URLCONF = "portifolio_server.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [ BASE_DIR / 'templates',],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -68,6 +90,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+               
             ],
         },
     },
@@ -144,3 +167,4 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+

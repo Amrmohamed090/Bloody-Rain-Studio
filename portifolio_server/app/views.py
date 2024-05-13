@@ -1,10 +1,37 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
-from .models import BackgroundVideo, Service, Image, Project, Visitor
+from .models import BackgroundVideo, Service, Image, Project, Visitor, ProjectVisit
 from django.core.mail import send_mail
 from .forms import ContactForm
 from django.utils import timezone
 from django.contrib.gis.geoip2 import GeoIP2  # For geolocation
+from django.contrib.admin import AdminSite
+from django.utils import timezone
+from django.db.models import Max
+
+
+def register_new_visitor(request, active_project=None):
+    visitor_ip = get_client_ip(request)
+    visitor_location = get_visitor_location(visitor_ip)
+    
+    # Find the latest timestamp among all visitors with the same IP address
+    latest_visitor = Visitor.objects.filter(ip_address=visitor_ip).order_by('-timestamp').first()
+
+    # Create a new visitor if there are no existing visitors with the same IP address
+    if latest_visitor is None or (timezone.now() - latest_visitor.timestamp).total_seconds() > 3600:
+        current_visitor = Visitor.objects.create(ip_address=visitor_ip, location=visitor_location)
+    else:
+        current_visitor = latest_visitor
+
+    if active_project:
+        # Check if the visitor has already visited this project
+        project_visit_exists = ProjectVisit.objects.filter(visitor=current_visitor, project=active_project).exists()
+        
+        if not project_visit_exists:
+            # If the visitor hasn't visited this project, create a new project visit
+            ProjectVisit.objects.create(visitor=current_visitor, project=Project.objects.get(pk=active_project))
+
+
 
 
 def contact_us(request):
@@ -56,17 +83,19 @@ def get_visitor_location(ip_address):
     
 
 def home(request):
+
+    register_new_visitor(request, active_project=None)
+
+
     main_video = BackgroundVideo.objects.filter(is_main=True).first()
     services = Service.objects.all()
-
-    # Get visitor's IP address
+    
     visitor_ip = get_client_ip(request)
-
-    # Get visitor's location based on IP address
     visitor_location = get_visitor_location(visitor_ip)
 
-    # Save visitor's information to the database
-    Visitor.objects.create(ip_address=visitor_ip, location=visitor_location)
+    
+
+    register_new_visitor(request)
 
     context = {
         'main_video': main_video,
@@ -74,12 +103,13 @@ def home(request):
     }
 
     return render(request, 'app/index.html', context)
-# Create your views here.
 
 
 def portfolio(request):
+    register_new_visitor(request, active_project=None)
+
+
     pagename = request.GET.get('pageid')  # Get the value of pagename from query parameters
-    print(pagename)
     projects = Project.objects.all()
     services = Service.objects.all()
     
@@ -90,9 +120,14 @@ def portfolio(request):
     }
     
     return render(request, 'app/portfolio.html', context)
+
+
 def project(request, active):
-     # Get the project object corresponding to the active parameter
+    register_new_visitor(request, active_project=active)
+
+
     active_project = get_object_or_404(Project, pk=active)
-    
-    # Pass the active project to the template
+
+
+
     return render(request, 'app/project.html', {'active_project': active_project})

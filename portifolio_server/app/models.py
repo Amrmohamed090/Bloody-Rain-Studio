@@ -3,7 +3,11 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 import os
 
+from django.contrib.auth.models import User
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
+from unfold.admin import ModelAdmin
+from unfold.forms import AdminPasswordChangeForm, UserChangeForm, UserCreationForm
 
 class BackgroundVideo(models.Model):
     video = models.FileField(upload_to='background_videos/')
@@ -55,4 +59,15 @@ class Project(models.Model):
 class Visitor(models.Model):
     ip_address = models.CharField(max_length=50)
     location = models.CharField(max_length=100)
-    timestamp = models.DateTimeField(auto_now_add=True)
+    timestamp = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return f"Visitor #{self.pk}: IP Address - {self.ip_address}, Location - {self.location}, Timestamp - {self.timestamp}"
+
+class ProjectVisit(models.Model):
+    visitor = models.ForeignKey(Visitor, on_delete=models.CASCADE)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    timestamp = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return f"Visitor #{self.visitor.pk}, Project - {self.project}, Timestamp - {self.timestamp}"
