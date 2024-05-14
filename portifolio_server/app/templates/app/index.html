@@ -512,43 +512,51 @@
 
   <section class="contact_section layout_padding scrollto clearfix unselectable" id="contact_us">
     <div class="container">
-      <div class="section-head__back">Contact Us</div>
-      <div class="heading_container hidden">
-        <h2>
-          Contact Us
-        </h2>
-      </div>
-      <div class="">
-        <div class="">
-          <div class="row">
-            <div class="col-md-9 mx-auto">
-              <div class="contact-form">
-                <form action="">
-                  <div class="hidden">
-                    <input type="text" placeholder="Full Name ">
-                  </div>
-                  <div class="hidden">
-                    <input type="text" placeholder="Phone Number">
-                  </div>
-                  <div class="hidden">
-                    <input type="email" placeholder="Email Address">
-                  </div>
-                  <div class="hidden">
-                    <input type="text" placeholder="Message" class="input_message">
-                  </div class="hidden">
-                  <div class="d-flex justify-content-center hidden">
-                    <button type="submit" class="btn_on-hover">
-                      Send
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
+        <div class="section-head__back">Contact Us</div>
+        <div class="heading_container hidden">
+            <h2>Contact Us</h2>
         </div>
-      </div>
+        <div class="">
+            <div class="">
+                <div class="row">
+                    <div class="col-md-9 mx-auto">
+                        <div class="contact-form">
+                            {% if messages %}
+                                <div class="container mt-4">
+                                    {% for message in messages %}
+                                        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                                            {{ message }}
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            <form action="{% url 'app-contactus' %}" method="post">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <input type="text" name="full_name" placeholder="Full Name" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="phone_number" placeholder="Phone Number" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" name="email" placeholder="Email Address" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="message" placeholder="Message" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">Send</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </section>
+</section>
+
 
 
   <!-- end contact section -->

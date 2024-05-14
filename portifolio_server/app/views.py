@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from .models import BackgroundVideo, Service, Image, Project, Visitor, ProjectVisit
 from django.core.mail import send_mail
@@ -8,8 +8,8 @@ from django.contrib.gis.geoip2 import GeoIP2  # For geolocation
 from django.contrib.admin import AdminSite
 from django.utils import timezone
 from django.db.models import Max
-
-
+from .forms import ContactForm
+from django.contrib import messages
 def register_new_visitor(request, active_project=None):
     visitor_ip = get_client_ip(request)
     visitor_location = get_visitor_location(visitor_ip)
@@ -31,12 +31,7 @@ def register_new_visitor(request, active_project=None):
             # If the visitor hasn't visited this project, create a new project visit
             ProjectVisit.objects.create(visitor=current_visitor, project=Project.objects.get(pk=active_project))
 
-
-
-
 def contact_us(request):
-
-    ## handels the contact us
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
@@ -45,22 +40,27 @@ def contact_us(request):
             email = form.cleaned_data['email']
             message = form.cleaned_data['message']
 
-            # Send email
-            send_mail(
-                subject='Contact Us Form Submission',
-                message=f'Name: {full_name}\nPhone: {phone_number}\nEmail: {email}\n\nMessage: {message}',
-                from_email=None,  # Use default sender
-                recipient_list=['your@email.com'],  # Replace with your email
-            )
-            return render(request, 'contact_success.html')  # Redirect to success page after sending email
+            # Attempt to send email
+            try:
+                send_mail(
+                    subject='Contact Us Form Submission',
+                    message=f'Name: {full_name}\nPhone: {phone_number}\nEmail: {email}\n\nMessage: {message}',
+                    from_email=None,  # Use default sender
+                    recipient_list=['amro.mohamed.023@email.com'],  # Replace with your email
+                )
+                messages.success(request, 'Your message has been sent successfully!')
+            except Exception as e:
+                messages.error(request, f'Failed to send message: {str(e)}')
+               
         else:
-            return render(request, 'contact_failed.html')
+            for field, error in form.errors.items():
+                messages.error(request, f'{field.capitalize()}: {error.as_text()}')
+        
+        return redirect('app-home')  # Redirect to the home page after form submission
     else:
         form = ContactForm()
+    return render(request, 'index.html', {'form': form})
 
-
-
-    return render(request, 'contact_form.html', {'form': form})
 
 def get_client_ip(request):
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
@@ -82,7 +82,7 @@ def get_visitor_location(ip_address):
 
     
 
-def home(request):
+def home(request, message_contactus=None):
 
     register_new_visitor(request, active_project=None)
 
@@ -99,7 +99,9 @@ def home(request):
 
     context = {
         'main_video': main_video,
-        'services': services
+        'services': services,
+        'message' : message_contactus
+
     }
 
     return render(request, 'app/index.html', context)
@@ -116,7 +118,8 @@ def portfolio(request):
     context = {
         'pagename': pagename,
         'projects': projects,
-        'services': services
+        'services': services,
+
     }
     
     return render(request, 'app/portfolio.html', context)
