@@ -46,7 +46,7 @@ def contact_us(request):
                     subject='Contact Us Form Submission',
                     message=f'Name: {full_name}\nPhone: {phone_number}\nEmail: {email}\n\nMessage: {message}',
                     from_email=None,  # Use default sender
-                    recipient_list=['amro.mohamed.023@email.com'],  # Replace with your email
+                    recipient_list=['amro.mohamed.023@gmail.com'],  # Replace with your email
                 )
                 messages.success(request, 'Your message has been sent successfully!')
             except Exception as e:

@@ -21,7 +21,6 @@ class BackgroundVideo(models.Model):
 
 
 
-
 class Image(models.Model):
     name = models.CharField(max_length=100,  null=True, blank=True)
     image = models.ImageField(upload_to='images/')
@@ -59,15 +58,9 @@ class Project(models.Model):
 class Visitor(models.Model):
     ip_address = models.CharField(max_length=50)
     location = models.CharField(max_length=100)
-    timestamp = models.DateTimeField(default=timezone.now)
-
-    def __str__(self):
-        return f"Visitor #{self.pk}: IP Address - {self.ip_address}, Location - {self.location}, Timestamp - {self.timestamp}"
+    timestamp = models.DateTimeField(default=timezone.now, db_index=True)  # Indexing timestamp field
 
 class ProjectVisit(models.Model):
     visitor = models.ForeignKey(Visitor, on_delete=models.CASCADE)
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
-    timestamp = models.DateTimeField(default=timezone.now)
-
-    def __str__(self):
-        return f"Visitor #{self.visitor.pk}, Project - {self.project}, Timestamp - {self.timestamp}"
+    timestamp = models.DateTimeField(default=timezone.now, db_index=True)  # Indexing timestamp field
