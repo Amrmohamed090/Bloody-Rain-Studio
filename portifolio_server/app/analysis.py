@@ -42,11 +42,12 @@ class DataAnalysis:
             .annotate(day_count=Count('pk'))
             .order_by('day')
         )
-        
         # Extract visitor counts for each day
         visitor_data = [visit['day_count'] for visit in visitor_counts]
-
+        print(len(visitor_data))
+        print(len(self.days_labels))
         return self.days_labels, visitor_data
+    
 
 
     def get_location_dataset(self):

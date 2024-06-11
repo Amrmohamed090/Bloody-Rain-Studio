@@ -153,7 +153,7 @@ def dashboard_callback(request, context):
             
             {
                 "title": _("Projects Corresponds to Services Views"),
-                "metric": f"Most project Views aggregated by Service Category is  {max_service}",
+                "metric": f"Most Viewed Service  {max_service}",
                 
                 "chart": json.dumps(
                     {
@@ -170,7 +170,7 @@ def dashboard_callback(request, context):
                                 "text": 'Projects Corresponds to Services Views'
                             },
                             "legend": {
-                                "display": False,
+                                "display": True,
                                 "labels": {
                                     "color": '#9333ea   '
                                 }

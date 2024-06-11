@@ -18,7 +18,7 @@ def register_new_visitor(request, active_project=None):
     latest_visitor = Visitor.objects.filter(ip_address=visitor_ip).order_by('-timestamp').first()
 
     # Create a new visitor if there are no existing visitors with the same IP address
-    if latest_visitor is None or (timezone.now() - latest_visitor.timestamp).total_seconds() > 3600:
+    if latest_visitor is None or (timezone.now() - latest_visitor.timestamp).total_seconds() > 5:
         current_visitor = Visitor.objects.create(ip_address=visitor_ip, location=visitor_location)
     else:
         current_visitor = latest_visitor
@@ -46,11 +46,12 @@ def contact_us(request):
                     subject='Contact Us Form Submission',
                     message=f'Name: {full_name}\nPhone: {phone_number}\nEmail: {email}\n\nMessage: {message}',
                     from_email=None,  # Use default sender
-                    recipient_list=['amro.mohamed.023@gmail.com'],  # Replace with your email
+                    recipient_list=['amro.mohamed.023@gmail.com', email],  # Replace with your email
                 )
                 messages.success(request, 'Your message has been sent successfully!')
             except Exception as e:
                 messages.error(request, f'Failed to send message: {str(e)}')
+
                
         else:
             for field, error in form.errors.items():
