@@ -153,7 +153,7 @@ def dashboard_callback(request, context):
             
             {
                 "title": _("Projects Corresponds to Services Views"),
-                "metric": f"Most Viewed Service  {max_service}",
+                "metric": f"Most Viewed Service : {max_service}",
                 
                 "chart": json.dumps(
                     {

@@ -9,9 +9,6 @@
 }
 
 
-/* html {
-  scroll-behavior: smooth;
-} */
 
 /* 
 @font-face {
@@ -36,6 +33,29 @@
   .hidden {
     transition: none;
   }
+}
+
+.chatbot-icon {
+  position: fixed;
+  bottom: 15px;
+  left: 30px;
+  background-color:#880808 ;
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+  scroll-behavior: smooth;
+}
+  
+.chatbot-icon i {
+  font-size: 24px;
+  color: var(--light);
 }
 .unselectable {
   -webkit-user-select: none; /* Safari 3.1+ */
@@ -318,10 +338,8 @@ a:focus {
   position: absolute;
   top: 0;
   left: 0;
-  min-width: 100%;
+  max-width: 100%;
   min-height: 100%;
-  width: auto;
-  height: auto;
   z-index: -100;
   overflow: hidden;
 }
@@ -574,6 +592,8 @@ color: var(--main-color);
   width: 56.5%;
 }
 
+
+
 /* start project section section */
 .project-page {
   font-weight: 400;
@@ -581,6 +601,11 @@ color: var(--main-color);
   line-height: 1.75;
 }
 .project-page .project-section {
+  margin-bottom: 1.875rem;
+
+}
+
+.project-page .project-section-1 {
   margin-bottom: 1.875rem;
 
 }
@@ -593,16 +618,17 @@ color: var(--main-color);
   text-align: center;
 }
 
-.project-page .project-section h1 {
+.project-page .project-section-1 h1 {
   font-size: 22px;
-    line-height: 1.27273;
-    letter-spacing: 0.04em;
-    font-family: "Roboto", sans-serif;
-    font-weight: 700;
-    text-transform: uppercase;
-    text-align: center;
+  line-height: 1.27273;
+  letter-spacing: 0.04em;
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+  padding-top: 40px;
 }
-.project-page .project-section .section-head {
+.section-head {
   position: relative;
   z-index: 1;
   font-family: "Roboto", sans-serif;
@@ -612,18 +638,20 @@ color: var(--main-color);
   text-transform: uppercase;
   color: rgba(92, 93, 93, 0.25);
   text-align: center;
-  margin-bottom: -40px;
+  /* margin-bottom: -px; */
   white-space: nowrap;
 
 }
 
-.project-page .project-section .container-sm {
+.project-page .project-section-1 .container-sm {
   max-width: 51.25rem;
   margin-left: auto;
   margin-right: auto;
   padding-left: 0.9375rem;
   padding-right: 0.9375rem;
   width: 100%;
+  position: sticky;
+  top: 60px;
 }
 
 .project-page .project-section .container-lg {

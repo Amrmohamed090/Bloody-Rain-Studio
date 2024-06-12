@@ -2,10 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 import os
-
-from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-
 from unfold.admin import ModelAdmin
 from unfold.forms import AdminPasswordChangeForm, UserChangeForm, UserCreationForm
 
@@ -64,3 +61,10 @@ class ProjectVisit(models.Model):
     visitor = models.ForeignKey(Visitor, on_delete=models.CASCADE)
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     timestamp = models.DateTimeField(default=timezone.now, db_index=True)  # Indexing timestamp field
+
+
+class Subscriber(models.Model):
+    email = models.EmailField(unique=True)
+
+    def __str__(self):
+        return self.email

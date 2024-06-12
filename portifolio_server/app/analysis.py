@@ -28,25 +28,31 @@ class DataAnalysis:
             current_date += timedelta(days=1)  # Move to the next day
 
 
+
+
     def get_visits_dataset(self, start_date=None, end_date=None):
+        # This function returns the home page visits per day for the time range
+        start_d = start_date if start_date else self.start_date
+        end_d = end_date if end_date else self.end_date
         
-        # this function for the first graph
-        # return the home page visits per day for the time range
+        # Create a dictionary with default value 0 for each day
+        visitor_data = defaultdict(int)
         
         # Aggregate and count visitors in the specified time range, grouped by day
-        visitor_counts = (
-            Visitor.objects
-            .filter(timestamp__gte=self.start_date, timestamp__lte=self.end_date)
-            .annotate(day=functions.TruncDay('timestamp'))
-            .values('day')
-            .annotate(day_count=Count('pk'))
+        visitor_counts = Visitor.objects \
+            .filter(timestamp__gte=start_d, timestamp__lte=end_d +timedelta(days=1)) \
+            .annotate(day=functions.TruncDay('timestamp')) \
+            .values('day') \
+            .annotate(day_count=Count('pk')) \
             .order_by('day')
-        )
-        # Extract visitor counts for each day
-        visitor_data = [visit['day_count'] for visit in visitor_counts]
-        print(len(visitor_data))
-        print(len(self.days_labels))
-        return self.days_labels, visitor_data
+        # Populate the visitor_data dictionary with visit counts for each day
+        for visit in visitor_counts:
+            day_str = visit['day'].strftime("%Y-%m-%d")  # Convert to string in the same format as self.days_labels
+            visitor_data[day_str] = visit['day_count']   # Use the string as key
+            
+        # Create a list of visit counts corresponding to each day label
+        visitor_data_list = [visitor_data[day] for day in self.days_labels]
+        return self.days_labels, visitor_data_list
     
 
 
@@ -91,10 +97,8 @@ class DataAnalysis:
 
         return project_labels , project_data
 
-
-
     def get_project_visits_dataset_overtime_2(self,start_date=None, end_date=None):
-        end_date = datetime.now().date() 
+        end_date = datetime.now().date() +timedelta(days=1)
         if start_date is None:
             start_date = end_date - timedelta(days=60)  # 60 days ago
         #get all project visits in the specific range first
@@ -104,7 +108,81 @@ class DataAnalysis:
 
         # Iterate over the queryset and group ProjectVisits by day
         for visit in project_visits_within_range:
-            visit_day = visit.timestamp.date()
+            visit_day = visit.timestamp.date().strftime("%Y-%m-%d")
+            project_visits_by_day[visit_day].append(visit)
+        
+
+        #initialize each project independently in a dictionary with key: project.pk
+        project_data_set = {}
+        for project in self.projects:
+            project_data_set[project.pk] = {
+                "label": project.project_name,
+                "data": defaultdict(int),
+               }
+        
+        #the same for services
+        datasets_services = {}
+        for service in self.services:
+            datasets_services[service.pk] = {
+                "label": service.title,
+                "data": defaultdict(int),
+            }
+      
+        for i , day in enumerate(project_visits_by_day):
+            for visit in project_visits_by_day[day]:
+                if visit.project:
+                    project_data_set[visit.project.pk]["data"][day] +=1
+                if visit.project.project_category:
+                    datasets_services[visit.project.project_category.pk]["data"][day] +=1
+        
+        for project_visit_pk in project_data_set:
+            proj_list = [project_data_set[project_visit_pk]["data"][day] for day in self.days_labels]
+            project_data_set[project_visit_pk]["data"] = proj_list
+            
+        final_project_list_dataset = []
+        for key in project_data_set:
+            #convert array to list
+            final_project_list_dataset.append(project_data_set[key])
+        
+        final_services_list_dataset = []
+        for key in datasets_services:
+            final_services_list_dataset.append(datasets_services[key])
+
+
+        
+        print(final_project_list_dataset)
+        print(final_services_list_dataset)
+
+        ## most viewed services
+        mx = 0
+        nm = ""     
+        for dataset in final_services_list_dataset:
+            temp = sum([dataset["data"][day] for day in dataset["data"]])
+            if temp > mx:
+                mx = temp
+                nm = dataset["label"]
+            elif temp == mx and temp !=0:
+                nm += ", " +  dataset["label"]
+        
+
+        return final_project_list_dataset , final_services_list_dataset , nm
+
+
+
+
+
+    def get_project_visits_dataset_overtime_3(self,start_date=None, end_date=None):
+        end_date = datetime.now().date() +timedelta(days=1)
+        if start_date is None:
+            start_date = end_date - timedelta(days=60)  # 60 days ago
+        #get all project visits in the specific range first
+        project_visits_within_range = ProjectVisit.objects.filter(timestamp__range=(start_date, end_date)).order_by('timestamp')
+        # Create a dictionary to hold ProjectVisits grouped by day
+        project_visits_by_day = defaultdict(list)
+
+        # Iterate over the queryset and group ProjectVisits by day
+        for visit in project_visits_within_range:
+            visit_day = visit.timestamp.date().strftime("%Y-%m-%d")
             project_visits_by_day[visit_day].append(visit)
         
 
@@ -131,17 +209,23 @@ class DataAnalysis:
                 if visit.project.project_category:
                     datasets_services[visit.project.project_category.pk]["data"][i] +=1
         
+
+
         final_project_list_dataset = []
-        for key in project_data_set:
-            project_data_set[key]["data"] = project_data_set[key]["data"].tolist()
-            final_project_list_dataset.append(project_data_set[key])
+        for project_key in project_data_set:
+            #convert array to list
+            project_data_set[project_key]["data"] = project_data_set[project_key]["data"].tolist()
+            final_project_list_dataset.append(project_data_set[project_key])
         
+        #for key in datasets_services:
+
         final_services_list_dataset = []
         for key in datasets_services:
             datasets_services[key]["data"] = datasets_services[key]["data"].tolist()
             final_services_list_dataset.append(datasets_services[key])
 
-        
+        print(final_project_list_dataset)
+        print(final_services_list_dataset)
 
         ## most viewed services
         mx = 0
@@ -157,79 +241,4 @@ class DataAnalysis:
         return final_project_list_dataset , final_services_list_dataset , nm
 
 
-
-'''
-
-old function, high complexity
-        
-    def get_project_visits_dataset_overtime(self, start_date=None, end_date=None):
-        end_date = datetime.now().date() 
-        if start_date is None:
-            start_date = end_date - timedelta(days=60)  # 60 days ago
-        
-        # Generate labels representing each day in the range
-        days_labels = []
-
-        current_date = start_date
-        while current_date <= end_date:
-            days_labels.append(current_date.strftime("%Y-%m-%d"))
-            current_date += timedelta(days=1)  # Move to the next day
-
-        datasets_services = {}
-        for service in self.services:
-            datasets_services[service.pk] = {
-                "label": service.title,
-                "data": [0 for _ in days_labels],
-            }
-        
-
-
-        # Initialize the list to store project data
-        datasets = []
-        
-
-        # Retrieve project views per day
-        for project in self.projects:
-            project_name = project.project_name
-            visit_counts = []
-
-            # Retrieve visit counts for each day
-            for i in range(len(days_labels)):
-                day_start = current_date - timedelta(days=i)
-                day_end = day_start + timedelta(days=1)
-
-                visit_count = ProjectVisit.objects.filter(
-                    project=project,
-                    timestamp__gte=day_start,
-                    timestamp__lt=day_end
-                ).count()
-
-                visit_counts.append(visit_count)
-                if project.project_category:
-                    datasets_services[project.project_category.pk]["data"][i] += visit_count
-
-            # Create a dictionary for the project data and add it to the datasets list
-            datasets.append({
-                "label": project_name,
-                "data": visit_counts,
-            })
-
-        final_services_dataset = []
-        mx = 0
-        mx_id = []
-        for pk in datasets_services:
-            final_services_dataset.append(datasets_services[pk])
-            sm = sum(datasets_services[pk]["data"]) 
-            if sm > mx:
-                mx_id = [pk]
-                mx = sm
-            elif sm == mx:
-                mx_id.append(pk)
-        max_service = ""
-        for i in mx_id:
-            max_service += f' : {datasets_services[i]["label"]}'
-    
-        return datasets , final_services_dataset , max_service
-
-'''
 

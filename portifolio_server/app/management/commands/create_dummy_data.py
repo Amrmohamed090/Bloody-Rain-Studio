@@ -28,19 +28,14 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument('total_views', type=int, help='Indicates the number of dummy views to be created')
-        parser.add_argument('total_projects', type=int, help='Indicates the number of dummy project to be created')
 
 
     def handle(self, *args, **kwargs):
         total_views = kwargs['total_views']
-        total_projects = kwargs['total_projects']
-
-        self.stdout.write(self.style.SUCCESS(f'Creating {total_views} dummy projects...'))
 
         # have some dummy countries
         countries =  ["Egypt", "Sudan", "Jordan", "USA", "Germany"]
-        for _ in range(total_projects):
-            self.create_projects()
+
         # Dummy data generation loop
 
         self.stdout.write(self.style.SUCCESS(f'Creating {total_views} dummy visitors...'))
@@ -82,19 +77,4 @@ class Command(BaseCommand):
         new_timestamp = original_timestamp + timezone.timedelta(seconds=variation_seconds)
         return new_timestamp
 
-    def create_projects(self):
-        # Create some dummy projects and return them
-        # You can customize this function based on your Project model
-        projects = []
-        total_n = len(Project.objects.all())
-        for i in range(5):  # Creating 5 dummy projects
-            project = Project.objects.create(
-                project_name=f'Dummy Project {i+total_n+1}',
-                project_description=f'Description for Dummy Project {i+total_n+1}',
-            
-                
-            )
-            project.project_category = get_random_object(Service)
-            project.save()
-            projects.append(project)
-        return projects
+

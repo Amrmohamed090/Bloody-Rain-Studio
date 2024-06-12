@@ -14,7 +14,9 @@ django-admin-tools==0.9.3
 django-admin-tools-stats==0.9.0
 django-bower==5.2.0
 django-chartit==0.2.9
+django-ckeditor==6.7.1
 django-grappelli==4.0.1
+django-js-asset==2.2.0
 django-jsonfield==1.4.1
 django-memoize==2.3.1
 django-multiselectfield==0.1.12
@@ -30,6 +32,7 @@ idna==3.7
 Jinja2==3.1.4
 MarkupSafe==2.1.5
 maxminddb==2.6.1
+numpy==1.26.4
 packaging==24.0
 pillow==10.3.0
 psycopg2==2.9.9

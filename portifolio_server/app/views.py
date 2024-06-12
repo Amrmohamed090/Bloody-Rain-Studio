@@ -26,7 +26,6 @@ def register_new_visitor(request, active_project=None):
     if active_project:
         # Check if the visitor has already visited this project
         project_visit_exists = ProjectVisit.objects.filter(visitor=current_visitor, project=active_project).exists()
-        
         if not project_visit_exists:
             # If the visitor hasn't visited this project, create a new project visit
             ProjectVisit.objects.create(visitor=current_visitor, project=Project.objects.get(pk=active_project))

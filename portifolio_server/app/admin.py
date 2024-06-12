@@ -1,3 +1,8 @@
+from django.shortcuts import render, redirect
+from django.core.mail import EmailMessage
+from django.urls import path
+from .models import Subscriber
+from .forms import NewsletterForm
 from django.contrib import admin
 from django.utils.html import format_html
 # Register your models here.
@@ -28,6 +33,37 @@ class ProjectAdmin(admin.ModelAdmin):
     display_thumbnail.short_description = 'Thumbnail'
 
 
+from .forms import NewsletterForm
+
+class NewsletterAdmin(admin.ModelAdmin):
+    change_list_template = "admin/send_newsletter.html"
+
+    def get_urls(self):
+        urls = super().get_urls()
+        custom_urls = [
+            path('send-newsletter/', self.admin_site.admin_view(self.send_newsletter))
+        ]
+        return custom_urls + urls
+
+    def send_newsletter(self, request):
+        if request.method == 'POST':
+            form = NewsletterForm(request.POST)
+            if form.is_valid():
+                subject = form.cleaned_data['subject']
+                message = form.cleaned_data['message']
+                recipients = [subscriber.email for subscriber in Subscriber.objects.all()]
+                
+                email = EmailMessage(subject, message, 'your-email@example.com', recipients)
+                email.content_subtype = 'html'  # Set email content to HTML
+                email.send()
+
+                self.message_user(request, "Newsletter sent successfully")
+                return redirect('..')
+        else:
+            form = NewsletterForm()
+        return render(request, 'admin/send_newsletter.html', {'form': form})
+
+admin.site.register(Subscriber, NewsletterAdmin)
 
 
 admin.site.register(Visitor)
