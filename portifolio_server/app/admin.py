@@ -1,13 +1,13 @@
-from django.shortcuts import render, redirect
-from django.core.mail import EmailMessage
-from django.urls import path
-from .models import Subscriber
-from .forms import NewsletterForm
+from django.core.mail import send_mail
 from django.contrib import admin
 from django.utils.html import format_html
 # Register your models here.
-from .models import BackgroundVideo, Image, Service, Project, Visitor, ProjectVisit
-from django.views.decorators.cache import never_cache
+from .models import BackgroundVideo, Image, Service, Project, Visitor, ProjectVisit, BlogPost, Newsletter, NewsletterSubscriber
+from django.core.mail import EmailMultiAlternatives
+from django.utils.html import strip_tags
+from django.utils.encoding import force_str
+from bs4 import BeautifulSoup
+from django.contrib.sites.models import Site
 
 @admin.register(Image)
 class ImageAdmin(admin.ModelAdmin):
@@ -33,38 +33,6 @@ class ProjectAdmin(admin.ModelAdmin):
     display_thumbnail.short_description = 'Thumbnail'
 
 
-from .forms import NewsletterForm
-
-class NewsletterAdmin(admin.ModelAdmin):
-    change_list_template = "admin/send_newsletter.html"
-
-    def get_urls(self):
-        urls = super().get_urls()
-        custom_urls = [
-            path('send-newsletter/', self.admin_site.admin_view(self.send_newsletter))
-        ]
-        return custom_urls + urls
-
-    def send_newsletter(self, request):
-        if request.method == 'POST':
-            form = NewsletterForm(request.POST)
-            if form.is_valid():
-                subject = form.cleaned_data['subject']
-                message = form.cleaned_data['message']
-                recipients = [subscriber.email for subscriber in Subscriber.objects.all()]
-                
-                email = EmailMessage(subject, message, 'your-email@example.com', recipients)
-                email.content_subtype = 'html'  # Set email content to HTML
-                email.send()
-
-                self.message_user(request, "Newsletter sent successfully")
-                return redirect('..')
-        else:
-            form = NewsletterForm()
-        return render(request, 'admin/send_newsletter.html', {'form': form})
-
-admin.site.register(Subscriber, NewsletterAdmin)
-
 
 admin.site.register(Visitor)
 
@@ -74,5 +42,48 @@ admin.site.register(BackgroundVideo)
 
 admin.site.register(Service)
 
+admin.site.register(BlogPost)
+
+admin.site.register(NewsletterSubscriber)
 
 
+class NewsletterAdmin(admin.ModelAdmin):
+    list_display = ('subject',)
+    actions = ['send_newsletter']
+
+    def send_newsletter(self, request, queryset):
+        newsletter = queryset.first()  # Assuming you only allow sending one newsletter at a time
+        subscribers = NewsletterSubscriber.objects.filter(subscribed=True)
+
+        # Get the current site to build absolute URLs
+        current_site = Site.objects.get_current()
+        site_url = f"https://{current_site.domain}"
+
+        # Parse HTML content to update image URLs
+        soup = BeautifulSoup(newsletter.body, 'html.parser')
+        for img in soup.find_all('img'):
+            src = img['src']
+            if src.startswith('/'):
+                img['src'] = f"{site_url}{src}"
+
+        updated_html_content = str(soup)
+        text_content = strip_tags(updated_html_content)  # Generate a plain text version of the HTML
+
+        for subscriber in subscribers:
+            subject = newsletter.subject
+
+            # Create the email
+            email = EmailMultiAlternatives(
+                subject=subject,
+                body=text_content,
+                from_email=None,  # Use default sender
+                to=[subscriber.email]
+            )
+            email.attach_alternative(updated_html_content, "text/html")
+
+            # Send the email
+            email.send(fail_silently=False)
+
+        self.message_user(request, "Newsletter sent successfully.")
+
+admin.site.register(Newsletter, NewsletterAdmin)

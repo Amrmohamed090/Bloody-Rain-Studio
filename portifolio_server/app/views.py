@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponse
-from .models import BackgroundVideo, Service, Image, Project, Visitor, ProjectVisit
+from django.http import HttpResponse, HttpResponseRedirect
+from .models import BackgroundVideo, Service, Image, Project, Visitor, ProjectVisit, NewsletterSubscriber 
 from django.core.mail import send_mail
-from .forms import ContactForm
+from .forms import ContactForm, NewsletterForm
 from django.utils import timezone
 from django.contrib.gis.geoip2 import GeoIP2  # For geolocation
 from django.contrib.admin import AdminSite
@@ -10,6 +10,10 @@ from django.utils import timezone
 from django.db.models import Max
 from .forms import ContactForm
 from django.contrib import messages
+from django.urls import reverse
+
+
+
 def register_new_visitor(request, active_project=None):
     visitor_ip = get_client_ip(request)
     visitor_location = get_visitor_location(visitor_ip)
@@ -35,7 +39,6 @@ def contact_us(request):
         form = ContactForm(request.POST)
         if form.is_valid():
             full_name = form.cleaned_data['full_name']
-            phone_number = form.cleaned_data['phone_number']
             email = form.cleaned_data['email']
             message = form.cleaned_data['message']
 
@@ -43,23 +46,57 @@ def contact_us(request):
             try:
                 send_mail(
                     subject='Contact Us Form Submission',
-                    message=f'Name: {full_name}\nPhone: {phone_number}\nEmail: {email}\n\nMessage: {message}',
+                    message=f'Name: {full_name}\nEmail: {email}\n\nMessage: {message}',
                     from_email=None,  # Use default sender
                     recipient_list=['amro.mohamed.023@gmail.com', email],  # Replace with your email
                 )
-                messages.success(request, 'Your message has been sent successfully!')
-            except Exception as e:
-                messages.error(request, f'Failed to send message: {str(e)}')
 
-               
+                # Flag indicating successful message submission
+                request.session['message_sent'] = True
+
+                messages.success(request, 'Your message has been sent successfully!')
+
+                return HttpResponseRedirect(reverse('app-home') + '#contact_us')
+
+            except Exception as e:
+                # Flag indicating message submission error
+                request.session['message_error'] = True
+
+                return HttpResponseRedirect(reverse('app-home') + '#contact_us')
+
         else:
             for field, error in form.errors.items():
-                messages.error(request, f'{field.capitalize()}: {error.as_text()}')
-        
-        return redirect('app-home')  # Redirect to the home page after form submission
+                # Flag indicating message submission error
+                request.session['message_error'] = True
+
+            return HttpResponseRedirect(reverse('app-home') + '#contact_us')
+
     else:
         form = ContactForm()
-    return render(request, 'index.html', {'form': form})
+
+    return render(request, 'app/index.html', {'form': form})
+
+def newsletter(request):
+    if request.method == 'POST':
+        form = NewsletterForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data['email']
+
+            # Check if the email already exists in your database or list
+            if not NewsletterSubscriber.objects.filter(email=email).exists():
+                # Email doesn't exist, create a new subscriber
+                subscriber = NewsletterSubscriber(email=email)
+                subscriber.save()
+                messages.success(request, 'You have successfully subscribed to the newsletter!')
+            else:
+                # Email already exists
+                messages.warning(request, 'You are already subscribed to the newsletter!')
+
+            return HttpResponseRedirect(reverse('app-home'))  # Redirect to home page after subscription
+
+    else:
+        form = NewsletterForm()
+
 
 
 def get_client_ip(request):
@@ -82,30 +119,19 @@ def get_visitor_location(ip_address):
 
     
 
-def home(request, message_contactus=None):
-
+def home(request):
     register_new_visitor(request, active_project=None)
-
 
     main_video = BackgroundVideo.objects.filter(is_main=True).first()
     services = Service.objects.all()
     
-    visitor_ip = get_client_ip(request)
-    visitor_location = get_visitor_location(visitor_ip)
-
-    
-
-    register_new_visitor(request)
 
     context = {
         'main_video': main_video,
         'services': services,
-        'message' : message_contactus
-
-    }
+        }
 
     return render(request, 'app/index.html', context)
-
 
 def portfolio(request):
     register_new_visitor(request, active_project=None)
@@ -127,7 +153,6 @@ def portfolio(request):
 
 def project(request, active):
     register_new_visitor(request, active_project=active)
-
 
     active_project = get_object_or_404(Project, pk=active)
 

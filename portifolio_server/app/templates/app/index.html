@@ -521,23 +521,20 @@
                 <div class="row">
                     <div class="col-md-9 mx-auto">
                         <div class="contact-form">
-                            {% if messages %}
+                            {% if messege_sent %}
                                 <div class="container mt-4">
-                                    {% for message in messages %}
-                                        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-                                            {{ message }}
-                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                        </div>
-                                    {% endfor %}
+                                    Message sent Succesfully
+                                </div>
+                            {% endif %}
+                            {% if messege_eroor %}
+                                <div class="container mt-4">
+                                    Message WAS NOT sent Succesfully
                                 </div>
                             {% endif %}
                             <form action="{% url 'app-contactus' %}" method="post">
                                 {% csrf_token %}
                                 <div class="form-group">
                                     <input type="text" name="full_name" placeholder="Full Name" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" name="phone_number" placeholder="Phone Number" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <input type="email" name="email" placeholder="Email Address" class="form-control">
@@ -555,6 +552,38 @@
             </div>
         </div>
     </div>
+</section>
+<section class="contact_section layout_padding scrollto clearfix unselectable" id="contact_us">
+
+  <div class="info_form ">
+    <h5>
+      Newsletter
+    </h5>
+    <form action="{% url 'app-subscribeNewsletter' %}" method="post">
+      {% csrf_token %}
+
+        <div class="form-group">
+          <input type="email" name="email" placeholder="Email Address" class="form-control">
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Subscribe</button>
+    </div>
+    </form>
+    <div class="social_box">
+      <a href="">
+        <img src="images/fb.png" alt="">
+      </a>
+      <a href="">
+        <img src="images/twitter.png" alt="">
+      </a>
+      <a href="">
+        <img src="images/linkedin.png" alt="">
+      </a>
+      <a href="">
+        <img src="images/youtube.png" alt="">
+      </a>
+    </div>
+  </div>
 </section>
 
 

@@ -16,6 +16,27 @@ import dj_database_url
 from django.templatetags.static import static
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
+
+
+# CKEditor Settings
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+CKEDITOR_IMAGE_BACKEND = "pillow"
+CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js' 
+CKEDITOR_CONFIGS = {
+    'default':
+        {
+            'toolbar': 'full',
+            'width': 'auto',
+        'extraPlugins': 'image2',
+        'filebrowserUploadUrl': '/ckeditor/upload/',
+        'filebrowserBrowseUrl': '/ckeditor/browse/',
+            'extraPlugins': ','.join([
+                'codesnippet',
+            ]),
+        },
+}
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -48,10 +69,14 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+        'django.contrib.sites',
     'ckeditor',
     'ckeditor_uploader',
 ]
+SITE_ID = 1
+CKEDITOR_BASEPATH = "/staticfiles/ckeditor/ckeditor/"
 CKEDITOR_UPLOAD_PATH = "uploads/"
+
 UNFOLD = {
     "DASHBOARD_CALLBACK": "app.utils.dashboard_callback",
   
@@ -146,8 +171,9 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = "staticfiles/"
 
-STATIC_URL = "static/"
 
 
 # This production code might break development mode, so we check whether we're in DEBUG mode
@@ -158,7 +184,6 @@ if not DEBUG:
     # and renames the files with unique names for each version to support long-term caching
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
     
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 GEOIP_PATH = os.path.join(BASE_DIR, 'GeoIp')
 
 # Default primary key field type

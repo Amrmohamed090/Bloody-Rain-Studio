@@ -5,7 +5,8 @@ import os
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from unfold.admin import ModelAdmin
 from unfold.forms import AdminPasswordChangeForm, UserChangeForm, UserCreationForm
-
+from ckeditor_uploader.fields import RichTextUploadingField
+from django.utils.translation import gettext_lazy as _
 class BackgroundVideo(models.Model):
     video = models.FileField(upload_to='background_videos/')
     is_main = models.BooleanField(default=True)
@@ -63,8 +64,27 @@ class ProjectVisit(models.Model):
     timestamp = models.DateTimeField(default=timezone.now, db_index=True)  # Indexing timestamp field
 
 
-class Subscriber(models.Model):
-    email = models.EmailField(unique=True)
+class BlogPost(models.Model):
+    title = models.CharField(
+        _("Blog Title"), max_length=250,
+        null=False, blank=False
+    )
+    body = RichTextUploadingField()    
+    def __str__(self):
+        return self.title
+    
 
+class Newsletter(models.Model):
+    subject = models.CharField(
+        _("Email Subject"), max_length=250,
+        null=False, blank=False
+    )
+    body = RichTextUploadingField()    
+    def __str__(self):
+        return self.subject
+    
+class NewsletterSubscriber(models.Model):
+    email = models.CharField(max_length=100)
+    subscribed = models.BooleanField(default=True)
     def __str__(self):
         return self.email
