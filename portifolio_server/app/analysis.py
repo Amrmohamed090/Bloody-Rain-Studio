@@ -149,10 +149,6 @@ class DataAnalysis:
             final_services_list_dataset.append(datasets_services[key])
 
 
-        
-        print(final_project_list_dataset)
-        print(final_services_list_dataset)
-
         ## most viewed services
         mx = 0
         nm = ""     
@@ -223,9 +219,6 @@ class DataAnalysis:
         for key in datasets_services:
             datasets_services[key]["data"] = datasets_services[key]["data"].tolist()
             final_services_list_dataset.append(datasets_services[key])
-
-        print(final_project_list_dataset)
-        print(final_services_list_dataset)
 
         ## most viewed services
         mx = 0

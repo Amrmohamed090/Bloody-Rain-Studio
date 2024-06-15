@@ -64,14 +64,7 @@ class ProjectVisit(models.Model):
     timestamp = models.DateTimeField(default=timezone.now, db_index=True)  # Indexing timestamp field
 
 
-class BlogPost(models.Model):
-    title = models.CharField(
-        _("Blog Title"), max_length=250,
-        null=False, blank=False
-    )
-    body = RichTextUploadingField()    
-    def __str__(self):
-        return self.title
+
     
 
 class Newsletter(models.Model):

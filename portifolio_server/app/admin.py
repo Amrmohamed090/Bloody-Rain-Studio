@@ -2,7 +2,7 @@ from django.core.mail import send_mail
 from django.contrib import admin
 from django.utils.html import format_html
 # Register your models here.
-from .models import BackgroundVideo, Image, Service, Project, Visitor, ProjectVisit, BlogPost, Newsletter, NewsletterSubscriber
+from .models import BackgroundVideo, Image, Service, Project, Visitor, ProjectVisit, Newsletter, NewsletterSubscriber
 from django.core.mail import EmailMultiAlternatives
 from django.utils.html import strip_tags
 from django.utils.encoding import force_str
@@ -42,7 +42,6 @@ admin.site.register(BackgroundVideo)
 
 admin.site.register(Service)
 
-admin.site.register(BlogPost)
 
 admin.site.register(NewsletterSubscriber)
 
@@ -57,7 +56,8 @@ class NewsletterAdmin(admin.ModelAdmin):
 
         # Get the current site to build absolute URLs
         current_site = Site.objects.get_current()
-        site_url = f"https://{current_site.domain}"
+        print(current_site, "curr")
+        site_url = f"https://mysite-k3q7.onrender.com"
 
         # Parse HTML content to update image URLs
         soup = BeautifulSoup(newsletter.body, 'html.parser')
