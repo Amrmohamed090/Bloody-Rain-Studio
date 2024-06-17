@@ -2,8 +2,8 @@
 
 
 :root {
-  --main-color:#880808;
-  --main-bg-color:	#880808;
+  --main-color:#5d1410;
+  --main-bg-color:	#5d1410;
   --secondry-color:white;
   
 }
@@ -247,8 +247,8 @@ a:focus {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  font-family: 'Open Sans', sans-serif;
-}
+          font-family: "roboto", sans-serif;
+        }
 
 .navbar-brand span {
   font-size: 24px;
@@ -411,7 +411,7 @@ background-color: black;
 .do_section .button-style {
   position: relative;
   display: inline-block;
-  font-family: roboto, sans-serif;
+  font-family: "roboto", sans-serif;
   font-weight: 700;
   font-size: 14px;
   line-height: 17px;
@@ -599,6 +599,7 @@ color: var(--main-color);
   font-weight: 400;
   letter-spacing: 0px;
   line-height: 1.75;
+  padding: 20px;
 }
 .project-page .project-section {
   margin-bottom: 1.875rem;
@@ -1619,6 +1620,13 @@ color: var(--main-color);
   .contact-text  {
       padding-left: calc(((100% - 1320px) / 2) + .75rem);
   }
+}
+
+.newsletter-section {
+  display: flex;
+  padding: 20px;
+  background-color: black;
+  flex-direction: row;
 }
 
 

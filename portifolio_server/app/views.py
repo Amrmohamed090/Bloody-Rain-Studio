@@ -133,7 +133,7 @@ def home(request):
 
     return render(request, 'app/index.html', context)
 
-def portfolio(request):
+def portfolio(request, navbar_active = False):
     register_new_visitor(request, active_project=None)
 
 
@@ -145,7 +145,7 @@ def portfolio(request):
         'pagename': pagename,
         'projects': projects,
         'services': services,
-
+        'navbar_active': navbar_active,
     }
     
     return render(request, 'app/portfolio.html', context)

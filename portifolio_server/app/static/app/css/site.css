@@ -51,7 +51,7 @@ body {
 }
 
 :root {
-    --main-color:#880808;
+    --main-color:#5d1410;
     --secondry-color:white;
 }
 p {
@@ -291,7 +291,7 @@ section {
 }
 
  #logo h1 {
-    font-family: 'Open Sans', sans-serif, Arial, Helvetica;
+    font-family: "El Messiri", sans-serif;
     font-size: 28px;
     margin-right: 10px;
     font-weight: 900;
@@ -304,7 +304,7 @@ section {
 }
 
 #logo img {
-    max-height: 22px;
+    max-height: 70px;
     vertical-align: middle;
     margin-right: 15px;
 }
@@ -628,6 +628,9 @@ h6 {
 .section-heading {
     padding: 0 0 15px 0;
 }
+.section-heading span{
+    color: #8b1b12;
+}
 
 .section-subtitle {
     font-size: 18px;
@@ -651,8 +654,8 @@ h6 {
 }
 
 #banner-content.site-row {
-    padding-top: 170px;
-    padding-bottom: 100px;
+    padding-top: 150px;
+    padding-bottom: 70px;
 }
 
 #banner h1 {
@@ -977,7 +980,7 @@ h6 {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.4); /* Adjust the alpha value (0.5) to make it darker or lighter */
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust the alpha value (0.5) to make it darker or lighter */
     z-index: 1;
   }
   

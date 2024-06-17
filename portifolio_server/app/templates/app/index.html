@@ -4,8 +4,11 @@
 <html>
 
 <head>
-  <!-- Basic -->
 
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="{% static 'app/images/ICON (2).png' %}" title="Favicon"/>
+  <!-- Basic -->
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <!-- Mobile Metas -->
@@ -49,11 +52,11 @@
   
   <style>
     #preloader {
-      background: black url("{% static 'app/images/LCPT.gif' %}") no-repeat center center;
-      background-size: 15%;
+      background: black url("{% static 'app/images/Loading.gif' %}") no-repeat center center;
+      background-size: 30%;
       height: 100vh; width: 100%;
       opacity: 1;
-      transition: opacity 0.7s ease-out; /* Add a transition for opacity */
+      transition: opacity 5s ease-out; /* Add a transition for opacity */
       position: fixed; 
       z-index: 9999;
     }
@@ -81,13 +84,24 @@
       <div class="site-row clearfix">
           <div class="site-col-1">
 
-              <!--Logo-->
+
               <div id="logo">
 
-                  <h1 class="unselectable">BloodyRain Studio</h1>
+                <!--Logo that is shown on the banner-->
+                <a href="{% url 'app-home' %}">
+                  <img src="{% static 'app/images/LOGOLANDSCIP2.png' %}" id="banner-logo" alt="Landing Page"/>
+                </a>
 
-              </div>
-              <!--End of Logo-->
+                <!--End of Banner Logo-->
+
+                <!--The Logo that is shown on the sticky Navigation Bar-->
+                <a href="{% url 'app-home' %}">
+                  <img src="{% static 'app/images/LOGOLANDSCIP1.png' %}" id="navigation-logo" alt="Landing Page"/>
+                </a>
+
+                <!--End of Navigation Logo-->
+
+            </div>
 
               <aside>
 
@@ -134,7 +148,16 @@
                           <a href="#contact_us">Contact us</a>
                       </li>
                       <li>
-                          <a href="{% url 'app-portfolio' %}">Portfolio</a>
+                          <a href="{% url 'app-portfolio' True %}">Portfolio</a>
+                      </li>
+                      <li>
+                          <a href="{% url 'app-portfolio' %}">Careers</a>
+                      </li>
+                      <li>
+                          <a href="{% url 'app-portfolio' %}">Blogs</a>
+                      </li>
+                      <li>
+                          <a href="{% url 'app-portfolio' %}">Shop</a>
                       </li>
                   </ul>
               </nav>
@@ -161,7 +184,7 @@
 
       <div class="site-col-38 ">
           <div class="section-heading unselectable">
-              <h1>WELCOME TO BloodDrain</h1>
+              <h1 id="element"></h1>
               <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus hic exercitationem corporis
                   nobis rem nesciunt! Reprehenderit omnis, magni ducimus quam sequi explicabo, doloremque placeat
                   velit qui vitae cumque fugit voluptates?</h2>
@@ -354,8 +377,8 @@
                     <h1>{{ service.title }}</h1>
                     <p>{{ service.description }}</p>
                     <div >
-                        <a class ="main-button" href="{% url 'app-portfolio' %}?pageid={{ service.id }}">show more</a>
-                    </div>
+                        <a class ="main-button" href="{% url 'app-portfolio' True%}?pageid={{ service.id }}">show more</a>
+                    </div> 
                 </div>
             </div>
             <div class="img-box col-12 col-md-7">
@@ -554,53 +577,26 @@
         </div>
     </div>
 </section>
-<section class="contact_section layout_padding scrollto clearfix unselectable" id="contact_us">
-
-  <div class="info_form ">
-    <h5>
-      Newsletter
-    </h5>
-    <form action="{% url 'app-subscribeNewsletter' %}" method="post">
-      {% csrf_token %}
-
-        <div class="form-group">
-          <input type="email" name="email" placeholder="Email Address" class="form-control">
-      </div>
-      <div class="form-group">
-        <button type="submit" class="btn btn-primary">Subscribe</button>
-    </div>
-    </form>
-    <div class="social_box">
-      <a href="">
-        <img src="images/fb.png" alt="">
-      </a>
-      <a href="">
-        <img src="images/twitter.png" alt="">
-      </a>
-      <a href="">
-        <img src="images/linkedin.png" alt="">
-      </a>
-      <a href="">
-        <img src="images/youtube.png" alt="">
-      </a>
-    </div>
-  </div>
-</section>
 
 
 
-  <!-- end contact section -->
+
+
+
+
+
+
 
 
   <!--Footer-->
   <footer id="landing-footer" class="clearfix">
-    <div class="site-row clearfix">
+    <div class="site-row clearfix ">
 
-        <p id="copyright" class="site-col-2 unselectable">Made with love by <a href="">bloodrain</a>
+        <p id="copyright" class="site-col-3 unselectable col">Made with love by <a href="">bloodrain</a>
         </p>
 
         <!--Social Icons in Footer-->
-        <ul class="site-col-2 social-icons unselectable">
+        <ul class="site-col-3 social-icons unselectable col">
             <li>
                 <a target="_blank" title="Facebook" href="https://www.facebook.com/username">
                   <i class="fab fa-facebook-f"></i><span>Facebook</span>
@@ -628,6 +624,22 @@
             </li> -->
         </ul>
         <!--End of Social Icons in Footer-->
+        <div class="info_form site-col-3">
+          <h5>
+            Newsletter
+          </h5>
+          <form action="{% url 'app-subscribeNewsletter' %}" method="post">
+            {% csrf_token %}
+      
+              <div class="form-group">
+                <input type="email" name="email" placeholder="Email Address" class="form-control">
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary">Subscribe</button>
+          </div>
+          </form>
+        </div>
+      
     </div>
 </footer>
 <!--End of Footer-->
@@ -680,6 +692,8 @@ setTimeout(function() {
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/typeit@8.7.1/dist/index.umd.js"></script>
+
 <script src="{% static 'app\js\jquery.1.8.3.min.js' %}"></script>
 <!-- <script src="{% static 'app/lib/wow/wow.min.js' %}"></script> -->
 <script src="{% static 'app/lib/easing/easing.min.js' %}"></script>
@@ -697,6 +711,6 @@ setTimeout(function() {
 <script src="{% static 'app/js/jquery.easing.min.js' %}"></script>
 <script src="{% static 'app/js/portoflio.js' %}"></script>
 <script src="{% static 'app/js/site.js' %}"></script>
-
+<script src="{% static 'app/js/titletyping.js' %}"></script>
 
 </html>
