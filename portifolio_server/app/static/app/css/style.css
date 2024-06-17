@@ -37,7 +37,7 @@
 
 .chatbot-icon {
   position: fixed;
-  bottom: 15px;
+  bottom: 30px;
   left: 30px;
   background-color:#880808 ;
   color: white;
@@ -614,20 +614,36 @@ color: var(--main-color);
   font-weight: 400;
   font-size: 16px;
   line-height: 1.5;
+  font-weight: 400;
+  font-size: 16px;
   color: #C4C4C4;
-  text-align: center;
+  margin: 0;
 }
 
-.project-page .project-section-1 h1 {
+
+.project-page .project-section-1  h1 {
+  position: relative;
+  padding-bottom: 14px;
+  margin-bottom: 34px;
   font-size: 22px;
   line-height: 1.27273;
   letter-spacing: 0.04em;
   font-family: "Roboto", sans-serif;
   font-weight: 700;
-  text-transform: uppercase;
-  text-align: center;
-  padding-top: 40px;
-}
+  text-transform: uppercase; 
+  padding-top: 30px;
+ }
+
+ .project-page .project-section-1  h1::after {
+  display: inline-block;
+  content: " ";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  width: 140px;
+  background: var(--main-color);
+ }
 .section-head {
   position: relative;
   z-index: 1;
