@@ -14,11 +14,6 @@ def dashboard_callback(request, context):
     projects_over_time_datasets , services_over_time_datesets , max_service = analysis.get_project_visits_dataset_overtime_2()
     days_labels , visitor_data = analysis.get_visits_dataset()
     project_labels , project_data = analysis.get_projects_visits_dataset()
-
-    if location_data:
-        max_views = location_labels[max(enumerate(location_data), key=lambda x: x[1])[0]]
-    else:
-        max_views = None
     
     #projects_over_time_datasets , services_over_time_datesets , max_service= analysis.get_project_visits_dataset_overtime()
     
@@ -126,7 +121,7 @@ def dashboard_callback(request, context):
             
             {
                 "title": _("From Where? "),
-                "metric": f"Most Views from {max_views}",
+                "metric": f"Most Views from {location_labels[max(enumerate(location_data), key=lambda x: x[1])[0]]}",
                 
                 "chart": json.dumps(
                     {
