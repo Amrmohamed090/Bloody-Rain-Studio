@@ -1,8 +1,8 @@
 databases:
-  - name: mysitedb
+  - name: dpg-cpp1ehuehbks73bq73fg-a
     plan: free
-    databaseName: mysite
-    user: mysite
+    databaseName: portifolio_db_ot89
+    user: portifolio_db_ot89_user
 
 services:
   - type: web
