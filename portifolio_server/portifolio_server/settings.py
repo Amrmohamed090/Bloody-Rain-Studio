@@ -73,8 +73,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
         'django.contrib.sites',
-    'ckeditor',
-    'ckeditor_uploader',
+   # 'ckeditor',
+    #'ckeditor_uploader',
 ]
 SITE_ID = 1
 CKEDITOR_BASEPATH = "/staticfiles/ckeditor/ckeditor/"
@@ -204,7 +204,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'team@bloodyrainstudios.com'
+EMAIL_HOST_USER = 'contact@bloodyrainstudios.com'
 
 #APP Passowrd GOES HERE
 EMAIL_HOST_PASSWORD = 'wwui ffnq epqg isvq'

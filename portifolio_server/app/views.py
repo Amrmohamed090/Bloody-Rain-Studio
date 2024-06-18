@@ -48,7 +48,7 @@ def contact_us(request):
                     subject='Contact Us Form Submission',
                     message=f'Name: {full_name}\nEmail: {email}\n\nMessage: {message}',
                     from_email=None,  # Use default sender
-                    recipient_list=['team@bloodyrainstudios.com', email],  # Replace with your email
+                    recipient_list=['contact@bloodyrainstudios.com', email],  # Replace with your email
                 )
 
                 # Flag indicating successful message submission
