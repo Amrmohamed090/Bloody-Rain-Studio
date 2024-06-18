@@ -14,7 +14,7 @@ class ImageAdmin(admin.ModelAdmin):
     list_display = ['name', 'display_image']
 
     def display_image(self, obj):
-        return format_html('<img src="{}" style="max-width:200px; max-height:200px;" />', obj.image.url)
+        return format_html('<img src="{}" style="max-width:400px; max-height:400px;" />', obj.image.url)
 
     display_image.allow_tags = True
     display_image.short_description = 'Image Preview'
