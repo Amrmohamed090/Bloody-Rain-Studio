@@ -22,7 +22,7 @@ def register_new_visitor(request, active_project=None):
     latest_visitor = Visitor.objects.filter(ip_address=visitor_ip).order_by('-timestamp').first()
 
     # Create a new visitor if there are no existing visitors with the same IP address
-    if latest_visitor is None or (timezone.now() - latest_visitor.timestamp).total_seconds() > 5:
+    if latest_visitor is None or (timezone.now() - latest_visitor.timestamp).total_seconds() > 300:
         current_visitor = Visitor.objects.create(ip_address=visitor_ip, location=visitor_location)
     else:
         current_visitor = latest_visitor
@@ -41,6 +41,11 @@ def contact_us(request):
             full_name = form.cleaned_data['full_name']
             email = form.cleaned_data['email']
             message = form.cleaned_data['message']
+            subscribe_newsletter = form.cleaned_data['subscribe_newsletter']
+            
+            # Handle subscription logic if needed
+            if subscribe_newsletter:
+                print("Handling subscription logic...")
 
             # Attempt to send email
             try:
@@ -53,7 +58,7 @@ def contact_us(request):
 
                 # Flag indicating successful message submission
                 request.session['message_sent'] = True
-
+                
                 messages.success(request, 'Your message has been sent successfully!')
 
                 return HttpResponseRedirect(reverse('app-home') + '#contact_us')
@@ -61,14 +66,15 @@ def contact_us(request):
             except Exception as e:
                 # Flag indicating message submission error
                 request.session['message_error'] = True
-
+                print(e)
                 return HttpResponseRedirect(reverse('app-home') + '#contact_us')
 
         else:
+            print("invalid form")
             for field, error in form.errors.items():
                 # Flag indicating message submission error
                 request.session['message_error'] = True
-
+                print(field,error)
             return HttpResponseRedirect(reverse('app-home') + '#contact_us')
 
     else:
@@ -133,7 +139,7 @@ def home(request):
 
     return render(request, 'app/index.html', context)
 
-def portfolio(request, navbar_active = False):
+def portfolio(request):
     register_new_visitor(request, active_project=None)
 
 
@@ -145,7 +151,7 @@ def portfolio(request, navbar_active = False):
         'pagename': pagename,
         'projects': projects,
         'services': services,
-        'navbar_active': navbar_active,
+
     }
     
     return render(request, 'app/portfolio.html', context)

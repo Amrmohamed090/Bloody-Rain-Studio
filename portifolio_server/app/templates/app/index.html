@@ -57,10 +57,17 @@
       background-size: 60%;
       height: 100vh; width: 100%;
       opacity: 1;
-      transition: opacity 5s ease-out; /* Add a transition for opacity */
+      transition: opacity 0.5s ease-in-out; /* Add a transition for opacity */
       position: fixed; 
-      z-index: 9999;
+      z-index: 1000000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
+    #preloader.hidden {
+    opacity: 0;
+    pointer-events: none; /* Ensure clicks pass through when hidden */
+}
   </style>
   <script defer src="{% static 'app/js\app.js' %}"></script>
   <script defer src="{% static 'app/js\navbar.js' %}"></script>
@@ -214,7 +221,7 @@
 
 
           <!--Content Left Side-->
-          <div class="site-col-3" data-aos="fade-right">
+          <div class="site-col-3" data-aos="fade-right" data-aos-duration="1000">
               <!--User Testimonial-->
               <blockquote class="testimonial text-right bigtest">
                   <q>90% of what is considered “impossible” is, in fact, possible. The other 10% will become possible with the passage of time & technology</q>
@@ -226,7 +233,7 @@
           <!--End Content Left Side-->
 
           <!--Content of the Right Side-->
-          <div class="site-col-3 hidden">
+          <div class="site-col-3" data-aos="fade-up" data-aos-duration="1000">
               <div class="section-heading">
                   <h3>BELIEVING</h3>
                   <h2 class="section-title">Who we are ?</h2>
@@ -249,7 +256,7 @@
           </div>
           <!--End Content Right Side-->
 
-          <div class="site-col-3 hidden">
+          <div class="site-col-3" data-aos="fade-left" data-aos-duration="1000">
               <img src="{% static 'app/images/freepik.jpg' %}" alt="Dancer" />
           </div>
 
@@ -262,7 +269,6 @@
 
 
 
-  <!-- do section -->
 
   <section class="do_section layout_padding scrollto clearfix unselectable" id="service">
     <div class="container">
@@ -271,88 +277,7 @@
         <h2>
           What we offer
         </h2>
-        <!-- Projects Start -->
-        <!-- <div class="container-xxl py-3">
-      <div class="container-fluid">
-          <div class="row mt-n2 wow fadeInUp" data-wow-delay="0.3s">
-              <div class="col-12 text-center">
-                  <ul class="list-inline mb-5" id="portfolio-flters">
-                      <li class="mx-2 active" data-filter="*">All</li>
-                      <li class="mx-2" data-filter=".first">General Carpentry</li>
-                      <li class="mx-2" data-filter=".second">Custom Carpentry</li>
-                  </ul>
-              </div>
-          </div>
-          <div class="row g-4 portfolio-container">
-              <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.1s">
-                  <div class="rounded overflow-hidden">
-                      <div class="position-relative overflow-hidden">
-                          <img class="img-fluid w-100" src="img/portfolio-1.jpg" alt="">
-                          <div class="portfolio-overlay">
-                              <a class="btn btn-square btn-outline-light mx-1" href="img/portfolio-1.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
-                              <a class="btn btn-square btn-outline-light mx-1" href=""><i class="fa fa-link"></i></a>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-lg-4 col-md-6 portfolio-item second wow fadeInUp" data-wow-delay="0.3s">
-                  <div class="rounded overflow-hidden">
-                      <div class="position-relative overflow-hidden">
-                          <img class="img-fluid w-100" src="img/portfolio-2.jpg" alt="">
-                          <div class="portfolio-overlay">
-                              <a class="btn btn-square btn-outline-light mx-1" href="img/portfolio-2.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
-                              <a class="btn btn-square btn-outline-light mx-1" href=""><i class="fa fa-link"></i></a>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.5s">
-                  <div class="rounded overflow-hidden">
-                      <div class="position-relative overflow-hidden">
-                          <img class="img-fluid w-100" src="img/portfolio-3.jpg" alt="">
-                          <div class="portfolio-overlay">
-                              <a class="btn btn-square btn-outline-light mx-1" href="img/portfolio-3.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
-                              <a class="btn btn-square btn-outline-light mx-1" href=""><i class="fa fa-link"></i></a>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-lg-4 col-md-6 portfolio-item second wow fadeInUp" data-wow-delay="0.1s">
-                  <div class="rounded overflow-hidden">
-                      <div class="position-relative overflow-hidden">
-                          <img class="img-fluid w-100" src="img/portfolio-4.jpg" alt="">
-                          <div class="portfolio-overlay">
-                              <a class="btn btn-square btn-outline-light mx-1" href="img/portfolio-4.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
-                              <a class="btn btn-square btn-outline-light mx-1" href=""><i class="fa fa-link"></i></a>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.3s">
-                  <div class="rounded overflow-hidden">
-                      <div class="position-relative overflow-hidden">
-                          <img class="img-fluid w-100" src="img/portfolio-5.jpg" alt="">
-                          <div class="portfolio-overlay">
-                              <a class="btn btn-square btn-outline-light mx-1" href="img/portfolio-5.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
-                              <a class="btn btn-square btn-outline-light mx-1" href=""><i class="fa fa-link"></i></a>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-lg-4 col-md-6 portfolio-item second wow fadeInUp" data-wow-delay="0.5s">
-                  <div class="rounded overflow-hidden">
-                      <div class="position-relative overflow-hidden">
-                          <img class="img-fluid w-100" src="img/portfolio-6.jpg" alt="">
-                          <div class="portfolio-overlay">
-                              <a class="btn btn-square btn-outline-light mx-1" href="img/portfolio-6.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
-                              <a class="btn btn-square btn-outline-light mx-1" href=""><i class="fa fa-link"></i></a>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div> -->
+
     </div>
   </div>
   <div class="pt-3 container-fluid">
@@ -422,116 +347,6 @@
   <!-- end do section -->
 
 
-<!-- portfolio section -->
-
-
-<!-- end portfolio section -->
-  <!-- our team section -->
-  <!-- <section class="client_section">
-    <div class="container">
-      <div class="heading_container">
-        <h2>
-          Our team
-        </h2>
-      </div>
-      <div class="carousel-wrap ">
-        <div class="owl-carousel">
-          
-          <div class="item hidden">
-            <div class="box">
-              <div class="img-box">
-                <img src="{% static 'app/images/55403b8e91466ea11f388fb42c98682a.jpg' %}" alt="">
-              </div>
-              <div class="detail-box">
-                <h5>
-                  Amir Essam<br>
-                  <span>
-                    3D Artist
-                  </span>
-                </h5>
-                <img src="{% static 'app/images/quote.png' %}"  alt="">
-                <p>
-                  Dipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="item hidden">
-            <div class="box">
-              <div class="img-box">
-                <img src="{% static 'app/images/face34b54bca10f17a85164f6c5f4876.jpg' %}"  alt="">
-              </div>
-              <div class="detail-box">
-                <h5>
-                  Ahmed Mostafa<br>
-                  <span>
-                    3D environment & props artist
-                  </span>
-                </h5>
-                <img src="{% static 'app/images/quote.png' %}" alt="">
-                <p>
-                  Dipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section> -->
-
-  <!-- end client section -->
-
-  <!-- target section -->
-  <!-- <section class="target_section layout_padding2">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-3 col-sm-6 hidden">
-          <div class="detail-box">
-            <h2>
-              1000+
-            </h2>
-            <h5>
-              Years of Business
-            </h5>
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-6 hidden">
-          <div class="detail-box">
-            <h2>
-              20000+
-            </h2>
-            <h5>
-              Projects Delivered
-            </h5>
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-6 hidden">
-          <div class="detail-box">
-            <h2>
-              10000+
-            </h2>
-            <h5>
-              Satisfied Customers
-            </h5>
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-6 hidden">
-          <div class="detail-box">
-            <h2>
-              1500+
-            </h2>
-            <h5>
-              Cups of Coffee
-            </h5>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section> -->
-
-  <!-- end target section -->
-
 
   <!-- contact section -->
 
@@ -557,20 +372,29 @@
                                 </div>
                             {% endif %}
                             <form action="{% url 'app-contactus' %}" method="post">
-                                {% csrf_token %}
-                                <div class="form-group">
-                                    <input type="text" name="full_name" placeholder="Full Name" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <input type="email" name="email" placeholder="Email Address" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" name="message" placeholder="Message" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-primary">Send</button>
-                                </div>
-                            </form>
+                              {% csrf_token %}
+                              <div class="form-group">
+                                  <input type="text" name="full_name" placeholder="Full Name" class="form-control">
+                              </div>
+                              <div class="form-group">
+                                  <input type="text" name="subject" placeholder="Subject" class="form-control">
+                              </div>
+                              <div class="form-group">
+                                  <input type="email" name="email" placeholder="Email Address" class="form-control">
+                              </div>
+                              <div class="form-group">
+                                  <input type="text" name="message" placeholder="Message" class="form-control">
+                              </div>
+                              <div class="form-group">
+                                  <label>
+                                      <input type="checkbox" name="subscribe_newsletter">
+                                      Subscribe to newsletter
+                                  </label>
+                              </div>
+                              <div class="form-group">
+                                  <button type="submit" class="btn btn-primary">Send</button>
+                              </div>
+                          </form>
                         </div>
                     </div>
                 </div>

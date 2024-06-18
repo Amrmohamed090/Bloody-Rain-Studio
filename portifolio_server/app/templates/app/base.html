@@ -57,16 +57,21 @@
   
   <style>
     #preloader {
-      background: black url("{% static 'app/images/LCPT.gif' %}") no-repeat center center;
-      background-size: 15%;
+      background: black url("{% static 'app/images/Loading.gif' %}") no-repeat center center;
+      background-size: 60%;
       height: 100vh; width: 100%;
       opacity: 1;
-      transition: opacity 0.7s ease-out; /* Add a transition for opacity */
+      transition: opacity 0.5s ease-in-out; /* Add a transition for opacity */
       position: fixed; 
-      z-index: 9999;
+      z-index: 1000000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-
-
+    #preloader.hidden {
+    opacity: 0;
+    pointer-events: none; /* Ensure clicks pass through when hidden */
+}
   </style>
   <script defer src="{% static 'app/js\app.js' %}"></script>
   <script defer src="{% static 'app/js\navbar.js' %}"></script>
