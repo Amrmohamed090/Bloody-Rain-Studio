@@ -53,7 +53,7 @@
   <style>
     #preloader {
       background: black url("{% static 'app/images/Loading.gif' %}") no-repeat center center;
-      background-size: 30%;
+      background-size: 60%;
       height: 100vh; width: 100%;
       opacity: 1;
       transition: opacity 5s ease-out; /* Add a transition for opacity */
@@ -371,8 +371,8 @@
     <div class="tab-content" id="pills-tabContent">
       {% for service in services %}
       <div class="tab-pane fade {% if forloop.first %}show active{% endif %}" id="service-{{ service.id }}" role="tabpanel" aria-labelledby="service-tab-{{ service.id }}">
-        <div class="row">
-            <div class="services-box col-12 col-md-5 d-flex">
+        <div class="row" style="margin: 0;">
+            <div class="services-box site-col-2 col-md-5 d-flex">
                 <div class="services-text">
                     <h1>{{ service.title }}</h1>
                     <p>{{ service.description }}</p>
@@ -381,7 +381,7 @@
                     </div> 
                 </div>
             </div>
-            <div class="img-box col-12 col-md-7">
+            <div class="img-box site-col-2 col-md-7">
                 <div id="carousel-service-{{ service.id }}" class="carousel slide" data-ride="carousel" data-interval="1500">
                     <ol class="carousel-indicators">
                         {% for image in service.services_images.all %}

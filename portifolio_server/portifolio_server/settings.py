@@ -172,12 +172,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_URL = '/static/'
+STATIC_URL = '/staticfiles/'
+# if you are using pathlib Path
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+#if you are using os
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
+
 
 # This production code might break development mode, so we check whether we're in DEBUG mode
 if not DEBUG:
