@@ -18,6 +18,8 @@ from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 
 
+
+
 # CKEditor Settings
 CKEDITOR_UPLOAD_PATH = 'uploads/'
 CKEDITOR_IMAGE_BACKEND = "pillow"
@@ -48,7 +50,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-q9o(%wi_o0^*5al=8qe19g_t&dlg90wlorozm(9s$ay&=3(i)j"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["mysite-k3q7.onrender.com","127.0.0.1", "portifolio-server-21uj.onrender.com"]
 
@@ -171,9 +173,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = "staticfiles/"
-
+STATIC_URL = '/static/'  # Adjust this URL as needed
 
 
 # This production code might break development mode, so we check whether we're in DEBUG mode
