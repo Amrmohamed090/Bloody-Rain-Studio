@@ -1,5 +1,5 @@
 databases:
-  - name: dpg-cpp1ehuehbks73bq73fg-a
+  - name: portifolio_db
     plan: free
     databaseName: portifolio_db_ot89
     user: portifolio_db_ot89_user
