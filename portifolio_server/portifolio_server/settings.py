@@ -64,7 +64,8 @@ INSTALLED_APPS = [
     "unfold.contrib.forms",  # optional, if special form elements are needed
     "unfold.contrib.simple_history",  # optional, if django-simple-history package is used
     "app",
-    
+            'django.contrib.sites',
+
     
     "django.contrib.admin",
     "django.contrib.auth",
@@ -72,7 +73,6 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-        'django.contrib.sites',
    # 'ckeditor',
     #'ckeditor_uploader',
 ]
@@ -210,5 +210,6 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'contact@bloodyrainstudios.com'
 
 #APP Passowrd GOES HERE
+# SECURITY WARNING:
 EMAIL_HOST_PASSWORD = 'wwui ffnq epqg isvq'
 

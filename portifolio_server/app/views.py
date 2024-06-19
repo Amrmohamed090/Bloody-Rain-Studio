@@ -20,7 +20,7 @@ def register_new_visitor(request, active_project=None):
     
     # Find the latest timestamp among all visitors with the same IP address
     latest_visitor = Visitor.objects.filter(ip_address=visitor_ip).order_by('-timestamp').first()
-    
+
     # Create a new visitor if there are no existing visitors with the same IP address
     if latest_visitor is None or (timezone.now() - latest_visitor.timestamp).total_seconds() > 300:
         current_visitor = Visitor.objects.create(ip_address=visitor_ip, location=visitor_location)
@@ -29,9 +29,9 @@ def register_new_visitor(request, active_project=None):
 
     if active_project:
         # Check if the visitor has already visited this project
-        project_visit_exists = ProjectVisit.objects.filter(visitor=current_visitor, project=active_project).exists()
-        if not project_visit_exists:
-            # If the visitor hasn't visited this project, create a new project visit
+        project_visit_exists = ProjectVisit.objects.filter(visitor=current_visitor, project=active_project).order_by('-timestamp').first()
+        if project_visit_exists is None or (timezone.now() - project_visit_exists.timestamp).total_seconds() > 300:
+            # If the same visitor hasn't visited this project for 300 seconds, create a new project visit
             ProjectVisit.objects.create(visitor=current_visitor, project=Project.objects.get(pk=active_project))
 
 def contact_us(request):
