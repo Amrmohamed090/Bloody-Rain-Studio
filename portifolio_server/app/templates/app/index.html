@@ -76,7 +76,7 @@
 <body>
   <div id="preloader"></div>
   <a href="#contact_us">
-  <div class="chatbot-icon wow fadeIn">
+    <div id="contactUsButton" class="chatbot-icon">
       <i class="fa fa-comments" aria-hidden="true"></i>
     </div>
   </a>
@@ -256,7 +256,7 @@
           </div>
           <!--End Content Right Side-->
 
-          <div class="site-col-3" data-aos="fade-left" data-aos-duration="1000">
+          <div class="site-col-3 about-image" data-aos="fade-left" data-aos-duration="1000">
               <img src="{% static 'app/images/freepik.jpg' %}" alt="Dancer" />
           </div>
 
@@ -297,7 +297,7 @@
     <div class="tab-content" id="pills-tabContent">
       {% for service in services %}
       <div class="tab-pane fade {% if forloop.first %}show active{% endif %}" id="service-{{ service.id }}" role="tabpanel" aria-labelledby="service-tab-{{ service.id }}">
-        <div class="row" style="margin: 0;">
+        <div class="row services-column-sm" style="margin: 0;">
             <div class="services-box site-col-2 col-md-5 d-flex">
                 <div class="services-text">
                     <h1>{{ service.title }}</h1>
@@ -359,7 +359,7 @@
         <div class="">
             <div class="">
                 <div class="row">
-                    <div class="col-md-9 mx-auto">
+                    <div class="col-md-9 col-9 ">
                         <div class="contact-form">
                             {% if messege_sent %}
                                 <div class="container mt-4">
@@ -386,16 +386,31 @@
                                   <input type="text" name="message" placeholder="Message" class="form-control">
                               </div>
                               <div class="form-group">
-                                  <label>
-                                      <input type="checkbox" name="subscribe_newsletter">
-                                      Subscribe to newsletter
-                                  </label>
+                                <input type="checkbox" name="subscribe_newsletter" id="">
+                                  <label>Subscribe to newsletter</label>
                               </div>
                               <div class="form-group">
                                   <button type="submit" class="btn btn-primary">Send</button>
                               </div>
                           </form>
                         </div>
+
+                        
+                    </div>
+                    <div class="info_form col-3">
+                      <h5>
+                        Newsletter
+                      </h5>
+                      <form action="{% url 'app-subscribeNewsletter' %}" method="post">
+                        {% csrf_token %}
+                  
+                          <div class="form-group">
+                            <input type="email" name="email" placeholder="Email Address" class="form-control">
+                        </div>
+                        <div class="form-group">
+                          <button type="submit" class="btn btn-primary">Subscribe</button>
+                      </div>
+                      </form>
                     </div>
                 </div>
             </div>
@@ -449,21 +464,6 @@
             </li> -->
         </ul>
         <!--End of Social Icons in Footer-->
-        <div class="info_form site-col-3">
-          <h5>
-            Newsletter
-          </h5>
-          <form action="{% url 'app-subscribeNewsletter' %}" method="post">
-            {% csrf_token %}
-      
-              <div class="form-group">
-                <input type="email" name="email" placeholder="Email Address" class="form-control">
-            </div>
-            <div class="form-group">
-              <button type="submit" class="btn btn-primary">Subscribe</button>
-          </div>
-          </form>
-        </div>
       
     </div>
 </footer>

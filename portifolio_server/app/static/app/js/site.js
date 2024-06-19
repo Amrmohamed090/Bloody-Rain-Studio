@@ -55,3 +55,18 @@ $(window).on('load', function() {
     $('body').delay(350).css({'overflow-y': 'visible'});
 });
 
+
+
+document.addEventListener('DOMContentLoaded', function() {
+	const contactUsButton = document.getElementById('contactUsButton');
+	const firstSectionHeight = document.querySelector('section').offsetHeight;
+  
+	window.addEventListener('scroll', function() {
+	  if (window.scrollY > 300) {
+		contactUsButton.classList.add('visible');
+	  } else {
+		contactUsButton.classList.remove('visible');
+	  }
+	});
+  });
+
