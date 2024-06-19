@@ -1026,6 +1026,7 @@ h6 {
     padding: 0 5px 20px 5px;
     text-align: center;
     text-decoration: none;
+    z-index: 2000 !important;
     color: var(--main-color);
     -webkit-transition: margin-bottom 150ms linear;
     -moz-transition: margin-bottom 150ms linear;
@@ -1735,10 +1736,7 @@ h6 {
 
 
 
-    /* #logo img {
-        display: none;
 
-    } */
     .about-image {
         display: none;
     }

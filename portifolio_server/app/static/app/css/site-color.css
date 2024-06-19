@@ -284,8 +284,7 @@ h6 {
 /* Button Text */
 
  .main-button {
-    font-family: 'Open Sans', sans-serif, Arial, Helvetica;
-    font-size:16px;
+    border-color:var(--main-color);
     color:var(--secondry-color);
 }
 

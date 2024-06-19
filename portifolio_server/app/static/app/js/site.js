@@ -59,7 +59,6 @@ $(window).on('load', function() {
 
 document.addEventListener('DOMContentLoaded', function() {
 	const contactUsButton = document.getElementById('contactUsButton');
-	const firstSectionHeight = document.querySelector('section').offsetHeight;
   
 	window.addEventListener('scroll', function() {
 	  if (window.scrollY > 300) {
@@ -70,3 +69,23 @@ document.addEventListener('DOMContentLoaded', function() {
 	});
   });
 
+  document.addEventListener('DOMContentLoaded', function () {
+	const cookieConsent = document.getElementById('cookieConsent');
+	const acceptCookiesButton = document.getElementById('acceptCookies');
+	const declineCookiesButton = document.getElementById('declineCookies');
+  
+	if (!localStorage.getItem('cookiesAccepted')) {
+	  cookieConsent.style.display = 'block';
+	}
+  
+	acceptCookiesButton.addEventListener('click', function () {
+	  localStorage.setItem('cookiesAccepted', 'true');
+	  cookieConsent.style.display = 'none';
+	});
+  
+	declineCookiesButton.addEventListener('click', function () {
+	  localStorage.setItem('cookiesAccepted', 'false');
+	  cookieConsent.style.display = 'none';
+	});
+  });
+  

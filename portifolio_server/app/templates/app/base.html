@@ -81,10 +81,20 @@
   <div id="preloader"></div>
 
   <a href="{% url 'app-home' %}#contact_us">
-  <div class="chatbot-icon wow fadeIn">
+    <div id="contactUsButton" class="chatbot-icon">
       <i class="fa fa-comments" aria-hidden="true"></i>
     </div>
   </a>
+
+  <div id="cookieConsent" class="cookie-consent">
+    <div class="cookie-consent-content">
+      <p>We use cookies to ensure you get the best experience on our website. <a href="#">Learn more</a></p>
+      <div class="button-container">
+        <button id="acceptCookies" class="btn ">Accept</button>
+        <button id="declineCookies" class="btn btn-decline ">Decline</button>
+      </div>
+    </div>
+  </div>
 
    <!-- header section strats -->
    <div id="header" class="nav-collapse nav-solid sticky">

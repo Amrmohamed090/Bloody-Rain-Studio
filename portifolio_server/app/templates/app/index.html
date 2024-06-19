@@ -37,6 +37,7 @@
   <link rel="stylesheet" href="{% static 'app/css/font-awesome.min.css' %}">
   <link href="{% static 'app/css/style.css' %}"  rel="stylesheet" />
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@lugindev/truescrollbar/src/TrueScrollBar.min.css" />
   <!-- responsive style -->
   <link href="{% static 'app/css/responsive.css' %}" rel="stylesheet" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -81,8 +82,19 @@
     </div>
   </a>
 
+  <div id="cookieConsent" class="cookie-consent">
+    <div class="cookie-consent-content">
+      <p>We use cookies to ensure you get the best experience on our website. <a href="#">Learn more</a></p>
+      <div class="button-container">
+        <button id="acceptCookies" class="btn ">Accept</button>
+        <button id="declineCookies" class="btn btn-decline ">Decline</button>
+      </div>
+    </div>
+  </div>
 
 <!--           header          -->
+
+
 
 
 
@@ -386,8 +398,8 @@
                                   <input type="text" name="message" placeholder="Message" class="form-control">
                               </div>
                               <div class="form-group">
-                                <input type="checkbox" name="subscribe_newsletter" id="">
-                                  <label>Subscribe to newsletter</label>
+                                <input type="checkbox" name="subscribe_newsletter" id="subscribe_newsletter">
+                                <label for="subscribe_newsletter">Subscribe to newsletter</label>
                               </div>
                               <div class="form-group">
                                   <button type="submit" class="btn btn-primary">Send</button>
@@ -432,11 +444,11 @@
   <footer id="landing-footer" class="clearfix">
     <div class="site-row clearfix ">
 
-        <p id="copyright" class="site-col-3 unselectable col">Made with love by <a href="">bloodrain</a>
+        <p id="copyright" class="site-col-2 unselectable col">Made with love by <a href="">bloodrain</a>
         </p>
 
         <!--Social Icons in Footer-->
-        <ul class="site-col-3 social-icons unselectable col">
+        <ul class="site-col-2 social-icons unselectable col">
             <li>
                 <a target="_blank" title="Facebook" href="https://www.facebook.com/username">
                   <i class="fab fa-facebook-f"></i><span>Facebook</span>
@@ -467,6 +479,7 @@
       
     </div>
 </footer>
+
 <!--End of Footer-->
 
 
@@ -538,6 +551,9 @@ setTimeout(function() {
 <script src="{% static 'app/js/site.js' %}"></script>
 <script src="{% static 'app/js/titletyping.js' %}"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@lugindev/truescrollbar/src/TrueScrollBar.min.js"></script>
+
 <script>
   AOS.init();
 </script> 
