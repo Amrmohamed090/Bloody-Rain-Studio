@@ -20,7 +20,7 @@ def register_new_visitor(request, active_project=None):
     
     # Find the latest timestamp among all visitors with the same IP address
     latest_visitor = Visitor.objects.filter(ip_address=visitor_ip).order_by('-timestamp').first()
-
+    
     # Create a new visitor if there are no existing visitors with the same IP address
     if latest_visitor is None or (timezone.now() - latest_visitor.timestamp).total_seconds() > 300:
         current_visitor = Visitor.objects.create(ip_address=visitor_ip, location=visitor_location)

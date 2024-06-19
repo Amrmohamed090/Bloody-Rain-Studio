@@ -8,5 +8,7 @@ pip install -r requirements.txt
 python ./portifolio_server/manage.py collectstatic --no-input
 
 # Apply any outstanding database migrations
+python ./portifolio_server/manage.py makemigrations
+
 python ./portifolio_server/manage.py migrate
 
