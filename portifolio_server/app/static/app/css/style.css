@@ -933,7 +933,7 @@ color: var(--main-color);
 
 .contact_section .contact-form {
   padding: 25px;
-  border-radius: 20px;
+  /* border-radius: 20px; */
 }
 
 .contact_section .contact-form input {
@@ -943,9 +943,40 @@ color: var(--main-color);
   width: 100%;
   margin: 15px 0;
   padding: 10px 20px;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 30px;
+  border: 1px solid #CED1D0;
+  /* border-radius: 20px; */
   color: white; /* Change the text color to white */
+}
+
+.contact_section .contact-form input[type="checkbox"] {
+  width: 2%;
+  height: 15px;
+}
+.contact_section .contact-form textarea {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  margin: 15px 0;
+  /* border-radius: 20px; */
+  color: white;
+  resize: none;
+  min-height: 123px;
+  font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    border: 1px solid #CED1D0;
+    padding: 7px 20px;
+    transition: border 0.25s ease-in-out, color 0.25s ease-in-out, background 0.25s ease-in-out;
+
+
+
+}
+.contact_section .contact-form textarea::placeholder {
+  color: #CED1D0;
+}
+
+.contact_section .contact-form label {
+  color: #5C5D5D;
 }
 
 
@@ -953,6 +984,7 @@ color: var(--main-color);
 
 .contact_section input:focus {
   border-color: var(--main-color);
+  outline: none;
 }
 
 .contact_section .contact-form input.input_message {
@@ -960,19 +992,19 @@ color: var(--main-color);
 }
 
 .contact_section .contact-form input::-webkit-input-placeholder {
-  color: rgba(255, 255, 255, 0.4);
+  color: #CED1D0;
 }
 
 .contact_section .contact-form input:-ms-input-placeholder {
-  color: rgba(255, 255, 255, 0.4);
+  color: #CED1D0;
 }
 
 .contact_section .contact-form input::-ms-input-placeholder {
-  color: rgba(255, 255, 255, 0.4);
+  color: #CED1D0;
 }
 
 .contact_section .contact-form input::placeholder {
-  color: rgba(255, 255, 255, 0.4);
+  color: #CED1D0;
 }
 
 .contact_section .contact-form button {

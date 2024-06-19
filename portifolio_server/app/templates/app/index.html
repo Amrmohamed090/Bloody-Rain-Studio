@@ -365,7 +365,7 @@
   <section class="contact_section layout_padding scrollto clearfix unselectable" id="contact_us">
     <div class="container">
         <div class="section-head__back">Contact Us</div>
-        <div class="heading_container hidden">
+        <div class="heading_container">
             <h2>Contact Us</h2>
         </div>
         <div class="">
@@ -395,7 +395,7 @@
                                   <input type="email" name="email" placeholder="Email Address" class="form-control">
                               </div>
                               <div class="form-group">
-                                  <input type="text" name="message" placeholder="Message" class="form-control">
+                                <textarea name="your-message" cols="40" rows="5" aria-required="true" aria-invalid="false" placeholder="Enter your message here"></textarea>
                               </div>
                               <div class="form-group">
                                 <input type="checkbox" name="subscribe_newsletter" id="subscribe_newsletter">
@@ -420,7 +420,7 @@
                             <input type="email" name="email" placeholder="Email Address" class="form-control">
                         </div>
                         <div class="form-group">
-                          <button type="submit" class="btn btn-primary">Subscribe</button>
+                          <button type="submit" class="btn btn-primary main-button">Subscribe</button>
                       </div>
                       </form>
                     </div>
@@ -487,27 +487,7 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 <script src="{% static 'app\js\disableRightClick.js' %}"></script>
 
-<!-- owl carousel script 
-  -->
-<script type="text/javascript">
-  $(".owl-carousel").owlCarousel({
-    loop: true,
-    margin: 0,
-    navText: [],
-    center: true,
-    autoplay: true,
-    autoplayHoverPause: true,
-    responsive: {
-      0: {
-        items: 1
-      },
-      1000: {
-        items: 3
-      }
-    }
-  });
-</script>
-<!-- end owl carousel script -->
+
 
 </body>
 
