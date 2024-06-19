@@ -1821,6 +1821,11 @@ h6 {
         width: 50%;
     }
 
+    /* .about-image {
+        display: none;
+    } */
+
+
 }
 
 /* Landscape Tablet to Desktop
@@ -1873,5 +1878,10 @@ h6 {
     .slvj-lightbox iframe, .slvj-lightbox object, .slvj-lightbox embed {
         height: 432px !important;
     }
+    
+    .site-col-38 { 
+        width: 100%;
+    }
+
 
 }

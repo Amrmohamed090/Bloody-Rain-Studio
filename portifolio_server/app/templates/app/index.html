@@ -177,7 +177,7 @@
                           <a href="{% url 'app-portfolio' %}">Blogs</a>
                       </li>
                       <li>
-                          <a href="{% url 'app-portfolio' %}">Shop</a>
+                          <a href="">Shop</a>
                       </li>
                   </ul>
               </nav>
@@ -226,7 +226,7 @@
 
 
     <!--Content Section-->
-    <div id="about" class="scrollto clearfix unselectable">
+    <div id="about" class="scrollto clearfix unselectable" style="overflow: hidden;">
 
 
       <div class="site-row no-padding-bottom clearfix">
@@ -389,17 +389,21 @@
                                   <input type="text" name="full_name" placeholder="Full Name" class="form-control">
                               </div>
                               <div class="form-group">
-                                  <input type="text" name="subject" placeholder="Subject" class="form-control">
-                              </div>
-                              <div class="form-group">
                                   <input type="email" name="email" placeholder="Email Address" class="form-control">
                               </div>
                               <div class="form-group">
-                                <textarea name="your-message" cols="40" rows="5" aria-required="true" aria-invalid="false" placeholder="Enter your message here"></textarea>
+                                <input type="text" name="subject" placeholder="Subject" class="form-control">
+                            </div>
+                              <div class="form-group">
+                                <textarea name="your-message" cols="50" rows="6" aria-required="true" aria-invalid="false" placeholder="Enter Your Message Here"></textarea>
                               </div>
                               <div class="form-group">
                                 <input type="checkbox" name="subscribe_newsletter" id="subscribe_newsletter">
                                 <label for="subscribe_newsletter">Subscribe to newsletter</label>
+                              </div>
+                              <div class="form-group">
+                                <input type="checkbox" name="subscribe_newsletter" id="agree-box">
+                                <label for="agree-box">I agree</label>
                               </div>
                               <div class="form-group">
                                   <button type="submit" class="btn btn-primary">Send</button>
@@ -409,10 +413,10 @@
 
                         
                     </div>
-                    <div class="info_form col-3">
-                      <h5>
+                    <div class="info_form col-3 custom-border">
+                      <h3>
                         Newsletter
-                      </h5>
+                      </h3>
                       <form action="{% url 'app-subscribeNewsletter' %}" method="post">
                         {% csrf_token %}
                   
@@ -420,7 +424,7 @@
                             <input type="email" name="email" placeholder="Email Address" class="form-control">
                         </div>
                         <div class="form-group">
-                          <button type="submit" class="btn btn-primary main-button">Subscribe</button>
+                          <button type="submit" class="btn main-button" >Subscribe</button>
                       </div>
                       </form>
                     </div>
