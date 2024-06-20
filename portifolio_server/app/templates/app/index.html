@@ -226,9 +226,12 @@
 
 
     <!--Content Section-->
+    <div class="main-background">
+      
+
     <div id="about" class="scrollto clearfix unselectable" style="overflow: hidden;">
 
-
+      <!-- <div id="over-lay"></div> -->
       <div class="site-row no-padding-bottom clearfix">
 
 
@@ -283,6 +286,8 @@
 
 
   <section class="do_section layout_padding scrollto clearfix unselectable" id="service">
+    <!-- <div id="over-lay"></div> -->
+
     <div class="container">
       <div class="heading_container">
         <div class="section-head__back">Services</div>
@@ -352,17 +357,14 @@
       {% endfor %}
     </div>   
     </div>
-  </div>
-
+    
   </section>
 
-  <!-- end do section -->
 
-
-
-  <!-- contact section -->
 
   <section class="contact_section layout_padding scrollto clearfix unselectable" id="contact_us">
+    <!-- <div id="over-lay"></div> -->
+
     <div class="container">
         <div class="section-head__back">Contact Us</div>
         <div class="heading_container">
@@ -370,8 +372,8 @@
         </div>
         <div class="">
             <div class="">
-                <div class="row">
-                    <div class="col-md-9 col-9 ">
+                <div class="row contact-row-small">
+                    <div class="col-md-9 col-9 contact-col-small">
                         <div class="contact-form">
                             {% if messege_sent %}
                                 <div class="container mt-4">
@@ -435,6 +437,14 @@
 </section>
 
 
+
+    </div>
+
+  <!-- end do section -->
+
+
+
+  <!-- contact section -->
 
 
 
