@@ -11,3 +11,6 @@ python ./portifolio_server/manage.py collectstatic --no-input
 python ./portifolio_server/manage.py makemigrations
 
 python ./portifolio_server/manage.py migrate
+
+
+python ./portifolio_server/manage.py createsuperuser
