@@ -71,7 +71,7 @@
 }
   </style>
   <script defer src="{% static 'app/js\app.js' %}"></script>
-  <script defer src="{% static 'app/js\navbar.js' %}"></script>
+
 </head>
 
 <body>
@@ -81,6 +81,7 @@
       <i class="fa fa-comments" aria-hidden="true"></i>
     </div>
   </a>
+  {{ cookies_accepted }}
   {% if not cookies_accepted %}
   <div id="cookieConsent" class="cookie-consent">
     <div class="cookie-consent-content">
@@ -94,11 +95,6 @@
   {% endif %}
 
 <!--           header          -->
-
-{{cookies_accepted}}
-
-
-
 
 
 <header id="banner" class="scrollto clearfix" data-enllax-ratio=".5">
@@ -173,10 +169,10 @@
                           <a href="{% url 'app-portfolio' True %}">Portfolio</a>
                       </li>
                       <li>
-                          <a href="{% url 'app-portfolio' %}">Careers</a>
+                          <a href="{% url 'app-careers' %}">Careers</a>
                       </li>
                       <li>
-                          <a href="{% url 'app-portfolio' %}">Blogs</a>
+                          <a href="{% url 'app-blog' %}">Blogs</a>
                       </li>
                       <li>
                           <a href="">Shop</a>

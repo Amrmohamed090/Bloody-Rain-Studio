@@ -1,5 +1,5 @@
 :root {
-    --main-color:#880808;
+    --main-color:#5d1410;
     --secondry-color:white;
     
 }
@@ -7,6 +7,16 @@
 body {
     background:black;
 }
+
+
+.main-background {
+    background-image: url(../images/image2.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+    background-color: black;
+}
+
 
 
 /* Default Link Color */
@@ -125,7 +135,7 @@ a:hover, #header.nav-solid nav a:hover {
 
 
 body {
-    font-family: 'Open Sans', sans-serif, Arial, Helvetica;
+    font-family: "roboto", sans-serif;
     font-size:15px;
     font-weight:normal;
     color:var(--secondry-color);
@@ -184,9 +194,21 @@ body {
 
 /* about */
 
-#about {
-    background-color: black;
-}
+/* #about {
+    background: url('../images/zby_01.png') no-repeat center center/cover ;
+    background-position: center;
+    background-size:cover;
+    background-color:rgba(0, 0, 0, 0.5); 
+} */
+/* 
+#about::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); 
+    z-index: 0;
+  } */
 
 /* Testimonial */
 
@@ -284,8 +306,7 @@ h6 {
 /* Button Text */
 
  .main-button {
-    font-family: 'Open Sans', sans-serif, Arial, Helvetica;
-    font-size:16px;
+    border-color:var(--main-color);
     color:var(--secondry-color);
 }
 

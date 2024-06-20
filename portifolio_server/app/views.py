@@ -124,14 +124,6 @@ def get_visitor_location(ip_address):
     return visitor_location
 
     
-def accept_cookies(request):
-    request.session['cookies_accepted'] = True
-    return HttpResponse(status=204)  # You can return any appropriate response
-
-def decline_cookies(request):
-    request.session['cookies_accepted'] = False
-    return HttpResponse(status=204)  # Or any appropriate response
-
 
 def home(request):
     register_new_visitor(request, active_project=None)
@@ -175,3 +167,30 @@ def project(request, active):
 
 
     return render(request, 'app/project.html', {'active_project': active_project})
+
+
+def careers(request):
+    register_new_visitor(request)
+
+    context = {}
+
+
+    return render(request, 'app/careers.html', context)
+
+
+def blog(request):
+    register_new_visitor(request)
+
+    context = {}
+
+
+    return render(request, 'app/blog.html', context)
+
+
+def privacy(request):
+    register_new_visitor(request)
+
+    context = {}
+
+
+    return render(request, 'app/privacy.html', context)

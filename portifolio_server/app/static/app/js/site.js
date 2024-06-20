@@ -75,7 +75,9 @@ document.addEventListener('DOMContentLoaded', function() {
 	const declineCookiesButton = document.getElementById('declineCookies');
   
 	// Check if user has already accepted cookies
-	if (!localStorage.getItem('cookiesAccepted')) {
+	if (localStorage.getItem('cookiesAccepted') === 'true') {
+	  cookieConsent.style.display = 'none';
+	} else {
 	  cookieConsent.style.display = 'block';
 	}
   
@@ -83,14 +85,11 @@ document.addEventListener('DOMContentLoaded', function() {
 	acceptCookiesButton.addEventListener('click', function () {
 	  localStorage.setItem('cookiesAccepted', 'true');
 	  cookieConsent.style.display = 'none';
-	  // Optionally, you can send an Ajax request to the backend to store the consent
 	});
   
 	// Handle click on Decline button
 	declineCookiesButton.addEventListener('click', function () {
 	  localStorage.setItem('cookiesAccepted', 'false');
 	  cookieConsent.style.display = 'none';
-	  // Optionally handle decline action (e.g., disable non-essential cookies)
 	});
   });
-  
