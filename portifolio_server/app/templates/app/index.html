@@ -234,7 +234,7 @@
 
 
           <!--Content Left Side-->
-          <div class="site-col-3" data-aos="fade-right" data-aos-duration="1000">
+          <div class="site-col-3 quote-box" data-aos="fade-right" data-aos-duration="1000">
               <!--User Testimonial-->
               <blockquote class="testimonial text-right bigtest">
                   <q>90% of what is considered “impossible” is, in fact, possible. The other 10% will become possible with the passage of time & technology</q>
@@ -246,7 +246,7 @@
           <!--End Content Left Side-->
 
           <!--Content of the Right Side-->
-          <div class="site-col-3" data-aos="fade-up" data-aos-duration="1000">
+          <div class="site-col-3 who-col-mid" data-aos="fade-up" data-aos-duration="1000">
               <div class="section-heading">
                   <h3>BELIEVING</h3>
                   <h2 class="section-title">Who we are ?</h2>
@@ -287,7 +287,7 @@
     <!-- <div id="over-lay"></div> -->
 
     <div class="container">
-      <div class="heading_container">
+      <div class="heading_container" data-aos="zoom-out-up" data-aos-duration="1000">
         <div class="section-head__back">Services</div>
         <h2>
           What we offer
@@ -296,7 +296,7 @@
     </div>
   </div>
   <div class="pt-3 container-fluid">
-    <ul class="nav nav-pills mb-3 nav-head" id="pills-tab" role="tablist">
+    <ul class="nav nav-pills mb-3 nav-head" id="pills-tab" role="tablist" data-aos="zoom-out-left" data-aos-duration="1300">
 
       {% for service in services %}
 
@@ -313,7 +313,7 @@
       {% for service in services %}
       <div class="tab-pane fade {% if forloop.first %}show active{% endif %}" id="service-{{ service.id }}" role="tabpanel" aria-labelledby="service-tab-{{ service.id }}">
         <div class="row services-column-sm" style="margin: 0;">
-            <div class="services-box site-col-2 col-md-5 d-flex">
+            <div class="services-box site-col-2 col-md-5 d-flex " data-aos="fade-up" data-aos-duration="1000">
                 <div class="services-text">
                     <h1>{{ service.title }}</h1>
                     <p>{{ service.description }}</p>
@@ -323,7 +323,7 @@
                 </div>
             </div>
             <div class="img-box site-col-2 col-md-7">
-                <div id="carousel-service-{{ service.id }}" class="carousel slide" data-ride="carousel" data-interval="1500">
+                <div id="carousel-service-{{ service.id }}" class="carousel slide" data-ride="carousel" data-interval="1500" data-aos="fade-up" data-aos-duration="1000">
                     <ol class="carousel-indicators">
                         {% for image in service.services_images.all %}
                         
@@ -364,8 +364,8 @@
     <!-- <div id="over-lay"></div> -->
 
     <div class="container">
-        <div class="section-head__back">Contact Us</div>
-        <div class="heading_container">
+        <div class="section-head__back" data-aos="zoom-out-up" data-aos-duration="1000">Contact Us</div>
+        <div class="heading_container" data-aos="zoom-out-up" data-aos-duration="1000">
             <h2>Contact Us</h2>
         </div>
         <div class="">
@@ -385,45 +385,45 @@
                             {% endif %}
                             <form action="{% url 'app-contactus' %}" method="post">
                               {% csrf_token %}
-                              <div class="form-group">
+                              <div class="form-group" data-aos="fade-right" data-aos-duration="1050">
                                   <input type="text" name="full_name" placeholder="Full Name" class="form-control">
                               </div>
-                              <div class="form-group">
+                              <div class="form-group" data-aos="fade-right" data-aos-duration="1100">
                                   <input type="email" name="email" placeholder="Email Address" class="form-control">
                               </div>
-                              <div class="form-group">
+                              <div class="form-group" data-aos="fade-right" data-aos-duration="1150">
                                 <input type="text" name="subject" placeholder="Subject" class="form-control">
                             </div>
-                              <div class="form-group">
+                              <div class="form-group" data-aos="fade-right" data-aos-duration="1200">
                                 <textarea name="your-message" cols="50" rows="6" aria-required="true" aria-invalid="false" placeholder="Enter Your Message Here"></textarea>
                               </div>
-                              <div class="form-group">
+                              <div class="form-group" data-aos="fade-right" data-aos-duration="1250">
                                 <input type="checkbox" name="subscribe_newsletter" id="subscribe_newsletter">
                                 <label for="subscribe_newsletter">Subscribe to newsletter</label>
                               </div>
-                              <div class="form-group">
+                              <div class="form-group" data-aos="fade-right" data-aos-duration="1300">
                                 <input type="checkbox" name="subscribe_newsletter" id="agree-box">
                                 <label for="agree-box">I agree</label>
                               </div>
-                              <div class="form-group">
-                                  <button type="submit" class="btn btn-primary">Send</button>
+                              <div class="form-group" data-aos="fade-right" data-aos-duration="1340">
+                                  <button type="submit" class="btn btn-primary" data-aos="fade-right" data-aos-duration="1400">Send</button>
                               </div>
                           </form>
                         </div>
 
                         
                     </div>
-                    <div class="info_form col-3 custom-border">
-                      <h3>
+                    <div class="info_form col-3 custom-border" >
+                      <h3 data-aos="zoom-out-up" data-aos-duration="1000">
                         Newsletter
                       </h3>
                       <form action="{% url 'app-subscribeNewsletter' %}" method="post">
                         {% csrf_token %}
                   
-                          <div class="form-group">
+                          <div class="form-group" data-aos="zoom-out-up" data-aos-duration="1000">
                             <input type="email" name="email" placeholder="Email Address" class="form-control">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" data-aos="zoom-out-up" data-aos-duration="1000">
                           <button type="submit" class="btn main-button" >Subscribe</button>
                       </div>
                       </form>

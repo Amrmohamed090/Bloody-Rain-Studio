@@ -1923,6 +1923,20 @@ h6 {
     } */
 
 
+
+    .about-image {
+        width: 50%;
+    }
+
+    .who-col-mid {
+        width: 50%;
+    }
+
+    .quote-box {
+        width: 100%;
+    }
+
+
 }
 
 /* Landscape Tablet to Desktop
