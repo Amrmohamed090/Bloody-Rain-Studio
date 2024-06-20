@@ -36,7 +36,9 @@
     transition: none;
   }
 }
-
+.port-height {
+  height: 100px;
+}
 
 .cookie-consent {
   position: fixed;
