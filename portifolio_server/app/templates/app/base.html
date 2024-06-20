@@ -16,7 +16,7 @@
   <meta name="description" content="" />
   <meta name="author" content="" />
   <script type="text/javascript" src="{% static 'app/js/jquery-3.4.1.min.js' %}"></script>
-  <script src="{% static 'app\js\disableRightClick.js' %}"></script>
+  <script src="{% static 'app/js/disableRightClick.js' %}"></script>
 
   <title>BloodyRain Studio</title>
   
@@ -27,7 +27,7 @@
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
 
   <!-- bootstrap core css -->
-  <link rel="stylesheet" type="text/css" href="{% static 'app/css\bootstrap.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'app/css/bootstrap.css' %}" />
 
   <!-- fonts style -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Poppins:400,700&display=swap" rel="stylesheet">
@@ -73,8 +73,7 @@
     pointer-events: none; /* Ensure clicks pass through when hidden */
 }
   </style>
-  <script defer src="{% static 'app/js\app.js' %}"></script>
-  <script defer src="{% static 'app/js\navbar.js' %}"></script>
+  <script defer src="{% static 'app/js/app.js' %}"></script>
 </head>
 
 <body>
@@ -165,13 +164,13 @@
                   </li>
                   {% endif %}
                     <li>
-                      <a href="{% url 'app-portfolio' %}">Careers</a>
+                      <a href="{% url 'app-careers' %}">Careers</a>
                   </li>
                   <li>
-                      <a href="{% url 'app-portfolio' %}">Blogs</a>
+                      <a href="{% url 'app-blog' %}">Blogs</a>
                   </li>
                   <li>
-                      <a href="{% url 'app-portfolio' %}">Shop</a>
+                      <a href="">Shop</a>
                   </li>
                 </ul>
             </nav>
@@ -274,7 +273,7 @@ setTimeout(function() {
   <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="{% static 'app\js\jquery.1.8.3.min.js' %}"></script>
+  <script src="{% static 'app/js/jquery.1.8.3.min.js' %}"></script>
   <script src="{% static 'app/lib/wow/wow.min.js' %}"></script>
   <script src="{% static 'app/lib/easing/easing.min.js' %}"></script>
   <script src="{% static 'app/lib/waypoints/waypoints.min.js' %}"></script>
@@ -287,7 +286,7 @@ setTimeout(function() {
   <script src="{% static 'app/js/jquery.enllax.min.js' %}"></script>
   <script src="{% static 'app/js/jquery.scrollUp.min.js' %}"></script>
   <script src="{% static 'app/js/jquery.stickyNavbar.min.js' %}"></script>
-  <script src="{% static 'app\js\portoflio.js' %}"></script>
+  <script src="{% static 'app/js/portoflio.js' %}"></script>
   <script src="{% static 'app/js/site.js' %}"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>

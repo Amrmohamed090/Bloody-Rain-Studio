@@ -74,18 +74,22 @@ document.addEventListener('DOMContentLoaded', function() {
 	const acceptCookiesButton = document.getElementById('acceptCookies');
 	const declineCookiesButton = document.getElementById('declineCookies');
   
-	if (!localStorage.getItem('cookiesAccepted')) {
+	// Check if user has already accepted cookies
+	if (localStorage.getItem('cookiesAccepted') === 'true') {
+	  cookieConsent.style.display = 'none';
+	} else {
 	  cookieConsent.style.display = 'block';
 	}
   
+	// Handle click on Accept button
 	acceptCookiesButton.addEventListener('click', function () {
 	  localStorage.setItem('cookiesAccepted', 'true');
 	  cookieConsent.style.display = 'none';
 	});
   
+	// Handle click on Decline button
 	declineCookiesButton.addEventListener('click', function () {
 	  localStorage.setItem('cookiesAccepted', 'false');
 	  cookieConsent.style.display = 'none';
 	});
   });
-  

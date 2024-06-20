@@ -29,42 +29,52 @@ def register_new_visitor(request, active_project=None):
 
     if active_project:
         # Check if the visitor has already visited this project
-        project_visit_exists = ProjectVisit.objects.filter(visitor=current_visitor, project=active_project).exists()
-        if not project_visit_exists:
-            # If the visitor hasn't visited this project, create a new project visit
+        project_visit_exists = ProjectVisit.objects.filter(visitor=current_visitor, project=active_project).order_by('-timestamp').first()
+        if project_visit_exists is None or (timezone.now() - project_visit_exists.timestamp).total_seconds() > 300:
+            # If the same visitor hasn't visited this project for 300 seconds, create a new project visit
             ProjectVisit.objects.create(visitor=current_visitor, project=Project.objects.get(pk=active_project))
+
+def register_subscriber(email):
+    if not NewsletterSubscriber.objects.filter(email=email).exists():
+            # Email doesn't exist, create a new subscriber
+            subscriber = NewsletterSubscriber(email=email)
+            subscriber.save()
 
 def contact_us(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
+            print("form valid")
             full_name = form.cleaned_data['full_name']
             email = form.cleaned_data['email']
+            subject = form.cleaned_data['subject']
             message = form.cleaned_data['message']
             subscribe_newsletter = form.cleaned_data['subscribe_newsletter']
-            
+
             # Handle subscription logic if needed
             if subscribe_newsletter:
                 print("Handling subscription logic...")
+                register_subscriber(email)
 
             # Attempt to send email
             try:
                 send_mail(
-                    subject='Contact Us Form Submission',
+                    subject=subject,
                     message=f'Name: {full_name}\nEmail: {email}\n\nMessage: {message}',
                     from_email=None,  # Use default sender
-                    recipient_list=['amro.mohamed.023@gmail.com', email],  # Replace with your email
+                    recipient_list=['contact@bloodyrainstudios.com', email],  # Replace with your email
                 )
 
                 # Flag indicating successful message submission
                 request.session['message_sent'] = True
                 
                 messages.success(request, 'Your message has been sent successfully!')
-
+                print("email valid")
                 return HttpResponseRedirect(reverse('app-home') + '#contact_us')
 
             except Exception as e:
                 # Flag indicating message submission error
+                print("email invalid")
                 request.session['message_error'] = True
                 print(e)
                 return HttpResponseRedirect(reverse('app-home') + '#contact_us')
@@ -87,17 +97,7 @@ def newsletter(request):
         form = NewsletterForm(request.POST)
         if form.is_valid():
             email = form.cleaned_data['email']
-
-            # Check if the email already exists in your database or list
-            if not NewsletterSubscriber.objects.filter(email=email).exists():
-                # Email doesn't exist, create a new subscriber
-                subscriber = NewsletterSubscriber(email=email)
-                subscriber.save()
-                messages.success(request, 'You have successfully subscribed to the newsletter!')
-            else:
-                # Email already exists
-                messages.warning(request, 'You are already subscribed to the newsletter!')
-
+            register_subscriber(email)
             return HttpResponseRedirect(reverse('app-home'))  # Redirect to home page after subscription
 
     else:
@@ -131,12 +131,13 @@ def home(request):
     main_video = BackgroundVideo.objects.filter(is_main=True).first()
     services = Service.objects.all()
     
-
+    
     context = {
         'main_video': main_video,
         'services': services,
         }
-
+    if request.session.get('cookies_accepted'):
+        context['cookies_accepted'] = True
     return render(request, 'app/index.html', context)
 
 def portfolio(request, navbar_active):
@@ -166,3 +167,30 @@ def project(request, active):
 
 
     return render(request, 'app/project.html', {'active_project': active_project})
+
+
+def careers(request):
+    register_new_visitor(request)
+
+    context = {}
+
+
+    return render(request, 'app/careers.html', context)
+
+
+def blog(request):
+    register_new_visitor(request)
+
+    context = {}
+
+
+    return render(request, 'app/blog.html', context)
+
+
+def privacy(request):
+    register_new_visitor(request)
+
+    context = {}
+
+
+    return render(request, 'app/privacy.html', context)

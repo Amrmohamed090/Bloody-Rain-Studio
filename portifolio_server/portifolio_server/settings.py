@@ -18,6 +18,8 @@ from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 
 
+
+
 # CKEditor Settings
 CKEDITOR_UPLOAD_PATH = 'uploads/'
 CKEDITOR_IMAGE_BACKEND = "pillow"
@@ -49,8 +51,9 @@ SECRET_KEY = "django-insecure-q9o(%wi_o0^*5al=8qe19g_t&dlg90wlorozm(9s$ay&=3(i)j
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+#DEBUG_PROPAGATE_EXCEPTIONS = True
 
-ALLOWED_HOSTS = ["mysite-k3q7.onrender.com","127.0.0.1", "portifolio-server-21uj.onrender.com"]
+ALLOWED_HOSTS = ["mysite-k3q7.onrender.com","127.0.0.1", "portifolio-server-21uj.onrender.com","bloody-rain.onrender.com","bloodyrainstudio.com"]
 
 
 # Application definition
@@ -61,7 +64,8 @@ INSTALLED_APPS = [
     "unfold.contrib.forms",  # optional, if special form elements are needed
     "unfold.contrib.simple_history",  # optional, if django-simple-history package is used
     "app",
-    
+            'django.contrib.sites',
+
     
     "django.contrib.admin",
     "django.contrib.auth",
@@ -69,9 +73,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-        'django.contrib.sites',
-    'ckeditor',
-    'ckeditor_uploader',
+   # 'ckeditor',
+    #'ckeditor_uploader',
 ]
 SITE_ID = 1
 CKEDITOR_BASEPATH = "/staticfiles/ckeditor/ckeditor/"
@@ -101,6 +104,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'app.middleware.CookieConsentMiddleware',
 
 ]
 
@@ -171,18 +175,13 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
-
-STATIC_URL = '/staticfiles/'
-# if you are using pathlib Path
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-#if you are using os
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-
-
+STATIC_URL = '/static/'  # Adjust this URL as needed
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+STATIC_URL = '/static/'
 # This production code might break development mode, so we check whether we're in DEBUG mode
-if not DEBUG:
-    # Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)
+if not DEBUG:    # Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
     # Enable the WhiteNoise storage backend, which compresses static files to reduce disk use
     # and renames the files with unique names for each version to support long-term caching
@@ -207,8 +206,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'amro.mohamed.023@gmail.com'
+EMAIL_HOST_USER = 'contact@bloodyrainstudios.com'
 
 #APP Passowrd GOES HERE
-EMAIL_HOST_PASSWORD = 'rekt pjim hazh fktb'
+# SECURITY WARNING:
+EMAIL_HOST_PASSWORD = 'wwui ffnq epqg isvq'
 

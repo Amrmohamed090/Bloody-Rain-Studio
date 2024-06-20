@@ -36,7 +36,9 @@
     transition: none;
   }
 }
-
+.port-height {
+  height: 100px;
+}
 
 .cookie-consent {
   position: fixed;
@@ -808,7 +810,7 @@ color: var(--main-color);
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  background: url(../img/bg.jpg) no-repeat;
+  background: url() no-repeat;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-size: cover;
@@ -1329,7 +1331,7 @@ color: var(--main-color);
 }
 
 /* end footer section*/
-/*# sourceMappingURL=style.css.map */
+
 
 
 

@@ -1,8 +1,8 @@
 databases:
-  - name: mysitedb
+  - name: portifolio_db
     plan: free
-    databaseName: mysite
-    user: mysite
+    databaseName: portifolio_db_ot89
+    user: portifolio_db_ot89_user
 
 services:
   - type: web
@@ -14,7 +14,7 @@ services:
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: mysitedb
+          name: portifolio_db
           property: connectionString
       - key: SECRET_KEY
         generateValue: true

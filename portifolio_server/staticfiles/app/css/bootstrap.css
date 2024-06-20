@@ -1042,7 +1042,7 @@ pre code {
   .col-md-7 {
     -ms-flex: 0 0 58.333333%;
     flex: 0 0 58.333333%;
-    max-width: 58.333333%;
+    max-width: 53.333333%;
   }
   .col-md-8 {
     -ms-flex: 0 0 66.666667%;
@@ -6378,8 +6378,9 @@ a.close.disabled {
   box-sizing: content-box;
   -ms-flex: 0 1 auto;
   flex: 0 1 auto;
-  width: 30px;
-  height: 3px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
   margin-right: 3px;
   margin-left: 3px;
   text-indent: -999px;
@@ -10035,4 +10036,5 @@ a.text-dark:hover, a.text-dark:focus {
     border-color: #dee2e6;
   }
 }
-/*# sourceMappingURL=bootstrap.css.map */
+
+
