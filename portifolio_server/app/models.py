@@ -7,6 +7,11 @@ from unfold.admin import ModelAdmin
 from unfold.forms import AdminPasswordChangeForm, UserChangeForm, UserCreationForm
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.utils.translation import gettext_lazy as _
+from PIL import Image as PILImage
+from io import BytesIO
+from django.core.files.base import ContentFile
+
+
 class BackgroundVideo(models.Model):
     video = models.FileField(upload_to='background_videos/')
     is_main = models.BooleanField(default=True)
@@ -20,8 +25,9 @@ class BackgroundVideo(models.Model):
 
 
 class Image(models.Model):
-    name = models.CharField(max_length=100,  null=True, blank=True)
+    name = models.CharField(max_length=100, null=True, blank=True)
     image = models.ImageField(upload_to='images/')
+
     def save(self, *args, **kwargs):
         if not self.name and self.image:
             # If name is not provided and there's an image, set name to the filename
@@ -30,6 +36,22 @@ class Image(models.Model):
             self.name = name
 
         super().save(*args, **kwargs)
+
+        # Convert image to JPEG after saving
+        if self.image:
+            img = PILImage.open(self.image)
+            if img.mode != 'RGB':
+                img = img.convert('RGB')
+
+            # Save the converted image to a BytesIO object
+            output = BytesIO()
+            img.save(output, format='JPEG', quality=75)
+            output.seek(0)
+
+            # Change the image field value to be the new converted file
+            self.image.save(os.path.splitext(self.image.name)[0] + '.jpg',
+                            ContentFile(output.getvalue()), save=False)
+            super().save(*args, **kwargs)
     def __str__(self):
         return self.name
 
