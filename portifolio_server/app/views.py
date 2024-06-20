@@ -124,6 +124,14 @@ def get_visitor_location(ip_address):
     return visitor_location
 
     
+def accept_cookies(request):
+    request.session['cookies_accepted'] = True
+    return HttpResponse(status=204)  # You can return any appropriate response
+
+def decline_cookies(request):
+    request.session['cookies_accepted'] = False
+    return HttpResponse(status=204)  # Or any appropriate response
+
 
 def home(request):
     register_new_visitor(request, active_project=None)
@@ -131,12 +139,13 @@ def home(request):
     main_video = BackgroundVideo.objects.filter(is_main=True).first()
     services = Service.objects.all()
     
-
+    
     context = {
         'main_video': main_video,
         'services': services,
         }
-
+    if request.session.get('cookies_accepted'):
+        context['cookies_accepted'] = True
     return render(request, 'app/index.html', context)
 
 def portfolio(request, navbar_active):

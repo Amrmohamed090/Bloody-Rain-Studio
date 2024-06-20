@@ -81,7 +81,7 @@
       <i class="fa fa-comments" aria-hidden="true"></i>
     </div>
   </a>
-
+  {% if not cookies_accepted %}
   <div id="cookieConsent" class="cookie-consent">
     <div class="cookie-consent-content">
       <p>We use cookies to ensure you get the best experience on our website. <a href="#">Learn more</a></p>
@@ -91,9 +91,11 @@
       </div>
     </div>
   </div>
+  {% endif %}
 
 <!--           header          -->
 
+{{cookies_accepted}}
 
 
 

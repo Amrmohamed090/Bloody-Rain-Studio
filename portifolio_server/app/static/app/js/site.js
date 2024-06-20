@@ -74,18 +74,23 @@ document.addEventListener('DOMContentLoaded', function() {
 	const acceptCookiesButton = document.getElementById('acceptCookies');
 	const declineCookiesButton = document.getElementById('declineCookies');
   
+	// Check if user has already accepted cookies
 	if (!localStorage.getItem('cookiesAccepted')) {
 	  cookieConsent.style.display = 'block';
 	}
   
+	// Handle click on Accept button
 	acceptCookiesButton.addEventListener('click', function () {
 	  localStorage.setItem('cookiesAccepted', 'true');
 	  cookieConsent.style.display = 'none';
+	  // Optionally, you can send an Ajax request to the backend to store the consent
 	});
   
+	// Handle click on Decline button
 	declineCookiesButton.addEventListener('click', function () {
 	  localStorage.setItem('cookiesAccepted', 'false');
 	  cookieConsent.style.display = 'none';
+	  // Optionally handle decline action (e.g., disable non-essential cookies)
 	});
   });
   
