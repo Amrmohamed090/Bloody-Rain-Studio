@@ -41,6 +41,11 @@ def contact_us(request):
             full_name = form.cleaned_data['full_name']
             email = form.cleaned_data['email']
             message = form.cleaned_data['message']
+            subscribe_newsletter = form.cleaned_data['subscribe_newsletter']
+            
+            # Handle subscription logic if needed
+            if subscribe_newsletter:
+                print("Handling subscription logic...")
 
             # Attempt to send email
             try:
@@ -53,7 +58,7 @@ def contact_us(request):
 
                 # Flag indicating successful message submission
                 request.session['message_sent'] = True
-
+                
                 messages.success(request, 'Your message has been sent successfully!')
 
                 return HttpResponseRedirect(reverse('app-home') + '#contact_us')
@@ -61,14 +66,15 @@ def contact_us(request):
             except Exception as e:
                 # Flag indicating message submission error
                 request.session['message_error'] = True
-
+                print(e)
                 return HttpResponseRedirect(reverse('app-home') + '#contact_us')
 
         else:
+            print("invalid form")
             for field, error in form.errors.items():
                 # Flag indicating message submission error
                 request.session['message_error'] = True
-
+                print(field,error)
             return HttpResponseRedirect(reverse('app-home') + '#contact_us')
 
     else:
@@ -133,7 +139,7 @@ def home(request):
 
     return render(request, 'app/index.html', context)
 
-def portfolio(request):
+def portfolio(request, navbar_active):
     register_new_visitor(request, active_project=None)
 
 
@@ -145,6 +151,7 @@ def portfolio(request):
         'pagename': pagename,
         'projects': projects,
         'services': services,
+        'navbar_active': navbar_active,
 
     }
     

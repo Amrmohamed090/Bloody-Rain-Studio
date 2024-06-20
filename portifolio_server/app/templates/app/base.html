@@ -18,8 +18,10 @@
   <script type="text/javascript" src="{% static 'app/js/jquery-3.4.1.min.js' %}"></script>
   <script src="{% static 'app\js\disableRightClick.js' %}"></script>
 
-  <title>Company</title>
+  <title>BloodyRain Studio</title>
   
+ <!--Favicon-->
+  <link rel="shortcut icon" href="{% static 'app/images/ICON (2).png' %}" title="Favicon"/>
   
   <!-- slider stylesheet -->
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
@@ -32,9 +34,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400..700&display=swap" rel="stylesheet">
   <!-- Custom styles for this template -->
   <link rel="stylesheet" href="{% static 'app/css/font-awesome.min.css' %}">
   <link href="{% static 'app/css/style.css' %}"  rel="stylesheet" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <!-- responsive style -->
   <link href="{% static 'app/css/responsive.css' %}" rel="stylesheet" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -51,16 +57,21 @@
   
   <style>
     #preloader {
-      background: black url("{% static 'app/images/LCPT.gif' %}") no-repeat center center;
-      background-size: 15%;
+      background: black url("{% static 'app/images/Loading.gif' %}") no-repeat center center;
+      background-size: 60%;
       height: 100vh; width: 100%;
       opacity: 1;
-      transition: opacity 0.7s ease-out; /* Add a transition for opacity */
+      transition: opacity 0.5s ease-in-out; /* Add a transition for opacity */
       position: fixed; 
-      z-index: 9999;
+      z-index: 1000000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-
-
+    #preloader.hidden {
+    opacity: 0;
+    pointer-events: none; /* Ensure clicks pass through when hidden */
+}
   </style>
   <script defer src="{% static 'app/js\app.js' %}"></script>
   <script defer src="{% static 'app/js\navbar.js' %}"></script>
@@ -70,10 +81,20 @@
   <div id="preloader"></div>
 
   <a href="{% url 'app-home' %}#contact_us">
-  <div class="chatbot-icon wow fadeIn">
+    <div id="contactUsButton" class="chatbot-icon">
       <i class="fa fa-comments" aria-hidden="true"></i>
     </div>
   </a>
+
+  <div id="cookieConsent" class="cookie-consent">
+    <div class="cookie-consent-content">
+      <p>We use cookies to ensure you get the best experience on our website. <a href="#">Learn more</a></p>
+      <div class="button-container">
+        <button id="acceptCookies" class="btn ">Accept</button>
+        <button id="declineCookies" class="btn btn-decline ">Decline</button>
+      </div>
+    </div>
+  </div>
 
    <!-- header section strats -->
    <div id="header" class="nav-collapse nav-solid sticky">
@@ -82,8 +103,10 @@
 
             <!--Logo-->
             <div class="unselectable" id="logo">
+              <a href="{% url 'app-home' %}">
+                <img src="{% static 'app/images/LOGOLANDSCIP1.png' %}" id="navigation-logo" alt="Landing Page"/>
+              </a>
 
-                <h1 class="unselectable">BloodDrain</h1>
 
             </div>
             <!--End of Logo-->
@@ -132,12 +155,24 @@
                     <li>
                         <a href="{% url 'app-home' %}#contact_us">Contact us</a>
                     </li>
-                    <li>
-                        <a href="{% url 'app-portfolio' %}" class="active">Portfolio</a>
+                    {% if navbar_active %}
+                    <li  >
+                        <a href="#portfolio">Portfolio</a>
                     </li>
+                    {% else %}
+                    <li  >
+                      <a href="{% url 'app-portfolio' True %}">Portfolio</a>
+                  </li>
+                  {% endif %}
                     <li>
-                        <a href="#Careers">Careers</a>
-                    </li>
+                      <a href="{% url 'app-portfolio' %}">Careers</a>
+                  </li>
+                  <li>
+                      <a href="{% url 'app-portfolio' %}">Blogs</a>
+                  </li>
+                  <li>
+                      <a href="{% url 'app-portfolio' %}">Shop</a>
+                  </li>
                 </ul>
             </nav>
             <!--End of Main Navigation-->
@@ -254,6 +289,10 @@ setTimeout(function() {
   <script src="{% static 'app/js/jquery.stickyNavbar.min.js' %}"></script>
   <script src="{% static 'app\js\portoflio.js' %}"></script>
   <script src="{% static 'app/js/site.js' %}"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+      AOS.init();
+  </script>
 
   
   <script>

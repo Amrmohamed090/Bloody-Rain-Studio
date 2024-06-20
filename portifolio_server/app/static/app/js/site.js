@@ -12,7 +12,7 @@ $(document).ready(function () {
 	}
 
 	/*Responsive Navigation*/
-	$("#nav-mobile").html($("#nav-main").html());
+	$("#nav-mobile").html($("#nav-main").html()); 
 	$("#nav-trigger span").on("click",function() {
 		if ($("nav#nav-mobile ul").hasClass("expanded")) {
 			$("nav#nav-mobile ul.expanded").removeClass("expanded").slideUp(250);
@@ -48,20 +48,44 @@ $(document).ready(function () {
 });
 
 
-/* Preloader and animations */
-$(window).load(function () { // makes sure the whole site is loaded
-	$('#status').fadeOut(); // will first fade out the loading animation
-	$('#preloader').delay(350).fadeOut('slow'); // will fade out the white DIV that covers the website.
-	$('body').delay(350).css({'overflow-y': 'visible'});
-
-	/* WOW Elements */
-	if (typeof WOW == 'function') {
-		new WOW().init();
-	}
-
-	/* Parallax Effects */
-	if (!!$.prototype.enllax) {
-		$(window).enllax();
-	}
-
+$(window).on('load', function() {
+    $('#preloader').delay(350).fadeOut('slow', function() {
+        $(this).addClass('hidden'); // Add hidden class after fade out
+    });
+    $('body').delay(350).css({'overflow-y': 'visible'});
 });
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+	const contactUsButton = document.getElementById('contactUsButton');
+  
+	window.addEventListener('scroll', function() {
+	  if (window.scrollY > 300) {
+		contactUsButton.classList.add('visible');
+	  } else {
+		contactUsButton.classList.remove('visible');
+	  }
+	});
+  });
+
+  document.addEventListener('DOMContentLoaded', function () {
+	const cookieConsent = document.getElementById('cookieConsent');
+	const acceptCookiesButton = document.getElementById('acceptCookies');
+	const declineCookiesButton = document.getElementById('declineCookies');
+  
+	if (!localStorage.getItem('cookiesAccepted')) {
+	  cookieConsent.style.display = 'block';
+	}
+  
+	acceptCookiesButton.addEventListener('click', function () {
+	  localStorage.setItem('cookiesAccepted', 'true');
+	  cookieConsent.style.display = 'none';
+	});
+  
+	declineCookiesButton.addEventListener('click', function () {
+	  localStorage.setItem('cookiesAccepted', 'false');
+	  cookieConsent.style.display = 'none';
+	});
+  });
+  
