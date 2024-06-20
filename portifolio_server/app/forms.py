@@ -14,7 +14,7 @@ class ContactForm(forms.Form):
     email = forms.EmailField(label='Email Address')
     message = forms.CharField(label='Message', widget=forms.Textarea)
     subscribe_newsletter = forms.BooleanField(label='Subscribe to newsletter', required=False)
-    
+    Iagree = forms.BooleanField(label='Iagree', required=False)
     def clean(self):
         cleaned_data = super().clean()
         subscribe_newsletter = cleaned_data.get('subscribe_newsletter')

@@ -34,23 +34,32 @@ def register_new_visitor(request, active_project=None):
             # If the same visitor hasn't visited this project for 300 seconds, create a new project visit
             ProjectVisit.objects.create(visitor=current_visitor, project=Project.objects.get(pk=active_project))
 
+def register_subscriber(email):
+    if not NewsletterSubscriber.objects.filter(email=email).exists():
+            # Email doesn't exist, create a new subscriber
+            subscriber = NewsletterSubscriber(email=email)
+            subscriber.save()
+
 def contact_us(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
+            print("form valid")
             full_name = form.cleaned_data['full_name']
             email = form.cleaned_data['email']
+            subject = form.cleaned_data['subject']
             message = form.cleaned_data['message']
             subscribe_newsletter = form.cleaned_data['subscribe_newsletter']
-            
+
             # Handle subscription logic if needed
             if subscribe_newsletter:
                 print("Handling subscription logic...")
+                register_subscriber(email)
 
             # Attempt to send email
             try:
                 send_mail(
-                    subject='Contact Us Form Submission',
+                    subject=subject,
                     message=f'Name: {full_name}\nEmail: {email}\n\nMessage: {message}',
                     from_email=None,  # Use default sender
                     recipient_list=['contact@bloodyrainstudios.com', email],  # Replace with your email
@@ -60,11 +69,12 @@ def contact_us(request):
                 request.session['message_sent'] = True
                 
                 messages.success(request, 'Your message has been sent successfully!')
-
+                print("email valid")
                 return HttpResponseRedirect(reverse('app-home') + '#contact_us')
 
             except Exception as e:
                 # Flag indicating message submission error
+                print("email invalid")
                 request.session['message_error'] = True
                 print(e)
                 return HttpResponseRedirect(reverse('app-home') + '#contact_us')
@@ -87,17 +97,7 @@ def newsletter(request):
         form = NewsletterForm(request.POST)
         if form.is_valid():
             email = form.cleaned_data['email']
-
-            # Check if the email already exists in your database or list
-            if not NewsletterSubscriber.objects.filter(email=email).exists():
-                # Email doesn't exist, create a new subscriber
-                subscriber = NewsletterSubscriber(email=email)
-                subscriber.save()
-                messages.success(request, 'You have successfully subscribed to the newsletter!')
-            else:
-                # Email already exists
-                messages.warning(request, 'You are already subscribed to the newsletter!')
-
+            register_subscriber(email)
             return HttpResponseRedirect(reverse('app-home'))  # Redirect to home page after subscription
 
     else:
