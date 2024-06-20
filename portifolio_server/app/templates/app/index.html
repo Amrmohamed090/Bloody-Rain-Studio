@@ -84,7 +84,7 @@
 
   <div id="cookieConsent" class="cookie-consent">
     <div class="cookie-consent-content">
-      <p>We use cookies to ensure you get the best experience on our website. <a href="#">Learn more</a></p>
+      <p>We use cookies to ensure you get the best experience on our website. <a href="{% url 'app-home' %}">Learn more</a></p>
       <div class="button-container">
         <button id="acceptCookies" class="btn ">Accept</button>
         <button id="declineCookies" class="btn btn-decline ">Decline</button>
@@ -315,7 +315,7 @@
       {% for service in services %}
       <div class="tab-pane fade {% if forloop.first %}show active{% endif %}" id="service-{{ service.id }}" role="tabpanel" aria-labelledby="service-tab-{{ service.id }}">
         <div class="row services-column-sm" style="margin: 0;">
-            <div class="services-box site-col-2 col-md-5 d-flex " data-aos="fade-up" data-aos-duration="1000">
+            <div class="services-box site-col-2 d-flex " data-aos="fade-up" data-aos-duration="1000">
                 <div class="services-text">
                     <h1>{{ service.title }}</h1>
                     <p>{{ service.description }}</p>
@@ -324,7 +324,7 @@
                     </div> 
                 </div>
             </div>
-            <div class="img-box site-col-2 col-md-7">
+            <div class="img-box site-col-2 ">
                 <div id="carousel-service-{{ service.id }}" class="carousel slide" data-ride="carousel" data-interval="1500" data-aos="fade-up" data-aos-duration="1000">
                     <ol class="carousel-indicators">
                         {% for image in service.services_images.all %}
