@@ -1019,6 +1019,7 @@ h6 {
 #landing-footer ul {
     list-style: none;
     text-align: right;
+    line-height: 3.5;   
 }
 
 #landing-footer li {
@@ -1747,6 +1748,13 @@ h6 {
     .project-section-1 {
         max-width: 100%;
     }
+
+
+
+    .project-description {
+        text-wrap: wrap;
+        overflow-y: scroll;
+    }
     /* Hide Elements */
     a#scrollUp {
         display: none !important;
@@ -1777,6 +1785,7 @@ h6 {
     .contact_section .contact-form textarea {
         width: 100%;
     }
+
 }
 
 /* Mobile to Tablet Portrait
@@ -1936,6 +1945,9 @@ h6 {
     .quote-box {
         width: 100%;
     }
+    #header .social-icons {
+        line-height: 2px;
+    }
 
 
 }
@@ -2054,16 +2066,19 @@ h6 {
         width: 100%;
     }
 
+    #header .social-icons {
+        line-height: 2px;
+    }
 
 }
 
 
-@media(min-width:1440px) {
+@media(min-width:2800px) {
     #logo img {
       max-height: 4.861vw !important;
     }
   
-    #header {
+    #header {   
       font-size: 1.042vw !important;
       height: 4.931vw !important;
     }
@@ -2178,7 +2193,7 @@ h6 {
 } */
 
 .layout_padding {
-    padding: 2.208vw 0;
+    padding: 3.208vw 0;
 }
 #header {
     font-size: 0.903vw;
@@ -2317,9 +2332,6 @@ h6 {
         font-size: 2.083vw;
     }
 
-    #landing-footer, #landing-footer p, #landing-footer a {
-        font-size: 1.042vw;
-    }
     #scrollUp {
         bottom: 1.042vw;
         right: 2.083vw;
@@ -2389,5 +2401,66 @@ h6 {
 }
 .project-page .project-section-1 .container-sm {
     top: 4.167vw;
+}
+
+.section-title {
+    font-size: 2.361vw;
+}
+.carousel-indicators li {
+    width: 0.694vw;
+    height: 0.694vw;
+    margin-left: 0.208vw;
+    margin-right: 0.208vw;
+    border-top: 0.694vw;
+    border-bottom: 0.694vw;
+    text-indent: -69.375vw;
+}
+.carousel-control-prev-icon, .carousel-control-next-icon {
+    width: 1.389vw;
+    height: 1.389vw;
+}
+.do_section .services-text h1::after {
+    height: 0.069vw;
+    width: 9.722vw;
+}
+.do_section .button-style {
+    padding: 0.417vw 1.354vw 0.417vw 1.389vw;
+    border: 0.069vw solid #3E3E3E;
+
+}
+
+.row {
+    margin-right: -1.042vw;
+    margin-left: -1.042vw;
+}
+
+#portfolio-flters li {
+    border-bottom: 0.139vw ;
+
+}
+
+
+.notfound {
+    max-width: 48.611vw;
+    padding: 1.389vw;
+}
+
+
+.notfound h2 {
+    font-size: 1.667vw;
+}
+
+.notfound p {
+
+    font-size: 1vw;
+    margin-bottom: 1.389vw;
+
+}
+.notfound a {
+
+    font-size: 0.972vw;
+    padding: 1.042vw 2.083vw;
+    border-radius: 2.778vw;
+    box-shadow: 0 0.278vw 1.042vw -0.347vw var(--main-bg-color);
 }
 }
