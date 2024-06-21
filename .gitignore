@@ -149,3 +149,5 @@ staticfiles/
 #.idea/
 .vscode/settings.json
 portifolio_server/db.sqlite3
+*.jpg
+*.png

@@ -27,7 +27,7 @@ class BackgroundVideo(models.Model):
 class Image(models.Model):
     name = models.CharField(max_length=100, null=True, blank=True)
     image = models.ImageField(upload_to='images/')
-
+    
     def save(self, *args, **kwargs):
         if not self.name and self.image:
             # If name is not provided and there's an image, set name to the filename
@@ -38,7 +38,15 @@ class Image(models.Model):
         super().save(*args, **kwargs)
 
         # Convert image to JPEG after saving
+        convert_to_jpg = False
         if self.image:
+            filename = os.path.basename(self.image.name)
+            print(filename.split('.')[-1])
+            if not filename.split('.')[-1] == 'jpg':
+                convert_to_jpg = True
+        
+        if self.image and convert_to_jpg:
+            print("Converting to JPEG")
             img = PILImage.open(self.image)
             if img.mode != 'RGB':
                 img = img.convert('RGB')
@@ -51,6 +59,7 @@ class Image(models.Model):
             # Change the image field value to be the new converted file
             self.image.save(os.path.splitext(self.image.name)[0] + '.jpg',
                             ContentFile(output.getvalue()), save=False)
+            print("image converted and saved")
             super().save(*args, **kwargs)
     def __str__(self):
         return self.name
