@@ -53,7 +53,7 @@ SECRET_KEY = "django-insecure-q9o(%wi_o0^*5al=8qe19g_t&dlg90wlorozm(9s$ay&=3(i)j
 DEBUG = True
 #DEBUG_PROPAGATE_EXCEPTIONS = True
 
-ALLOWED_HOSTS = ["mysite-k3q7.onrender.com","127.0.0.1", "portifolio-server-21uj.onrender.com","bloody-rain.onrender.com","bloodyrainstudio.com"]
+ALLOWED_HOSTS = ["mysite-k3q7.onrender.com","127.0.0.1", "portifolio-server-21uj.onrender.com","bloody-rain.onrender.com","bloodyrainstudio.com", "www.bloodyrainstudios.com"]
 
 
 # Application definition
@@ -134,11 +134,11 @@ ASGI_APPLICATION = 'portifolio_server.asgi.application'
 
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+    'default': dj_database_url.config(       
+         # Replace this value with your local database's connection string.        
+         default='postgresql://postgres:123@localhost:5432/portifolio_db',        
+         conn_max_age=600    )
+         }
 
 
 # Password validation
