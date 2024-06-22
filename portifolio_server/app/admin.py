@@ -8,7 +8,7 @@ from django.utils.html import strip_tags
 from django.utils.encoding import force_str
 from bs4 import BeautifulSoup
 from django.contrib.sites.models import Site
-
+from orderable.admin import OrderableAdmin, OrderableTabularInline
 @admin.register(Image)
 class ImageAdmin(admin.ModelAdmin):
     list_display = ['name', 'display_image']
@@ -19,19 +19,30 @@ class ImageAdmin(admin.ModelAdmin):
     display_image.allow_tags = True
     display_image.short_description = 'Image Preview'
 
-@admin.register(Project)
-class ProjectAdmin(admin.ModelAdmin):
-    list_display = ['project_name', 'display_thumbnail', 'project_description']
+
+class ProjectAdmin(OrderableAdmin):
+    list_display = ['project_name', 'display_thumbnail', 'project_description', 'sort_order_display']
 
     def display_thumbnail(self, obj):
         if obj.project_thumbnail:
             return format_html('<img src="{}" style="max-width:250px; max-height:250px;" />', obj.project_thumbnail.image.url)
         else:
             return "No Thumbnail"
+    
 
     display_thumbnail.allow_tags = True
     display_thumbnail.short_description = 'Thumbnail'
 
+    class Media:
+        extend = False
+        js = (
+            'path/to/jquery.js',
+            'path/to/jquery.ui.js',
+        )
+    def __str__(self):
+        return self.sort_order  # Replace with appropriate field
+
+admin.site.register(Project , ProjectAdmin)
 
 
 admin.site.register(Visitor)

@@ -10,7 +10,7 @@ from django.utils.translation import gettext_lazy as _
 from PIL import Image as PILImage
 from io import BytesIO
 from django.core.files.base import ContentFile
-
+from orderable.models import Orderable
 
 class BackgroundVideo(models.Model):
     video = models.FileField(upload_to='background_videos/')
@@ -73,22 +73,30 @@ class Service(models.Model):
     def __str__(self):
         return self.title
 
-class Project(models.Model):
+class Project(Orderable):
     project_name = models.CharField(max_length=100)
     project_description = models.TextField()
-    project_category = models.ForeignKey(Service, on_delete=models.CASCADE, related_name ='main_projects', null=True)
-    project_thumbnail = models.ForeignKey(Image, on_delete=models.CASCADE, related_name='as_thumbnail', null=True)
+    project_category = models.ForeignKey(Service, on_delete=models.SET_NULL, related_name='main_projects', null=True)
+    project_thumbnail = models.ForeignKey(Image, on_delete=models.SET_NULL, related_name='as_thumbnail', null=True)
     project_images = models.ManyToManyField(Image)
+    sort_order = models.IntegerField(default=0)
 
+    def save(self, *args, **kwargs):
+        # Set sort_order to pk if it's not already set
+        if not self.sort_order:
+            self.sort_order = self.pk
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.project_name
+
     
+
 class Visitor(models.Model):
     ip_address = models.CharField(max_length=50)
     location = models.CharField(max_length=100)
     timestamp = models.DateTimeField(default=timezone.now, db_index=True)  # Indexing timestamp field
-
+    
 class ProjectVisit(models.Model):
     visitor = models.ForeignKey(Visitor, on_delete=models.CASCADE)
     project = models.ForeignKey(Project, on_delete=models.CASCADE)

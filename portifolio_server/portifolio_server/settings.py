@@ -64,9 +64,8 @@ INSTALLED_APPS = [
     "unfold.contrib.forms",  # optional, if special form elements are needed
     "unfold.contrib.simple_history",  # optional, if django-simple-history package is used
     "app",
-            'django.contrib.sites',
-
-    
+    'orderable',
+    'django.contrib.sites',    
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -105,8 +104,8 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     'app.middleware.CookieConsentMiddleware',
-
 ]
+
 
 ROOT_URLCONF = "portifolio_server.urls"
 
@@ -134,13 +133,12 @@ ASGI_APPLICATION = 'portifolio_server.asgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 
-# Replace the SQLite DATABASES configuration with PostgreSQL:
 DATABASES = {
-    'default': dj_database_url.config(       
-         # Replace this value with your local database's connection string.        
-         default='postgresql://postgres:123@localhost:5432/portifolio_db',        
-         conn_max_age=600    )
-         }
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 
 # Password validation
@@ -176,11 +174,11 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
-STATIC_URL = '/static/'
+STATIC_URL = '/static/'  # Adjust this URL as needed
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
 # This production code might break development mode, so we check whether we're in DEBUG mode
 if not DEBUG:    # Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
