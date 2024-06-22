@@ -11,7 +11,7 @@ from django.db.models import Max
 from .forms import ContactForm
 from django.contrib import messages
 from django.urls import reverse
-
+from django.views.generic import View
 
 
 def register_new_visitor(request, active_project=None):
@@ -194,3 +194,13 @@ def privacy(request):
 
 
     return render(request, 'app/privacy.html', context)
+
+
+class RobotsTextView(View):
+    content = """User-agent: *
+    Disallow: /admin/
+    Disallow: /login/
+    """
+
+    def get(self, request, *args, **kwargs):
+        return HttpResponse(self.content, content_type='text/plain')
