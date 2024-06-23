@@ -150,7 +150,4 @@ staticfiles/
 .vscode/settings.json
 portifolio_server/db.sqlite3
 *.sqlite3
-*.jpg
-*.png
-/media/images
-/media
+
