@@ -139,6 +139,7 @@ DATABASES = {
 <<<<<<< HEAD
          default=f"postgresql://postgres:123@localhost:5432/portifolio_db",        
 =======
+         default='postgresql://postgres:123@localhost:5432/portifolio_db',        
 >>>>>>> parent of 2a7944d (database)
          conn_max_age=600    )
          }
