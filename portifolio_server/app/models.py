@@ -59,7 +59,7 @@ class Image(models.Model):
             # Change the image field value to be the new converted file
             self.image.save(os.path.splitext(self.image.name)[0] + '.jpg',
                             ContentFile(output.getvalue()), save=False)
-            print("image converted and saved")
+            print("image converted and saved like")
             super().save(*args, **kwargs)
     def __str__(self):
         return self.name
