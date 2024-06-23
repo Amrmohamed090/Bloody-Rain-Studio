@@ -136,7 +136,7 @@ ASGI_APPLICATION = 'portifolio_server.asgi.application'
 DATABASES = {
     'default': dj_database_url.config(       
          # Replace this value with your local database's connection string.        
-         default='postgresql://postgres:123@localhost:5432/portifolio_db',        
+         default='postgres://portifolio_db_ot89_user:nOEfqsQs0CYRgZY36H4LOXzaJFy5SX36@dpg-cpp1ehuehbks73bq73fg-a/portifolio_db_ot89',        
          conn_max_age=600    )
          }
 
