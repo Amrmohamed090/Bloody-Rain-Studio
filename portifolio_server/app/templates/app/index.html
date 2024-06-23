@@ -174,9 +174,9 @@
                       <li>
                           <a href="{% url 'app-blog' %}">Blogs</a>
                       </li>
-                      <li>
+                      <!-- <li>
                           <a href="">Shop</a>
-                      </li>
+                      </li> -->
                   </ul>
               </nav>
               <!--End of Main Navigation-->
@@ -189,15 +189,15 @@
   </div>
   <!--End of Header-->
 
-  <div class="video_container">
-    <video autoplay muted loop id="video_background">
-        <source src="{{ main_video.video.url }}" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-    <div id="video-overlay"></div>
-  </div>
   <!--Banner Content-->
   <div id="banner-content" class="site-row clearfix">
+    <div class="video_container">
+      <video autoplay muted loop id="video_background">
+          <source src="{{ main_video.video.url }}" type="video/mp4">
+          Your browser does not support the video tag.
+      </video>
+      <div id="video-overlay"></div>
+    </div>
       <div class="site-col-38 ">
           <div class="section-heading unselectable">
               <h1 id="element"></h1>
