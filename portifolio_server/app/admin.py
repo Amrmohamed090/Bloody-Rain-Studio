@@ -49,7 +49,7 @@ class ServiceAdmin(OrderableAdmin):
     list_display = ['title', 'description', 'sort_order_display']
 
     def __str__(self):
-        return self.sort_order  # Replace with appropriate field
+        return self.sort_order  
 
 
 

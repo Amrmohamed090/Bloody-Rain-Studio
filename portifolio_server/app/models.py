@@ -37,7 +37,7 @@ class Image(models.Model):
 
         super().save(*args, **kwargs)
 
-        # Convert image to JPEG after saving
+        # Convert image to JPEG
         convert_to_jpg = False
         if self.image:
             filename = os.path.basename(self.image.name)
