@@ -64,11 +64,18 @@ class Image(models.Model):
     def __str__(self):
         return self.name
 
-class Service(models.Model):
+class Service(Orderable):
     title = models.CharField(max_length=100)
     description = models.TextField(null=True, blank=True)
 
     services_images = models.ManyToManyField(Image)
+    sort_order = models.IntegerField(default=0)
+
+    def save(self, *args, **kwargs):
+        # Set sort_order to pk if it's not already set
+        if not self.sort_order:
+            self.sort_order = self.pk
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title

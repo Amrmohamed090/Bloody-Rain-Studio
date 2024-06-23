@@ -33,12 +33,6 @@ class ProjectAdmin(OrderableAdmin):
     display_thumbnail.allow_tags = True
     display_thumbnail.short_description = 'Thumbnail'
 
-    class Media:
-        extend = False
-        js = (
-            'path/to/jquery.js',
-            'path/to/jquery.ui.js',
-        )
     def __str__(self):
         return self.sort_order  # Replace with appropriate field
 
@@ -51,7 +45,16 @@ admin.site.register(ProjectVisit)
 
 admin.site.register(BackgroundVideo)
 
-admin.site.register(Service)
+class ServiceAdmin(OrderableAdmin):
+    list_display = ['title', 'description', 'sort_order_display']
+
+    def __str__(self):
+        return self.sort_order  # Replace with appropriate field
+
+
+
+admin.site.register(Service, ServiceAdmin)
+
 
 
 admin.site.register(NewsletterSubscriber)
