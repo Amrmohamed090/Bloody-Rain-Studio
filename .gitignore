@@ -10,7 +10,7 @@ __pycache__/
 .Python
 build/
 develop-eggs/
-dist/
+
 downloads/
 eggs/
 .eggs/
@@ -149,6 +149,7 @@ staticfiles/
 #.idea/
 .vscode/settings.json
 portifolio_server/db.sqlite3
+*.sqlite3
 
-/media/
 /media/images
+/media
