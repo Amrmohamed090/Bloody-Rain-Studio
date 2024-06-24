@@ -11,6 +11,8 @@ from PIL import Image as PILImage
 from io import BytesIO
 from django.core.files.base import ContentFile
 from orderable.models import Orderable
+from django.urls import reverse
+
 
 class BackgroundVideo(models.Model):
     video = models.FileField(upload_to='background_videos/')
@@ -96,7 +98,8 @@ class Project(Orderable):
 
     def __str__(self):
         return self.project_name
-
+    def get_absolute_url(self):
+        return reverse('app-project', args=[str(self.pk)])
     
 
 class Visitor(models.Model):

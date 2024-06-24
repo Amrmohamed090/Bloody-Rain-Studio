@@ -4,6 +4,8 @@ from django.contrib import admin
 from .views import RobotsTextView
 from django.conf.urls.static import static
 from django.conf import settings
+
+
 urlpatterns = [
     path('', views.home, name='app-home'),
     path('portfolio/', views.portfolio, name='app-portfolio'),
