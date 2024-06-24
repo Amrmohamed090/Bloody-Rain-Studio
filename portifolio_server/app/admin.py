@@ -16,7 +16,7 @@ class ImageAdmin(admin.ModelAdmin):
     ordering = ['name']  # This will sort the images alphabetically by name
 
     def display_image(self, obj):
-        return format_html('<img src="{}" style="max-width:400px; max-height:400px;" />', obj.image.url)
+        return format_html('<img src="{}" style="max-width:400px; max-height:400px;" />', obj.thumbnail.url)
 
     display_image.allow_tags = True
     display_image.short_description = 'Image Preview'
@@ -28,7 +28,7 @@ class ProjectAdmin(OrderableAdmin):
 
     def display_thumbnail(self, obj):
         if obj.project_thumbnail:
-            return format_html('<img src="{}" style="max-width:250px; max-height:250px;" />', obj.project_thumbnail.image.url)
+            return format_html('<img src="{}" style="max-width:250px; max-height:250px;" />', obj.project_thumbnail.thumbnail.url)
         else:
             return "No Thumbnail"
     

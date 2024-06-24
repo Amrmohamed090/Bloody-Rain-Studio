@@ -115,9 +115,6 @@ class Image(models.Model):
         return self.name
 
 
-    def __str__(self):
-        return self.name
-
 class Service(Orderable):
     title = models.CharField(max_length=100)
     description = models.TextField(null=True, blank=True)
