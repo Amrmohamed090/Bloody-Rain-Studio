@@ -23,7 +23,7 @@
                 <div class="overflow-hidden">
                     <div class="position-relative overflow-hidden">
                         <a href="{% url 'app-project' project.id %}" >
-                            <img class="img-fluid w-100" src="{{ project.project_thumbnail.image.url }}" alt="{{ project.project_thumbnail.image.name }}" loading="lazy"
+                            <img class="img-fluid w-100" src="{{ project.project_thumbnail.thumbnail.url }}" alt="{{ project.project_thumbnail.image.name }}" loading="lazy"
                         ></a>
                         <div class="portfolio-overlay" >
                             <a class="btn btn-square btn-outline-light mx-1" href="{{ project.project_thumbnail.image.url }}" data-fslightbox="gallery"><i class="far fa-eye"></i></a>

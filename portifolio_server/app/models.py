@@ -45,7 +45,8 @@ class WebsiteText(models.Model):
 class Image(models.Model):
     name = models.CharField(max_length=100, null=True, blank=True)
     image = models.ImageField(upload_to='images/')
-    
+    thumbnail = models.ImageField(upload_to='images/thumbnails/', null=True, blank=True, help_text="LEAVE THIS BLANK!!!!!!!!")
+
     def save(self, *args, **kwargs):
         if not self.name and self.image:
             # If name is not provided and there's an image, set name to the filename
@@ -79,6 +80,41 @@ class Image(models.Model):
                             ContentFile(output.getvalue()), save=False)
             print("image converted and saved")
             super().save(*args, **kwargs)
+        
+        if self.image and not self.thumbnail:
+            self.thumbnail = self.make_thumbnail(self.image)
+            super().save(*args, **kwargs)
+
+    def make_thumbnail(self, image, size=(1280, 720)):
+        img = PILImage.open(image)
+        img.thumbnail(size, PILImage.Resampling.LANCZOS)
+
+        thumb_name, thumb_extension = os.path.splitext(image.name)
+        thumb_extension = thumb_extension.lower()
+
+        thumb_filename = thumb_name + '_thumb' + thumb_extension
+
+        # Save the thumbnail to a BytesIO object
+        if thumb_extension in ['.jpg', '.jpeg']:
+            FTYPE = 'JPEG'
+        elif thumb_extension == '.gif':
+            FTYPE = 'GIF'
+        elif thumb_extension == '.png':
+            FTYPE = 'PNG'
+        else:
+            return None
+
+        temp_thumb = BytesIO()
+        img.save(temp_thumb, FTYPE)
+        temp_thumb.seek(0)
+
+        # Return a ContentFile instance
+        return ContentFile(temp_thumb.getvalue(), name=thumb_filename)
+
+    def __str__(self):
+        return self.name
+
+
     def __str__(self):
         return self.name
 
