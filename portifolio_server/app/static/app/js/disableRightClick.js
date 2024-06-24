@@ -1,18 +1,1 @@
-// // Disable right-click
-// document.addEventListener('contextmenu', (e) => e.preventDefault());
-
-// function ctrlShiftKey(e, keyCode) {
-//   return e.ctrlKey && e.shiftKey && e.keyCode === keyCode.charCodeAt(0);
-// }
-
-// document.onkeydown = (e) => {
-//   // Disable F12, Ctrl + Shift + I, Ctrl + Shift + J, Ctrl + U
-//   if (
-//     event.keyCode === 123 ||
-//     ctrlShiftKey(e, 'I') ||
-//     ctrlShiftKey(e, 'J') ||
-//     ctrlShiftKey(e, 'C') ||
-//     (e.ctrlKey && e.keyCode === 'U'.charCodeAt(0))
-//   )
-//     return false;
-// };
+function ctrlShiftKey(e,t){return e.ctrlKey&&e.shiftKey&&e.keyCode===t.charCodeAt(0)}document.addEventListener("contextmenu",e=>e.preventDefault()),document.onkeydown=e=>{if(123===event.keyCode||ctrlShiftKey(e,"I")||ctrlShiftKey(e,"J")||ctrlShiftKey(e,"C")||e.ctrlKey&&85===e.keyCode)return!1};
