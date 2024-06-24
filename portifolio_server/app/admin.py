@@ -2,7 +2,8 @@ from django.core.mail import send_mail
 from django.contrib import admin
 from django.utils.html import format_html
 # Register your models here.
-from .models import BackgroundVideo, Image, Service, Project, Visitor, ProjectVisit, Newsletter, NewsletterSubscriber
+from .models import BackgroundVideo, Image, Service, Project, Visitor, ProjectVisit, Newsletter, NewsletterSubscriber, WebsiteText
+
 from django.core.mail import EmailMultiAlternatives
 from django.utils.html import strip_tags
 from django.utils.encoding import force_str
@@ -60,8 +61,7 @@ admin.site.register(Service, ServiceAdmin)
 
 
 admin.site.register(NewsletterSubscriber)
-# hi
-
+admin.site.register(WebsiteText)
 class NewsletterAdmin(admin.ModelAdmin):
     list_display = ('subject',)
     actions = ['send_newsletter']

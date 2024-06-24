@@ -207,9 +207,7 @@
       <div class="site-col-38 ">
           <div class="section-heading unselectable">
               <h1 id="element"></h1>
-              <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus hic exercitationem corporis
-                  nobis rem nesciunt! Reprehenderit omnis, magni ducimus quam sequi explicabo, doloremque placeat
-                  velit qui vitae cumque fugit voluptates?</h2>
+              <h2>{{ text.WelcomeSectionText }}</h2>
           </div>
 
           <!--Call to Action-->
@@ -240,8 +238,8 @@
           <div class="site-col-3 quote-box" data-aos="fade-right" data-aos-duration="1000">
               <!--User Testimonial-->
               <blockquote class="testimonial text-right bigtest">
-                  <q>90% of what is considered “impossible” is, in fact, possible. The other 10% will become possible with the passage of time & technology</q>
-                  <footer>– Hideo Kojima</footer>
+                  <q>{{ text.LeftAboutUsQuote }}</q>
+                  {% if text.QuoteBy %}<footer>-{{ text.QuoteBy }}</footer>{% endif %}
               </blockquote>
               <!-- End of Testimonial-->
 
@@ -253,9 +251,9 @@
               <div class="section-heading">
                   <h3>BELIEVING</h3>
                   <h2 class="section-title">Who we are ?</h2>
-                  <p class="section-subtitle">Bloody Rain is an art outsourcing studio composed of seasoned professionals from across the gaming industry. </p>
+                  <p class="section-subtitle">{{ text.MiddleAboutUsDescription }}</p>
               </div>
-              <p>Our collective experience has sharpened our ability to deliver top-notch content tailored to the needs of industry professionals, companies, students, and clients. We have gathered a team of the most talented artists, creating a powerhouse of expertise in various aspects of game development. By working on numerous titles, engines, and project types, we possess the skills necessary to handle any game development or real-time project with precision and creativity.
+              <p>{{ text.MiddleAboutUsText }}
 
               </p>
           </div>

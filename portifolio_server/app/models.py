@@ -25,6 +25,22 @@ class BackgroundVideo(models.Model):
         super().save(*args, **kwargs)
 
 
+class WebsiteText(models.Model):
+    WelcomeSectionText = models.TextField()
+    LeftAboutUsQuote = models.TextField()
+    QuoteBy = models.CharField(max_length=100, null=True, blank=True)
+    
+    MiddleAboutUsDescription = models.TextField()
+    MiddleAboutUsText = models.TextField()
+    is_main = models.BooleanField(default=True)
+
+    def save(self, *args, **kwargs):
+        # If this video is marked as main, unmark all other videos
+        if self.is_main:
+            WebsiteText.objects.exclude(pk=self.pk).update(is_main=False)
+        super().save(*args, **kwargs)
+    def __str__(self) :
+        return "Edit home page text here " + str(self.pk)
 
 class Image(models.Model):
     name = models.CharField(max_length=100, null=True, blank=True)
@@ -95,24 +111,7 @@ class Project(Orderable):
         # Set sort_order to pk if it's not already set
         if not self.sort_order:
             self.sort_order = self.pk
-
-        # if self.project_video_youtube:
-        #     # Use BeautifulSoup to parse the HTML and modify the iframe
-        #     soup = BeautifulSoup(self.project_video_youtube, 'html.parser')
-        #     iframe = soup.find('iframe')
-        #     if iframe:
-        #         # Remove width and height attributes
-        #         if 'width' in iframe.attrs:
-        #             del iframe['width']
-        #         if 'height' in iframe.attrs:
-        #             del iframe['height']
-        #         # Adjust size by adding CSS classes or style attributes
-        #         iframe['class'] = 'youtube-iframe'  # Add your custom class
-        #         iframe['style'] = 'width: 100%; height: 100%;'  # Example of inline styles
-
-                # Update project_video_youtube with modified HTML
-                # self.project_video_youtube = str(soup)
-
+            
         super().save(*args, **kwargs)
 
     def __str__(self):

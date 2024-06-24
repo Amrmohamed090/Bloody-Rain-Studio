@@ -88,7 +88,9 @@ UNFOLD = {
     "SITE_TITLE": "BloodyRain",
     "SITE_HEADER": "BloodyRain Home",
     "SITE_URL": "/",
-   
+    "STYLES": [
+        lambda request: static("app/css/admin_style.css"),
+    ],
    
   
     

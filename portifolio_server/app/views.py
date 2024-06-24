@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseRedirect
-from .models import BackgroundVideo, Service, Image, Project, Visitor, ProjectVisit, NewsletterSubscriber 
+from .models import BackgroundVideo, WebsiteText, Service, Image, Project, Visitor, ProjectVisit, NewsletterSubscriber 
 from django.core.mail import send_mail
 from .forms import ContactForm, NewsletterForm
 from django.utils import timezone
@@ -129,12 +129,15 @@ def home(request):
     register_new_visitor(request, active_project=None)
 
     main_video = BackgroundVideo.objects.filter(is_main=True).first()
+    text = WebsiteText.objects.filter(is_main=True).first()
+    
     services = Service.objects.all()
     
     
     context = {
         'main_video': main_video,
         'services': services,
+        'text': text,
         }
     if request.session.get('cookies_accepted'):
         context['cookies_accepted'] = True
