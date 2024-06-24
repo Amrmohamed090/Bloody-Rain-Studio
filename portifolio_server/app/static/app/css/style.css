@@ -753,6 +753,11 @@ color: var(--main-color);
   height: 100%;
 }
 
+.text-center .container-sm .project-video{
+  width: 100%;
+  max-width: 100%;
+}
+
 /* end project  section */
 
 /* styles.css */

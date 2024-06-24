@@ -87,6 +87,7 @@ class Project(Orderable):
     project_description = models.TextField()
     project_category = models.ForeignKey(Service, on_delete=models.SET_NULL, related_name='main_projects', null=True)
     project_thumbnail = models.ForeignKey(Image, on_delete=models.SET_NULL, related_name='as_thumbnail', null=True)
+    project_video_youtube = models.CharField(max_length=600, null=True, blank=True, help_text="Go to the youtube video. and right-click on the YouTube video. then select 'Copy embed code'. \n Paste here")
     project_images = models.ManyToManyField(Image)
     sort_order = models.IntegerField(default=0)
 

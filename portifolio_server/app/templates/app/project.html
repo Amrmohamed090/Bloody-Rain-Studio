@@ -4,9 +4,17 @@
 <div class="port-height"></div>
 <!-- <div class="section-head">{{ active_project.project_name }}</div> -->
 <div class="project-page unselectable row">
-
     <!-- Project Images -->
     <div class="col-8 project-image-box">
+        {% if  active_project.project_video_youtube %}
+        <div class="project-section">
+            <div class="text-center container-sm project-video">
+
+                {{ active_project.project_video_youtube|safe }}
+           
+                </div>
+        </div>
+        {% endif %}
     {% for image in active_project.project_images.all %}
         <div class="project-section">
             <div class="text-center container-sm">
@@ -16,14 +24,7 @@
             </div>
         </div>
         {% endfor %}
-        <div class="project-section">
-            <div class="text-center container-sm">
-                <video autoplay muted loop controls controlsList="nodownload" oncontextmenu="return false;">
-                    <source src="{% static 'app/videos/video.mp4' %}" type="video/mp4" >
-                    Your browser does not support HTML video.
-                  </video>            
-                </div>
-        </div>
+        
     </div>
         <!-- project description -->
         <div class="project-section-1 col-4">
