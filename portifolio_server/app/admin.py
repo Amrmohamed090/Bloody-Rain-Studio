@@ -60,7 +60,7 @@ admin.site.register(Service, ServiceAdmin)
 
 
 admin.site.register(NewsletterSubscriber)
-
+# hi
 
 class NewsletterAdmin(admin.ModelAdmin):
     list_display = ('subject',)
