@@ -19,7 +19,7 @@
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#5d1410" />
   
-  <title>BloodyRain Studio</title>
+  <title>BloodyRain Studios</title>
   
   
   <script type="text/javascript" src="{% static 'app/js/jquery-3.4.1.min.js' %}"></script>
@@ -49,7 +49,7 @@
   
   <style>
     #preloader {
-      background: black url("{% static 'app/images/Loading.gif' %}") no-repeat center center;
+      background: black url("{% static 'app/images/Loading-optimize.gif' %}") no-repeat center center;
       background-size: 60%;
       height: 100vh; width: 100%;
       opacity: 1;
@@ -92,7 +92,11 @@
 <!--           header          -->
 
 
-<header id="banner" class="scrollto clearfix" data-enllax-ratio=".5">
+<header id="banner" class="scrollto clearfix" data-enllax-ratio=".5" style="
+
+background-image: url('{% static 'app/images/cliffs-4k1-ezgif.com-video-to-webp-converter.webp' %}');
+    background-repeat: no-repeat;
+    background-size: cover;">
   <div id="header" class="nav-collapse">
       <div class="site-row clearfix">
           <div class="site-col-1">
@@ -189,15 +193,8 @@
   </div>
   <!--End of Header-->
 
-  <!--Banner Content-->
+
   <div id="banner-content" class="site-row clearfix">
-    <div class="video_container">
-      <video autoplay muted loop id="video_background">
-          <source src="{{ main_video.video.url }}" type="video/mp4">
-          Your browser does not support the video tag.
-      </video>
-      <div id="video-overlay"></div>
-    </div>
       <div class="site-col-38 ">
           <div class="section-heading unselectable">
               <h1 id="element"></h1>
@@ -225,9 +222,8 @@
     <div class="main-background">
       
 
-    <div id="about" class="scrollto clearfix unselectable" style="overflow: hidden;">
+    <div id="about" class="scrollto clearfix unselectable" >
 
-      <!-- <div id="over-lay"></div> -->
       <div class="site-row no-padding-bottom clearfix">
 
 
@@ -253,15 +249,6 @@
               <p>Our collective experience has sharpened our ability to deliver top-notch content tailored to the needs of industry professionals, companies, students, and clients. We have gathered a team of the most talented artists, creating a powerhouse of expertise in various aspects of game development. By working on numerous titles, engines, and project types, we possess the skills necessary to handle any game development or real-time project with precision and creativity.
 
               </p>
-              <!-- <p>
-                  Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
-                  consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
-                  Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet!
-              </p> -->
-              <!-- Just replace the Video ID "UYJ5IjBRlW8" with the ID of your video on YouTube (Found within the URL) -->
-              <!-- <a href="#"  class="main-button">
-                  WATCH VIDEO <i class="fa fa-play" aria-hidden="true"></i>
-              </a> -->
           </div>
           <!--End Content Right Side-->
 
@@ -274,8 +261,6 @@
 
   </div>
   <!--End of Content Section-->
-
-
 
 
 
@@ -308,7 +293,7 @@
     <div class="tab-content" id="pills-tabContent">
       {% for service in services %}
       <div class="tab-pane fade {% if forloop.first %}show active{% endif %}" id="service-{{ service.id }}" role="tabpanel" aria-labelledby="service-tab-{{ service.id }}">
-        <div class="row services-column-sm" style="margin: 0;">
+        <div class="row services-column-sm" >
             <div class="services-box site-col-2 d-flex " data-aos="fade-up" data-aos-duration="1000">
                 <div class="services-text">
                     <h1>{{ service.title }}</h1>
@@ -331,7 +316,7 @@
                         {% for image in service.services_images.all %}
                         
                         <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                            <img class="d-block w-100" src="{{ image.image.url }}" alt="{{ image.name }}">
+                            <img class="d-block w-100 carousel-image" src="{{ image.image.url }}" alt="{{ image.name }}">
                         </div>
                         
                         {% endfor %}
@@ -359,7 +344,7 @@
   <section class="contact_section layout_padding scrollto clearfix unselectable" id="contact_us">
     <!-- <div id="over-lay"></div> -->
 
-    <div class="container">
+    <div class="container container-xl">
         <div class="section-head__back" data-aos="zoom-out-up" data-aos-duration="1000">Contact Us</div>
         <div class="heading_container" data-aos="zoom-out-up" data-aos-duration="1000">
             <h2>Contact Us</h2>
@@ -367,7 +352,7 @@
         <div class="">
             <div class="">
                 <div class="row contact-row-small">
-                    <div class="col-md-9 col-9 contact-col-small">
+                    <div class="col-md-9 col-9 col-xxl-12 contact-col-small">
                         <div class="contact-form">
                             {% if messege_sent %}
                                 <div class="container mt-4">
