@@ -33,7 +33,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('', include('app.urls')),
-    re_path(r'^media_source/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
+    re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
