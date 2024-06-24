@@ -413,22 +413,6 @@ a:focus {
 
 
 
-/* .do_section  { 
-  background: url('../images/zby_02.png') no-repeat;
-  background-position: center;
-  background-size:cover;
-  background-color:rgba(0, 0, 0, 0.5); 
-} */
-
-/* .do_section::before {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 130%;
-  background: rgba(0, 0, 0, 0.5); 
-  z-index: 0;
-} */
-
 .do_section .heading_container {
   -webkit-box-align: center;
       -ms-flex-align: center;
