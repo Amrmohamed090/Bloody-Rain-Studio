@@ -133,14 +133,14 @@ ASGI_APPLICATION = 'portifolio_server.asgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    'default': dj_database_url.config(       
-         # Replace this value with your local database's connection string.        
-         default=f"postgresql://postgres:123@localhost:5432/portifolio_db",        
-         conn_max_age=600    )
-         }
+# DATABASES = {
+#     'default': dj_database_url.config(       
+#          # Replace this value with your local database's connection string.        
+#          default=f"postgresql://postgres:123@localhost:5432/portifolio_db",        
+#          conn_max_age=600    )
+#          }
 
-"""
+
 
 DATABASES = {
     'default': {
@@ -148,7 +148,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-"""
+
 
 
 
