@@ -7,9 +7,13 @@ from django.conf import settings
 
 class Command(BaseCommand):
     help = 'Upload .png and .jpg images from the media folder to the database'
+    def add_arguments(self, parser):
+        parser.add_argument('directory', type=str, help='The directory where the images are stored')
 
-    def handle(self, *args, **kwargs):
-        media_directory = os.path.join(settings.MEDIA_ROOT, 'images')  # Adjust this path based on your MEDIA_ROOT setup
+    def handle(self, *args, **options):
+        if options['directory'][0] == '/':
+            options['directory'] = options['directory'][1:]
+        media_directory = os.path.join(settings.BASE_DIR, "media_source", options['directory'])  # Adjust this path based on your MEDIA_ROOT setup
 
         # Iterate through files in the media directory
         for filename in os.listdir(media_directory):
