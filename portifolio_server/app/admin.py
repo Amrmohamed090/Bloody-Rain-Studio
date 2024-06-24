@@ -13,6 +13,7 @@ from orderable.admin import OrderableAdmin, OrderableTabularInline
 @admin.register(Image)
 class ImageAdmin(admin.ModelAdmin):
     list_display = ['name', 'display_image']
+    ordering = ['name']  # This will sort the images alphabetically by name
 
     def display_image(self, obj):
         return format_html('<img src="{}" style="max-width:400px; max-height:400px;" />', obj.image.url)
