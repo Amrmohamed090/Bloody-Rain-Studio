@@ -20,6 +20,7 @@ class ImageAdmin(admin.ModelAdmin):
     display_image.short_description = 'Image Preview'
 
 
+
 class ProjectAdmin(OrderableAdmin):
     list_display = ['project_name', 'display_thumbnail', 'project_description', 'sort_order_display']
 
@@ -32,9 +33,10 @@ class ProjectAdmin(OrderableAdmin):
 
     display_thumbnail.allow_tags = True
     display_thumbnail.short_description = 'Thumbnail'
+    
 
     def __str__(self):
-        return self.sort_order  # Replace with appropriate field
+        return self.sort_order  
 
 admin.site.register(Project , ProjectAdmin)
 
