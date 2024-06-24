@@ -141,6 +141,17 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 staticfiles/
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+*.log
+*.pot
+*.pyc
+__pycache__
+db.sqlite3
+media_source
 # PyCharm
 #  JetBrains specific template is maintainted in a separate JetBrains.gitignore that can
 #  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
@@ -150,5 +161,10 @@ staticfiles/
 .vscode/settings.json
 portifolio_server/db.sqlite3
 *.sqlite3
+./portifolio_server/media
+
+
+
+
 
 

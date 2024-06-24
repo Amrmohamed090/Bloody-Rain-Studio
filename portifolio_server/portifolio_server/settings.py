@@ -133,13 +133,23 @@ ASGI_APPLICATION = 'portifolio_server.asgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-
 DATABASES = {
     'default': dj_database_url.config(       
          # Replace this value with your local database's connection string.        
          default=f"postgresql://postgres:123@localhost:5432/portifolio_db",        
          conn_max_age=600    )
          }
+
+"""
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+"""
+
 
 
 # Password validation
@@ -190,8 +200,8 @@ GEOIP_PATH = os.path.join(BASE_DIR, 'GeoIp')
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media_source')
+MEDIA_URL = '/media_source/'
 
 
 
