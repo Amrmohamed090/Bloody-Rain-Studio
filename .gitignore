@@ -151,5 +151,4 @@ staticfiles/
 portifolio_server/db.sqlite3
 *.sqlite3
 
-/media/images
-/media
+

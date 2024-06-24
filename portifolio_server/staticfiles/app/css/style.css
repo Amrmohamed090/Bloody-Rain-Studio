@@ -138,6 +138,11 @@
   user-select: none; /* Standard syntax */
 }
 
+
+.services-column-sm {
+  margin: 0;
+}
+
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
@@ -413,21 +418,14 @@ a:focus {
 
 
 
-/* .do_section  { 
-  background: url('../images/zby_02.png') no-repeat;
-  background-position: center;
-  background-size:cover;
-  background-color:rgba(0, 0, 0, 0.5); 
-} */
+ .do_section  { 
+  min-height: 950px;
+} 
 
-/* .do_section::before {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 130%;
-  background: rgba(0, 0, 0, 0.5); 
-  z-index: 0;
-} */
+.carousel-image {
+  aspect-ratio: 16 / 9;
+}
+
 
 .do_section .heading_container {
   -webkit-box-align: center;
@@ -769,6 +767,11 @@ color: var(--main-color);
   height: 100%;
 }
 
+.text-center .container-sm .project-video{
+  width: 100%;
+  max-width: 100%;
+}
+
 /* end project  section */
 
 /* styles.css */
@@ -783,7 +786,6 @@ color: var(--main-color);
 
 .notfound {
   box-sizing: border-box;
-  /* max-width: 410px; */
   width: 100%;
   text-align: center;
   position: absolute;
@@ -791,7 +793,7 @@ color: var(--main-color);
   top: 50%;
   transform: translate(-50%, -50%);
   padding: 20px; /* Add padding for smaller screens */
-  max-width: 410px;
+  max-width: 834px;
 }
 
 .notfound-404 {
@@ -803,7 +805,7 @@ color: var(--main-color);
 }
 
  .notfound h1 {
-  font-size: 6.944vw;
+  font-size: 6vw;
   font-weight: bold;
   font-family: "Montserrat", sans-serif;
   text-align: center;
