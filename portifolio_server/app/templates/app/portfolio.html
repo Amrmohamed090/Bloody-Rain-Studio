@@ -22,9 +22,11 @@
             <div class="col-lg-4 col-md-6 portfolio-item service{{ project.project_category.id }}  fadeInUp" data-category="{{ project.project_category.id }}" >
                 <div class="overflow-hidden">
                     <div class="position-relative overflow-hidden">
-                        <a href="{{ project.project_thumbnail.image.url }}" data-fslightbox="gallery"><img class="img-fluid w-100" src="{{ project.project_thumbnail.image.url }}" alt="{{ project.project_thumbnail.image.name }}">  </a>
-                        <div class="portfolio-overlay" data-fslightbox="gallery" >
-                            <a class="btn btn-square btn-outline-light mx-1" href="{% url 'app-project' project.id %}">Show More</a>
+                        <a href="{% url 'app-project' project.id %}" >
+                            <img class="img-fluid w-100" src="{{ project.project_thumbnail.image.url }}" alt="{{ project.project_thumbnail.image.name }}" loading="lazy"
+                        ></a>
+                        <div class="portfolio-overlay" >
+                            <a class="btn btn-square btn-outline-light mx-1" href="{{ project.project_thumbnail.image.url }}" data-fslightbox="gallery"><i class="far fa-eye"></i></a>
                         </div>
                     </div>
                 </div>

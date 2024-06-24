@@ -1,7 +1,1 @@
-new TypeIt("#element", {
-    strings: ["Welcome To", "<span>Bloody Rain</span>"],
-    speed: 80,
-    waitUntilVisible: true,
-    cursor: false,
-}
-).go();
+new TypeIt("#element",{strings:["Welcome To","<span>Bloody Rain</span>"],speed:80,waitUntilVisible:!0,cursor:!1}).go();
