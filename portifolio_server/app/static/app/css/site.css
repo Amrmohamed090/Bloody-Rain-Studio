@@ -838,11 +838,20 @@ h6 {
     .project-page .project-section-1 .container-sm {
         height: auto
     }
+    
+    .portfolio-overlay {
+        display: none !important;
+    }
+    
 }
 
 @media(max-width:1024) {
     .project-page .project-section-1 .container-sm {
         height: auto
+    }
+
+    .portfolio-overlay {
+        display: none !important;
     }
 }
 
@@ -1756,6 +1765,10 @@ h6 {
     #header .social-icons {
         line-height: 2px
     }
+    
+    .portfolio-overlay {
+        display: none !important;
+    }
 }
 
 @media (min-width:768px) and (max-width:1024px) {
@@ -1853,12 +1866,17 @@ h6 {
     #header .social-icons {
         line-height: 2px
     }
+    
+    .portfolio-overlay {
+        display: none !important;
+    }
 }
 
 @media (min-width:768px) {
     .img-box {
         margin-top: 100px
     }
+    
 }
 
 @media(min-width:2800px) {
@@ -2223,4 +2241,5 @@ h6 {
         border-radius: 2.778vw;
         box-shadow: 0 .278vw 1.042vw -.347vw var(--main-bg-color)
     }
+    
 }

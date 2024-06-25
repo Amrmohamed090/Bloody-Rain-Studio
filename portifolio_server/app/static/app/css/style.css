@@ -1249,7 +1249,8 @@ a:hover {
 
 .btn-square {
     width: 38px;
-    height: 38px
+    height: 38px;
+    padding: 0 20px;
 }
 
 .btn-sm-square {
@@ -1489,13 +1490,13 @@ a:hover {
     justify-content: center;
     width: 0;
     height: 0;
-    bottom: 5px;
+    bottom: 15px;
     background: 0 0;
     right: 0
 }
 
 .portfolio-item:hover .portfolio-overlay {
-    width: 10%;
+    width: 20%;
     height: 15%
 }
 
