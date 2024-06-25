@@ -323,7 +323,7 @@
                         {% for image in service.services_images.all %}
                         
                         <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                            <img class="d-block w-100 carousel-image" src="{{ image.image.url }}" alt="{{ image.name }}" loading="lazy">
+                            <img class="d-block w-100 carousel-image" src="{{ image.thumbnail.url }}" alt="{{ image.name }}" loading="lazy">
                         </div>
                         
                         {% endfor %}
