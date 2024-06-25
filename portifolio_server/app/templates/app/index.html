@@ -67,6 +67,20 @@
 }
 
   </style>
+
+  <script defer>
+    
+      var preloader = document.getElementById("preloader");
+      window.addEventListener("load", function(){
+        preloader.style.opacity = "0"; // Set opacity to 0 to fade out
+      });
+
+      // After the fade out animation completes, remove the preloader from the layout
+      setTimeout(function() {
+        preloader.style.display = "none";
+      },500); // Adjust the time to match the duration of your transition (in milliseconds)
+
+  </script>
 </head>
 
 <body>
@@ -486,17 +500,6 @@
 </body>
 
 <script>
-
-var preloader = document.getElementById("preloader");
-window.addEventListener("load", function(){
-  preloader.style.opacity = "0"; // Set opacity to 0 to fade out
-});
-
-// After the fade out animation completes, remove the preloader from the layout
-setTimeout(function() {
-  preloader.style.display = "none";
-},1000); // Adjust the time to match the duration of your transition (in milliseconds)
-
 
 if ('scrollRestoration' in history) {
             history.scrollRestoration = 'manual';

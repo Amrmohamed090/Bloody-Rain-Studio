@@ -71,6 +71,22 @@
     pointer-events: none; /* Ensure clicks pass through when hidden */
 }
   </style>
+
+
+
+    <script defer>
+        
+        var preloader = document.getElementById("preloader");
+        window.addEventListener("load", function(){
+          preloader.style.opacity = "0"; // Set opacity to 0 to fade out
+        });
+
+        // After the fade out animation completes, remove the preloader from the layout
+        setTimeout(function() {
+          preloader.style.display = "none";
+        },50); // Adjust the time to match the duration of your transition (in milliseconds)
+
+    </script>
 </head>
 
 <body>
@@ -239,20 +255,7 @@
 
 </body>
 
-<script>
 
-var preloader = document.getElementById("preloader");
-window.addEventListener("load", function(){
-    preloader.style.opacity = "0"; // Set opacity to 0 to fade out
-});
-
-// After the fade out animation completes, remove the preloader from the layout
-setTimeout(function() {
-    preloader.style.display = "none";
-}, 700); // Adjust the time to match the duration of your transition (in milliseconds)
-
-
-</script>
   <!-- JavaScript Libraries -->
   
   <script src="{% static 'app/lib/bootstrap-5/js/bootstrap.bundle.min.js' %}"></script>
