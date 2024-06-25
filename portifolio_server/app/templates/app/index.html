@@ -49,7 +49,7 @@
 
   
   <style>
-    /* #preloader {
+    #preloader {
       background: black url("{% static 'app/images/Loading-optimize.gif' %}") no-repeat center center;
       background-size: 60%;
       height: 100vh; width: 100%;
@@ -64,14 +64,8 @@
     #preloader.hidden {
     opacity: 0;
     pointer-events: none; 
-} */
+}
 
-
-/* 
-  #banner {
-    background-image: url("{{ main_video.video.url }}");
-
-  } */
   </style>
 </head>
 
@@ -99,12 +93,12 @@
 
 
 <header id="banner" class="scrollto clearfix" data-enllax-ratio=".5" >
-  <!-- <div class="video_container">
+  <div class="video_container">
     <video autoplay muted loop playsinline id="video_background">
         <source src="{{ main_video.video.url }}" type="video/mp4">
     </video>
     <div id="video-overlay"></div>
-  </div> -->
+  </div>
   <div id="header" class="nav-collapse">
       <div class="site-row clearfix">
           <div class="site-col-1">
