@@ -290,6 +290,19 @@ setTimeout(function() {
         }, 1000);
       });
     });
+
+
+
+    
+if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+
+        window.addEventListener('load', function() {
+            window.scrollTo(0, 0);
+        });
+
+
   </script>
 
 <script src="{% static 'app/js/portoflio.js' %}"></script>

@@ -28,6 +28,7 @@
 
   <!-- fonts style -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Poppins:400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
@@ -306,7 +307,7 @@
                     <h1>{{ service.title }}</h1>
                     <p>{{ service.description }}</p>
                     <div >
-                        <a class ="main-button" href="{% url 'app-portfolio' True%}?pageid={{ service.id }}">show more</a>
+                        <a class ="main-button" href="{% url 'app-portfolio' True%}?pageid={{ service.id }}">Show more</a>
                     </div> 
                 </div>
             </div>
@@ -500,7 +501,17 @@ window.addEventListener("load", function(){
 // After the fade out animation completes, remove the preloader from the layout
 setTimeout(function() {
   preloader.style.display = "none";
-},700); // Adjust the time to match the duration of your transition (in milliseconds)
+},1000); // Adjust the time to match the duration of your transition (in milliseconds)
+
+
+if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+
+        window.addEventListener('load', function() {
+            window.scrollTo(0, 0);
+        });
+
 
 
 </script>
