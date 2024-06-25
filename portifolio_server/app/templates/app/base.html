@@ -6,19 +6,14 @@
 
 <head>
   <!-- Basic -->
-
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <!-- Mobile Metas -->
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <!-- Site Metas -->
-  <!-- Basic -->
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <!-- Mobile Metas -->
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <!-- Site Metas -->
-  <meta name="keywords" content="Bloody Rain, BloodyRain ,BloodyRain studios, Bloody Rain studios, BloodyRain studio, Bloody Rain studio , 3D assets, high-quality 3D, 3D vehicles, concept art, 3D environments, 3D models, 3D design, 3D animation, 3D rendering, 3D graphics" />
+  <meta name="keywords" content="Bloody Rain, BloodyRain ,BloodyRain studios, Bloody Rain studios, BloodyRain studio, Bloody Rain studio , 3D assets, high-quality 3D, 3D vehicles, concept art, 3D environments, 3D models, 3D design, 3D animation, 3D rendering, 3D graphics, blood rain,bloodrain, bloodrainstudio, blood rain studio," />
   <meta name="description" content="Bloody Rain specializes in creating high-quality 3D assets, vehicles, props, charachters, texturing and concept art environments. We bring your ideas to life with top-notch 3D models and designs." />
   <meta name="author" content="Bloody Rain" />
 
@@ -26,7 +21,7 @@
   <script type="text/javascript" src="{% static 'app/js/jquery-3.4.1.min.js' %}"></script>
   <script src="{% static 'app/js/disableRightClick.js' %}"></script>
 
-  <title>BloodyRain Studio</title>
+  <title>Bloody Rain Studio</title>
   
  <!--Favicon-->
   <link rel="shortcut icon" href="{% static 'app/images/ICON (2).png' %}" title="Favicon"/>
@@ -76,7 +71,22 @@
     pointer-events: none; /* Ensure clicks pass through when hidden */
 }
   </style>
-  <script defer src="{% static 'app/js/app.js' %}"></script>
+
+
+
+    <script defer>
+        
+        var preloader = document.getElementById("preloader");
+        window.addEventListener("load", function(){
+          preloader.style.opacity = "0"; // Set opacity to 0 to fade out
+        });
+
+        // After the fade out animation completes, remove the preloader from the layout
+        setTimeout(function() {
+          preloader.style.display = "none";
+        },50); // Adjust the time to match the duration of your transition (in milliseconds)
+
+    </script>
 </head>
 
 <body>
@@ -245,31 +255,14 @@
 
 </body>
 
-<script>
 
-var preloader = document.getElementById("preloader");
-window.addEventListener("load", function(){
-    preloader.style.opacity = "0"; // Set opacity to 0 to fade out
-});
-
-// After the fade out animation completes, remove the preloader from the layout
-setTimeout(function() {
-    preloader.style.display = "none";
-}, 700); // Adjust the time to match the duration of your transition (in milliseconds)
-
-
-</script>
   <!-- JavaScript Libraries -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/5.0.0/imagesloaded.js" integrity="sha512-FxVzEpFT3ud9pJnY8inSvxar5XthCgn6aNjRzameAR3ILpH3OZly1eXR1TffkeeKKYBnaVKAI1ALCASquJ6JIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="{% static 'app/lib/bootstrap-5/js/bootstrap.bundle.min.js' %}"></script>
   <script src="{% static 'app/js/jquery.1.8.3.min.js' %}"></script>
-  <script src="{% static 'app/lib/easing/easing.min.js' %}"></script>
-  <script src="{% static 'app/lib/waypoints/waypoints.min.js' %}"></script>
   <script src="{% static 'app/lib/counterup/counterup.min.js' %}"></script>
   <script src="{% static 'app/lib/isotope/isotope.pkgd.min.js' %}"></script>
   <script src="{% static 'app/lib/fslightbox-basic-3.4.1/fslightbox.js' %}"></script>
-  <script src="{% static 'app/js/featherlight.min.js' %}"></script>
-  <script src="{% static 'app/js/featherlight.gallery.min.js' %}"></script>
   <script src="{% static 'app/js/jquery.enllax.min.js' %}"></script>
   <script src="{% static 'app/js/jquery.scrollUp.min.js' %}"></script>
   <script src="{% static 'app/js/jquery.stickyNavbar.min.js' %}"></script>

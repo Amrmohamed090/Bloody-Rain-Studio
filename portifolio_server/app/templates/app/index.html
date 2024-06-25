@@ -7,6 +7,12 @@
 
   <!--Favicon-->
   <link rel="shortcut icon" href="{% static 'app/images/ICON (2).png' %}" title="Favicon"/>
+  <!-- For browsers that support .ico files -->
+  <link rel="icon" href="{% static 'app/images/ICON-_2_.ico' %}">
+  <!-- Optional: For Apple devices -->
+  <link rel="apple-touch-icon"  href="{% static 'app/images/ICON (2).png' %}">
+    <!-- Optional: For Android Chrome -->
+  <link rel="icon"  href="{% static 'app/images/ICON (2).png' %}">
   <!-- Basic -->
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -19,7 +25,7 @@
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#5d1410" />
   
-  <title>BloodyRain Studios</title>
+  <title>BloodyRain Studio</title>
   
   
   <script type="text/javascript" src="{% static 'app/js/jquery-3.4.1.min.js' %}"></script>
@@ -27,10 +33,6 @@
   <link rel="stylesheet" type="text/css" href="{% static 'app/css/bootstrap.css' %}" />
 
   <!-- fonts style -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Poppins:400,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
   <!-- Custom styles for this template -->
   <link rel="stylesheet" href="{% static 'app/css/font-awesome.min.css' %}">
@@ -39,8 +41,6 @@
 
   <!-- responsive style -->
   <link href="{% static 'app/css/responsive.css' %}" rel="stylesheet" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-  <!-- Icon Font Stylesheet -->
   <link href="{% static 'app/lib/fontawesome/css/all.min.css' %}" rel="stylesheet">
   <!-- Libraries Stylesheet -->
   <link href="{% static 'app/lib/animate/animate.min.css' %}" rel="stylesheet">
@@ -66,15 +66,21 @@
     pointer-events: none; 
 }
 
-
-/* 
-  #banner {
-    background-image: url("{{ main_video.video.url }}");
-
-  } */
   </style>
-  <script defer src="{% static 'app/js/app.js' %}"></script>
 
+  <script defer>
+    
+      var preloader = document.getElementById("preloader");
+      window.addEventListener("load", function(){
+        preloader.style.opacity = "0"; // Set opacity to 0 to fade out
+      });
+
+      // After the fade out animation completes, remove the preloader from the layout
+      setTimeout(function() {
+        preloader.style.display = "none";
+      },500); // Adjust the time to match the duration of your transition (in milliseconds)
+
+  </script>
 </head>
 
 <body>
@@ -102,7 +108,7 @@
 
 <header id="banner" class="scrollto clearfix" data-enllax-ratio=".5" >
   <div class="video_container">
-    <video autoplay muted loop id="video_background">
+    <video autoplay muted loop playsinline id="video_background">
         <source src="{{ main_video.video.url }}" type="video/mp4">
     </video>
     <div id="video-overlay"></div>
@@ -493,17 +499,6 @@
 
 <script>
 
-var preloader = document.getElementById("preloader");
-window.addEventListener("load", function(){
-  preloader.style.opacity = "0"; // Set opacity to 0 to fade out
-});
-
-// After the fade out animation completes, remove the preloader from the layout
-setTimeout(function() {
-  preloader.style.display = "none";
-},1000); // Adjust the time to match the duration of your transition (in milliseconds)
-
-
 if ('scrollRestoration' in history) {
             history.scrollRestoration = 'manual';
         }
@@ -520,20 +515,13 @@ if ('scrollRestoration' in history) {
 
 <script src="{% static 'app/lib/bootstrap-5/js/bootstrap.bundle.min.js' %}"></script>
 <script src="{% static 'app/lib/typeit/js/typeit.js' %}"></script>
-
 <script src="{% static 'app/js/jquery.1.8.3.min.js' %}"></script>
-<script src="{% static 'app/lib/easing/easing.min.js' %}"></script>
-<script src="{% static 'app/lib/waypoints/waypoints.min.js' %}"></script>
-<script src="{% static 'app/lib/counterup/counterup.min.js' %}"></script>
 <script src="{% static 'app/lib/isotope/isotope.pkgd.min.js' %}"></script>
 <script src="{% static 'app/lib/fslightbox-basic-3.4.1/fslightbox.js' %}"></script>
-<script src="{% static 'app/js/featherlight.min.js' %}"></script>
-<script src="{% static 'app/js/featherlight.gallery.min.js' %}"></script>
 <script src="{% static 'app/js/jquery.enllax.min.js' %}"></script>
 <script src="{% static 'app/js/jquery.scrollUp.min.js' %}"></script>
 <script src="{% static 'app/js/jquery.stickyNavbar.min.js' %}"></script>
 <script src="{% static 'app/js/jquery.waypoints.min.js' %}"></script>
-<script src="{% static 'app/js/jquery.easing.min.js' %}"></script>
 <script src="{% static 'app/js/portoflio.js' %}"></script>
 <script src="{% static 'app/js/site.js' %}"></script>
 <script src="{% static 'app/js/titletyping.js' %}"></script>
