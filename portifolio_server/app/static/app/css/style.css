@@ -658,7 +658,8 @@ a:hover {
     font-weight: 400;
     letter-spacing: 0;
     line-height: 1.75;
-    padding: 20px
+    padding: 20px;
+    align-items: flex-start;
 }
 
 .contact_section .section-head__back,
@@ -721,7 +722,7 @@ a:hover {
 
 .project-page .project-section img {
     max-width: 100%;
-    height: 100%
+    height: auto;
 }
 
 .project-video {
