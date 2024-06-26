@@ -815,6 +815,12 @@ a:hover {
     }
 }
 
+@media(max-width:362px) {
+    .do_section .button-style {
+        font-size: 10px;
+    }
+}
+
 .client_section {
     padding-bottom: 150px;
     padding-top: 25px
