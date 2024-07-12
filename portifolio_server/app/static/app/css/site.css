@@ -5,6 +5,10 @@
     font-style: normal;
 }
 
+
+html {
+    overflow-y: scroll;
+}
 .site-row img,
 picture img {
     max-width: 100%
