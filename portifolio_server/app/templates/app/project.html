@@ -6,15 +6,6 @@
 <div class="project-page unselectable row">
     <!-- Project Images -->
     <div class="col-8 project-image-box">
-    {% for image in active_project.project_images.all %}
-        <div class="project-section">
-            <div class="text-center">
-                <a href="{{ image.image.url }}" data-fslightbox="gallery" >
-                    <img class="img-responsive" alt="{{ image.name }}" src="{{ image.image.url }}" loading="lazy" >
-                </a>
-            </div>
-        </div>
-        {% endfor %}
         {% if  active_project.project_video_youtube %}
         <div class="project-section">
             <div class="text-center project-video">
@@ -24,6 +15,16 @@
                 </div>
         </div>
         {% endif %}
+
+    {% for image in active_project.project_images.all %}
+        <div class="project-section">
+            <div class="text-center">
+                <a href="{{ image.image.url }}" data-fslightbox="gallery" >
+                    <img class="img-responsive" alt="{{ image.name }}" src="{{ image.image.url }}" loading="lazy" >
+                </a>
+            </div>
+        </div>
+        {% endfor %}
         
     </div>
         <!-- project description -->
