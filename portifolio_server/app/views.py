@@ -13,7 +13,9 @@ from django.contrib import messages
 from django.urls import reverse
 from django.views.generic import View
 
-
+from django_ratelimit.decorators import ratelimit
+from blacklist.ratelimit import blacklist_ratelimited
+from datetime import timedelta
 def register_new_visitor(request, active_project=None):
     visitor_ip = get_client_ip(request)
     visitor_location = get_visitor_location(visitor_ip)
@@ -39,6 +41,10 @@ def register_subscriber(email):
             # Email doesn't exist, create a new subscriber
             subscriber = NewsletterSubscriber(email=email)
             subscriber.save()
+
+
+@ratelimit(key='ip', rate='5/h', method=ratelimit.UNSAFE , block=False)
+@blacklist_ratelimited(timedelta(hours=10000))
 
 def contact_us(request):
     if request.method == 'POST':
@@ -124,7 +130,8 @@ def get_visitor_location(ip_address):
     return visitor_location
 
     
-
+@ratelimit(key='ip', rate='5/h', method=ratelimit.UNSAFE,  block=False)
+@blacklist_ratelimited(timedelta(hours=10000))
 def home(request):
     register_new_visitor(request, active_project=None)
 

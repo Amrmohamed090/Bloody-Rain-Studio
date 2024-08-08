@@ -50,8 +50,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', default="django-insecure-q9o(%wi_o0^*5al=8qe19g_t&dlg90wlorozm(9s$ay&=3(i)j")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-#DEBUG_PROPAGATE_EXCEPTIONS = True
+DEBUG = True
+DEBUG_PROPAGATE_EXCEPTIONS = True
 
 ALLOWED_HOSTS = ["mysite-k3q7.onrender.com","127.0.0.1", "portifolio-server-21uj.onrender.com","bloody-rain.onrender.com","bloodyrainstudio.com", "www.bloodyrainstudios.com"]
 
@@ -73,7 +73,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "django_recaptcha"
+    "django_recaptcha",
+    'blacklist'
    # 'ckeditor',
     #'ckeditor_uploader',
 ]
@@ -108,6 +109,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     'app.middleware.CookieConsentMiddleware',
+    'blacklist.middleware.BlacklistMiddleware',
 ]
 
 
@@ -226,4 +228,5 @@ EMAIL_HOST_PASSWORD = 'wwui ffnq epqg isvq'
 RECAPTCHA_PUBLIC_KEY = "6LcG_yEqAAAAAHe1wpQ1v7FuB0q3cuEwmNKRQLC5"
 RECAPTCHA_PRIVATE_KEY = "6LcG_yEqAAAAAAVuObXHLppeowSN62voJCgvCQal"
 RECAPTCHA_REQUIRED_SCORE = 0.85
-SILENCED_SYSTEM_CHECKS = ['django_recaptcha.recaptcha_test_key_error']
+
+
