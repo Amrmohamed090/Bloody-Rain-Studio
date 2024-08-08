@@ -133,11 +133,12 @@ def home(request):
     
     services = Service.objects.all()
     
-    
+    contact_us_form = ContactForm()
     context = {
         'main_video': main_video,
         'services': services,
         'text': text,
+        "contact_us_form": contact_us_form
         }
     if request.session.get('cookies_accepted'):
         context['cookies_accepted'] = True

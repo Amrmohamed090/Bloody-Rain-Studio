@@ -47,7 +47,6 @@
   <link rel="stylesheet" href="{% static 'app/css/site-color.css' %}">
   <link rel="stylesheet" href="{% static 'app/css/site.css' %}">
 
-  
   <style>
     #preloader {
       background: black url("{% static 'app/images/loading-c.gif' %}") no-repeat center center;
@@ -396,7 +395,9 @@
                                 <input type="checkbox" name="subscribe_newsletter" id="subscribe_newsletter">
                                 <label for="subscribe_newsletter">Subscribe to newsletter</label>
                               </div>
-                         
+                              <div class="form-group" data-aos="fade-right" data-aos-duration="1340">
+                                {{ contact_us_form.captcha }}
+                              </div>
                               <div class="form-group" data-aos="fade-right" data-aos-duration="1340">
                                   <button type="submit" class="btn btn-primary" data-aos="fade-right" data-aos-duration="1400">Send</button>
                               </div>

@@ -73,6 +73,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django_recaptcha"
    # 'ckeditor',
     #'ckeditor_uploader',
 ]
@@ -220,3 +221,9 @@ EMAIL_HOST_USER = 'contact@bloodyrainstudios.com'
 # SECURITY WARNING:
 EMAIL_HOST_PASSWORD = 'wwui ffnq epqg isvq'
 
+
+
+RECAPTCHA_PUBLIC_KEY = "6LcG_yEqAAAAAHe1wpQ1v7FuB0q3cuEwmNKRQLC5"
+RECAPTCHA_PRIVATE_KEY = "6LcG_yEqAAAAAAVuObXHLppeowSN62voJCgvCQal"
+RECAPTCHA_REQUIRED_SCORE = 0.85
+SILENCED_SYSTEM_CHECKS = ['django_recaptcha.recaptcha_test_key_error']
