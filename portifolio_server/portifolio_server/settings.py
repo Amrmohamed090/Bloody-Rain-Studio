@@ -52,7 +52,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', default="django-insecure-q9o(%wi_o0^*5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 DEBUG_PROPAGATE_EXCEPTIONS = True
-
+redeploy = True
 ALLOWED_HOSTS = ["mysite-k3q7.onrender.com","127.0.0.1", "portifolio-server-21uj.onrender.com","bloody-rain.onrender.com","bloodyrainstudio.com", "www.bloodyrainstudios.com"]
 
 
