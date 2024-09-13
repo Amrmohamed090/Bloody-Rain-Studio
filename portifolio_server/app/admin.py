@@ -45,6 +45,7 @@ admin.site.register(Project , ProjectAdmin)
 
 admin.site.register(Visitor)
 
+
 admin.site.register(ProjectVisit)
 
 admin.site.register(BackgroundVideo)
@@ -104,3 +105,12 @@ class NewsletterAdmin(admin.ModelAdmin):
         self.message_user(request, "Newsletter sent successfully.")
 
 admin.site.register(Newsletter, NewsletterAdmin)
+
+
+from django_summernote.admin import SummernoteModelAdmin
+from .models import Post
+
+class PostAdmin(SummernoteModelAdmin):
+    summernote_fields = ('content',)
+
+admin.site.register(Post, PostAdmin)

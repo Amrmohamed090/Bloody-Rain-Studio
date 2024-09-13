@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseRedirect
-from .models import BackgroundVideo, WebsiteText, Service, Image, Project, Visitor, ProjectVisit, NewsletterSubscriber 
+from .models import BackgroundVideo, WebsiteText, Service, Image, Project, Visitor, ProjectVisit, NewsletterSubscriber, Post 
 from django.core.mail import send_mail
 from .forms import ContactForm, NewsletterForm
 from django.utils import timezone
@@ -184,10 +184,15 @@ def careers(request):
 def blog(request):
     register_new_visitor(request)
 
-    context = {}
-
+    
+    posts = Post.objects.all()
+    context = {'posts': posts}
 
     return render(request, 'app/blog.html', context)
+def post_detail(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    return render(request, 'app/post_page.html', {'post': post})
+
 
 
 def privacy(request):

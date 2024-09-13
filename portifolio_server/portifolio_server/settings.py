@@ -18,27 +18,6 @@ from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 
 
-
-
-# CKEditor Settings
-CKEDITOR_UPLOAD_PATH = 'uploads/'
-CKEDITOR_IMAGE_BACKEND = "pillow"
-CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js' 
-CKEDITOR_CONFIGS = {
-    'default':
-        {
-            'toolbar': 'full',
-            'width': 'auto',
-        'extraPlugins': 'image2',
-        'filebrowserUploadUrl': '/ckeditor/upload/',
-        'filebrowserBrowseUrl': '/ckeditor/browse/',
-            'extraPlugins': ','.join([
-                'codesnippet',
-            ]),
-        },
-}
-
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -51,7 +30,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', default="django-insecure-q9o(%wi_o0^*5
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-#DEBUG_PROPAGATE_EXCEPTIONS = True
+DEBUG_PROPAGATE_EXCEPTIONS = True
 
 ALLOWED_HOSTS = ["mysite-k3q7.onrender.com","127.0.0.1", "portifolio-server-21uj.onrender.com","bloody-rain.onrender.com","bloodyrainstudio.com", "www.bloodyrainstudios.com"]
 
@@ -73,12 +52,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-   # 'ckeditor',
-    #'ckeditor_uploader',
-]
+    'django_summernote',]
 SITE_ID = 1
-CKEDITOR_BASEPATH = "/staticfiles/ckeditor/ckeditor/"
-CKEDITOR_UPLOAD_PATH = "uploads/"
 
 UNFOLD = {
     "DASHBOARD_CALLBACK": "app.utils.dashboard_callback",
@@ -220,3 +195,23 @@ EMAIL_HOST_USER = 'contact@bloodyrainstudios.com'
 # SECURITY WARNING:
 EMAIL_HOST_PASSWORD = 'wwui ffnq epqg isvq'
 
+
+
+EDITORJS_IMAGE_UPLOAD_PATH = 'uploads/editorjs/' 
+
+
+
+SUMMERNOTE_CONFIG = {
+    # Using SummernoteWidget - iframe mode, default
+    'iframe': True,
+    'attachment_filesize_limit': 10000000,
+
+    # You can put custom Summernote settings
+    'summernote': {
+
+        # Change editor size
+        'width': '100%',
+        'height': '1000',
+
+    }
+}

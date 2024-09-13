@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 from django.contrib import admin
 from .views import RobotsTextView
@@ -15,8 +15,11 @@ urlpatterns = [
     path('project/<int:active>/', views.project, name='app-project'),  
     path('careers/', views.careers, name='app-careers') , 
     path('blog/', views.blog, name='app-blog') , 
+    path('blog/<int:pk>/', views.post_detail, name='app-post'),
+
     path('privacy/', views.privacy, name='app-privacy') ,
     path('newsletter/', views.newsletter, name='app-subscribeNewsletter'),
+
     path('robots.txt', RobotsTextView.as_view(), name='robots'),
 
 ]

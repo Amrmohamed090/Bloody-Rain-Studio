@@ -6,12 +6,9 @@
 <div id="notfound">
   <div class="notfound">
 
-    <h1>Posts</h1>
-    <ul>
-        {% for post in posts %}
-            <li><a href="{% url 'app-post' post.pk %}">{{ post.title }}</a></li>
-        {% endfor %}
-    </ul>
+    <h1>{{ post.title }}</h1>
+    <p>{{ post.content|safe}}</p>
+    <a href="{% url 'app-blog' %}">Back to list</a>
 
     <a href="{% url 'app-home' %}" class="main-button">Go To Homepage</a>
   </div>

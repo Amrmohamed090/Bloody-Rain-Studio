@@ -8,4 +8,5 @@ class ResizableImageWidget(ClearableFileInput):
         context = self.get_context(name, value, attrs)
         html = self._render(self.template_name, context, renderer)
         return mark_safe(html)
-    
+
+

@@ -13,6 +13,9 @@ from django.core.files.base import ContentFile
 from orderable.models import Orderable
 from django.urls import reverse
 from bs4 import BeautifulSoup 
+    
+from django_editorjs_fields import EditorJsJSONField  # Django >= 3.1
+from django_editorjs_fields import EditorJsTextField
 
 class BackgroundVideo(models.Model):
     video = models.FileField(upload_to='background_videos/')
@@ -145,13 +148,7 @@ class Project(Orderable):
         if not self.sort_order:
             self.sort_order = self.pk
             
-        super().save(*args, **kwargs)
-
-    def __str__(self):
-        return self.project_name
-    def get_absolute_url(self):
-        return reverse('app-project', args=[str(self.pk)])
-    
+        super().save(*args, **kwargs)    
 
 class Visitor(models.Model):
     ip_address = models.CharField(max_length=50)
@@ -181,3 +178,10 @@ class NewsletterSubscriber(models.Model):
     subscribed = models.BooleanField(default=True)
     def __str__(self):
         return self.email
+
+
+class Post(models.Model):
+    title = models.CharField(max_length=100)
+    content = models.TextField()
+    def __str__(self):
+        return self.title
