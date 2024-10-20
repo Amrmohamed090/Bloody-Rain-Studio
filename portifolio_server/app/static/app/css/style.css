@@ -32,12 +32,6 @@
     --dark: #353535
 }
 
-.hidden {
-    opacity: 0;
-    transition: .7s;
-    filter: blur(5px);
-    transform: translateX(-100%)
-}
 
 #spinner.show,
 .form-group input[type=checkbox]:checked+label::after,
@@ -1712,4 +1706,204 @@ a:hover {
     padding: 25px 0;
     font-size: 15px;
     border-top: 1px solid rgba(256, 256, 256, .1)
+}
+
+
+
+
+
+/* blog main page  */
+
+
+
+.main-title {
+    padding: 50px;
+    --widgets-spacing: 20px 20px;
+    background-image: url(../images/1234.png);
+    background-repeat: repeat;
+    background-size: cover;
+    margin-bottom: 100px;
+}
+
+.port-height-blog {
+    height: 70px;
+}
+
+
+.main-title h1 {
+    color: white;
+    font-family: Roboto, sans-serif;
+    font-size: 39px;
+    font-weight: 600;
+    line-height: 1.2em;
+    letter-spacing: -1px;
+}
+.main-title h4 {
+    color: white;
+    font-family: Roboto, sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 1.3em;
+    letter-spacing: -1px;
+}
+
+.blog-slider {
+    position: relative;
+}
+
+.blog-slider-container {
+    display: flex;
+    flex-direction: column;
+    transition-property: background, border, box-shadow;
+    transition-duration: .25s;
+    padding: 0;
+    margin: 0;
+    min-width: 0;
+
+}
+.blog-slider-elemnent {
+    background-color: #323437;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    min-height: 100%;
+    border: 0 solid #69727d;
+    transition: all .25s;
+}
+.blog-slider-elemnent a {
+    margin-bottom: 20px;
+    position: relative;
+    display: block;
+    width: 100%;
+    box-shadow: none;
+    text-decoration: none;
+}
+.blog-slider-element-image::after {
+    display: block;
+    content: "";
+    background-image: linear-gradient(0deg, rgba(0, 0, 0, .35), transparent 75%);
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    opacity: 1;
+    transition: all .3s ease-out;
+}
+.blog-slider-element-image:hover {
+    color: #C2D5F7;
+}
+
+.blog-slider-elemnent .blog-slider-element-image-box {
+    padding-bottom: calc(0.66* 100%);
+    position: relative;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+}
+
+
+.blog-slider-elemnent .blog-slider-element-image-box img {
+    --smush-placeholder-width: 1280px;
+    --smush-placeholder-aspect-ratio: 1280/905;
+    width: calc(100% + 1px);
+    height: auto;
+    position: absolute;
+    top: calc(50% + 1px);
+    left: calc(50% + 1px);
+    transform: scale(1.01) translate(-50%, -50%);
+    display: block;
+    width: 100%;
+    max-height: none;
+    max-width: none;
+    transition: filter .3s;
+    height: auto;
+    max-width: 100%;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+}
+/* 
+.blog-slider-elemnent:hover  img {
+    opacity: 0.7;
+    transform: scale(1.1);
+} */
+
+
+.blog-slider .blog-slider-badge {
+    position: absolute;
+    background-color: var(--main-bg-color);
+    color: white;
+    margin: 21px;
+    right: 0;
+    top: 0;
+    text-transform: uppercase;
+    font-size: 12px;
+    padding: .6em 1.2em;
+    line-height: 1;
+    font-weight: 400;
+    margin: 20px;
+    border-radius: 999px;
+}
+
+
+.blog-slider-text {
+    padding: 0 21px;
+    margin-top: 0px;
+    margin-bottom: 0;
+    width: 100%;
+    display: flex, block;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.blog-slider-title {
+    margin-bottom: 21px;
+    margin: 0;
+}
+
+.blog-slider-title a {
+    color: white;
+    font-family: Roboto,sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+    text-transform: none;
+    text-decoration: none;
+    font-style: normal;
+    line-height: 1.3em;
+}
+
+.blog-slider-title a:hover {
+    color: white;
+}
+
+.blog-slider-excerpt {
+    margin-bottom: 25px;
+    line-height: 1.7;
+}
+
+.blog-slider-excerpt p {
+    color: #B4B4B4 ;
+    font-family: Roboto,sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5em;
+}
+
+
+.blog-slider-meta-date {
+    border-top-color: #3E4043;
+    margin-top: auto;
+    padding: 10px 21px;
+    color: white;
+    font-family: Roboto,sans-serif;
+    font-size: 13px;
+    font-weight: 400;
 }
